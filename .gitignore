@@ -1,0 +1,5 @@
+env
+*pyc*
+
+*secret*
+health_conditions.json
