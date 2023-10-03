@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Conditions{% endblock %}
+
+{% block body %}
+<h1>All Conditions</h1>
+ 
+<ul>
+  {% for condition in conditions %}
+    <li>
+      <a href= "/condition/condition_id">
+        {{ conditon.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

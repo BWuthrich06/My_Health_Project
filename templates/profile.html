@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Welcome {{ name }} {% endblock %}
+
+{% block body %}
+  <h1>Welcome {{ name }}</h1>
+
+  <h2>My Profile</h2>
+
+  <h2>My Saved Conditions</h2>
+
+  <h2>Search for Condition</h2>
+  <form>
+    <input type="text", name="result">
+    <input type="submit">
+  </form>
+
+  <a href="/conditions">All Health Conditions</a>
+
+
+
+{% endblock %}
+

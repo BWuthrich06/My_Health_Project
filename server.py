@@ -11,6 +11,8 @@ app.secret_key = 'dev'
 app.jinja_env.undefined = StrictUndefined
 
 
+
+
 @app.route('/')
 def homepage():
     """View homepage."""
@@ -19,12 +21,31 @@ def homepage():
 
 
 
+@app.route('/create_user')
+def create_new_user():
 
-@app.route('/newuser')
+    return render_template('new_users.html')
+
+
+
+@app.route('/users', methods = ['POST'])
 def new_user():
     """Create new user."""
 
-    return render_template('users.html')
+    email = request.form.get('email')
+    name = request.form.get('name')
+    password = request.form.get('password')
+
+    if crud.get_user_by_email(email):
+        flash("Email unavailable")
+
+    else:
+        user = crud.create_user(email, name, password)
+        db.session.add(user)
+        db.session.commit()
+        flash("Account succesfully created.")
+
+    return redirect('/')
 
 
 
@@ -33,20 +54,47 @@ def new_user():
 def process_login():
 
     email = request.form.get('email')
-    name = request.form.get('name')
     password = request.form.get('password')
 
-    
+    user = crud.get_user_by_email(email)
 
-    if session[email]:
-        flash("Invalid email or password.")
-    
+    if not user or user.password != password:
+        flash("Invalid credentials.")
+
     else:
-        user = crud.create_user(email, name, password)
-        flash("Account successfully created!")
-        session[user] = email
+        flash("Login successful.")
+        session['email'] = email
+        name = user.name
 
-    return redirect('/')
+    return render_template('profile.html', name = name)
+
+
+
+@app.route("/conditions")
+def all_conditions():
+    """View all conditions."""
+
+    conditions = crud.get_conditions()
+
+    return render_template("all_conditions.html", conditions = conditions)
+
+
+@app.route("/conditions/condition_id")
+def show_movie(condition_id):
+    """Show details on a condition."""
+
+    condition = crud.get_condition_by_id(condition_id)
+
+    return render_template("condition_details.html", condition = condition)
+
+
+
+
+# @app.route('profile')
+# def main_profile():
+
+
+    
 
 
 

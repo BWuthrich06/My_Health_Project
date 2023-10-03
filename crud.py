@@ -9,6 +9,21 @@ def create_user(email, name, password):
     return user
 
 
+
+def get_user_by_id(user_id):
+    """Returns user by id."""
+
+    return User.query.get(user_id)
+
+
+
+def get_user_by_email(email):
+    """Returns user by email."""
+
+    return User.query.filter(User.email == email).first()
+
+
+
 def create_condition(title, synonyms, url):
     """Create and return a condition."""
 
