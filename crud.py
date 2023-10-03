@@ -1,4 +1,4 @@
-from model import db, User, Condition, Favorite, connect_to_db
+from model import db, User, Condition, User_condition, connect_to_db
 
 
 def create_user(email, name, password):
@@ -9,7 +9,7 @@ def create_user(email, name, password):
     return user
 
 
-def create_condition(title, synonym, url):
+def create_condition(title, synonyms, url):
     """Create and return a condition."""
 
     condition = Condition(
@@ -36,15 +36,16 @@ def get_condition_by_id(condition_id):
 
 
 
-def create_favorite(condition_id, user_id, date_added, comments=None):
-    """Create and return a favorite."""
+# def create_favorite(condition_id, user_id, title, date_added, comments=None):
+#     """Create and return a favorite."""
 
-    favorite = Favorite(
-        condition_id = condition_id,
-        user_id = user_id,
-        date_added = date_added,
-    )
+#     favorite = Favorite(
+#         condition_id = Condition.condition_id,
+#         user_id = User.user_id,
+#         title = Condition.title,
+#         date_added = date_added,
+#     )
 
-    return favorite
+#     return favorite
 
     

@@ -1,6 +1,7 @@
 """Models for health conditions app"""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -10,12 +11,12 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    email = db.Column(db.String(100), unique = True)
+    user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(100))
-    password = db.Column(db.String(150))
+    password = db.Column(db.String(50))
 
-    favorites = db.relationship("Favorites", back_populates = "user")
+    user_conditions = db.relationship("User_condition", back_populates="user")
 
 
     def __repr__(self):
@@ -28,12 +29,12 @@ class Condition(db.Model):
 
     __tablename__ = "conditions"
 
-    condition_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    condition_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(150))
     synonyms = db.Column(db.Text)
     url = db.Column(db.String(300))
 
-    favorites = db.relationship("Favorites", back_populates = "condition")
+    user_conditions = db.relationship("User_condition", back_populates="condition")
 
 
     def __repr__(self):
@@ -41,19 +42,19 @@ class Condition(db.Model):
     
 
 
-class Favorite(db.Model):
-    """A favorite"""
+class User_condition(db.Model):
+    """A user condition"""
 
-    __tablename__ = "favorites"
+    __tablename__ = "user_conditions"
 
-    favorite_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+    favorite_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
-    date_added = db.Column(db.Datetime)
+    date_added = db.Column(db.DateTime)
     comments = db.Column(db.Text)
 
-    user = db.relationship("User", back_populates = "favorites")
-    condition = db.relationship("Condition", back_populates = "favorites")
+    user = db.relationship("User", back_populates="user_conditions")
+    condition = db.relationship("Condition", back_populates="user_conditions")
 
 
     def __repr__(self):
