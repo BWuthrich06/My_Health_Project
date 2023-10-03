@@ -23,19 +23,26 @@ conditions_in_db = []
 for condition in condition_data:
     
     title = condition["primary_name"]
-    synonyms = condition["synonyms"]  #this is a list
+    synonyms = condition["synonyms"]    #this is a list
     word_synonyms = condition["word_synonyms"]
-    url = condition["info_link_data"] #url is at index 0 in list at index 0
+    url = condition["info_link_data"] 
+
 
     if url and url[0]:
-        url = url[0][0]
+        url = url[0][0]     #url is at index 0 in list at index 0
     else:
         url = None
 
 
+    if synonyms:
+        all_synonyms = ','.join(synonyms)   #joining as a string
+    else:
+        all_synonyms = None     #if no synonyms exist
 
-    all_synonyms = ','.join(synonyms)  #joining as a string
-    
+
+    if not word_synonyms:   #check to see if no word_synonyms exist
+        word_synonyms = None
+
 
     #create condition and add to list
     new_condition = crud.create_condition(title, all_synonyms, word_synonyms, url)
