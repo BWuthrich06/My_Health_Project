@@ -49,7 +49,6 @@ def new_user():
 
 
 
-
 @app.route('/login', methods = ['POST'])
 def process_login():
 
@@ -70,6 +69,12 @@ def process_login():
 
 
 
+
+
+
+
+
+
 @app.route("/conditions")
 def all_conditions():
     """View all conditions."""
@@ -77,6 +82,7 @@ def all_conditions():
     conditions = crud.get_conditions()
 
     return render_template("all_conditions.html", conditions = conditions)
+
 
 
 @app.route("/conditions/condition_id")

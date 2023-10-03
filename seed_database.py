@@ -24,17 +24,16 @@ for condition in condition_data:
     
     title = condition["primary_name"]
     synonyms = condition["synonyms"]  #this is a list
-    url = condition["info_link_data"][0]  #url is at index 0 in list
+    word_synonyms = condition["word_synonyms"]
+    url = condition["info_link_data"][0][0] #url is at index 0 in list
     
 
-    all_synonyms = ''.join(synonyms)
+    all_synonyms = ','.join(synonyms)  #joining as a string
 
-
-    
 
 
     #create condition and add to list
-    new_condition = crud.create_condition(title, synonyms, url)
+    new_condition = crud.create_condition(title, all_synonyms, url)
     conditions_in_db.append(new_condition)
 
 #Add and commit conditions to database
