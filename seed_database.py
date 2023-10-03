@@ -12,7 +12,6 @@ os.system("createdb conditions")
 model.connect_to_db(server.app)
 model.db.create_all()
 
-
 #Read json data
 with open('data/health_conditions.json') as data:
     condition_data = json.loads(data.read())
@@ -24,8 +23,15 @@ conditions_in_db = []
 for condition in condition_data:
     
     title = condition["primary_name"]
-    synonyms = condition["synonyms"]
-    url = condition["info_link_data"]
+    synonyms = condition["synonyms"]  #this is a list
+    url = condition["info_link_data"][0]  #url is at index 0 in list
+    
+
+    all_synonyms = ''.join(synonyms)
+
+
+    
+
 
     #create condition and add to list
     new_condition = crud.create_condition(title, synonyms, url)
@@ -34,3 +40,5 @@ for condition in condition_data:
 #Add and commit conditions to database
 model.db.session.add_all(conditions_in_db)
 model.db.session.commit()
+
+

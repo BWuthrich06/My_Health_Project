@@ -20,7 +20,7 @@ def homepage():
 
 
 
-@app.route('/users')
+@app.route('/newuser')
 def new_user():
     """Create new user."""
 
@@ -36,14 +36,15 @@ def process_login():
     name = request.form.get('name')
     password = request.form.get('password')
 
-    user = crud.create_user(email, name, password)
+    
 
     if session[email]:
-        flash("That email or password will not work, please try again.")
+        flash("Invalid email or password.")
     
     else:
+        user = crud.create_user(email, name, password)
         flash("Account successfully created!")
-        session['email'] = email
+        session[user] = email
 
     return redirect('/')
 
