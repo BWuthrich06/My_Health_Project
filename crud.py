@@ -1,6 +1,7 @@
 from model import db, User, Condition, User_condition, connect_to_db
 
 
+
 def create_user(email, name, password):
     """Create a new user."""
 
@@ -24,12 +25,13 @@ def get_user_by_email(email):
 
 
 
-def create_condition(title, synonyms, url):
+def create_condition(title, all_synonyms, word_synonyms, url):
     """Create and return a condition."""
 
     condition = Condition(
         title = title,
-        synonyms = synonyms,
+        all_synonyms = all_synonyms,
+        word_synonyms = word_synonyms,
         url = url,
     )
 
@@ -41,6 +43,9 @@ def get_conditions():
     """Return all conditions."""
 
     return Condition.query.all()
+
+
+
 
 
 

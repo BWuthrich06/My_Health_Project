@@ -31,7 +31,8 @@ class Condition(db.Model):
 
     condition_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(150))
-    synonyms = db.Column(db.Text)
+    all_synonyms = db.Column(db.String(500))
+    word_synonyms = db.Column(db.String(500))
     url = db.Column(db.String(300))
 
     user_conditions = db.relationship("User_condition", back_populates="condition")

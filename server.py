@@ -69,12 +69,6 @@ def process_login():
 
 
 
-
-
-
-
-
-
 @app.route("/conditions")
 def all_conditions():
     """View all conditions."""
@@ -85,8 +79,14 @@ def all_conditions():
 
 
 
+
+
+
+
+
+
 @app.route("/conditions/condition_id")
-def show_movie(condition_id):
+def show_condition(condition_id):
     """Show details on a condition."""
 
     condition = crud.get_condition_by_id(condition_id)
