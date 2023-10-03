@@ -3,16 +3,20 @@
 
 {% block body %}
   <h1>Welcome to Taking Care</h1>
+  <br>
 
  
   <h2>Log In</h2>
+  <br>
   <form action="/login" method="POST">
     <p>Email <input type="text" name="email"></p>
     <p>Password <input type="password" name="password"></p>
+    <br>
     <p><input type="submit"></p>
   </form>
-
-  
-  <a href = "/create_user">New users please create an account</a>
+  <br>
+  <br>
+  <h3>New User? </h3>
+  <a href = "/create_user">Create A New Account</a>
 {% endblock %}
 

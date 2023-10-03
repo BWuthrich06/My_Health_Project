@@ -3,19 +3,23 @@
 
 {% block body %}
   <h1>Welcome {{ name }}</h1>
+  <br>
 
   <h2>My Profile</h2>
+  <br>
 
-  <h2>My Saved Conditions</h2>
-  <a href="/profile/saved"
+  <h3><a href="/profile/saved">My Saved Conditions</a></h3>
+  <br>
+  
 
-  <h2>Search for Condition</h2>
-  <!-- <form>
+  <h3>Search for Health Condition</h3>
+  <form action = "/conditions/results">
     <input type="text", name="result">
     <input type="submit">
-  </form> -->
+  </form>
+  <br>
 
-  <a href="/conditions">See All Health Conditions</a>
+  <h3><a href="/conditions">See All Health Conditions</a></h3>
 
 
 

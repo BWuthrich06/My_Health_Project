@@ -23,6 +23,7 @@ def homepage():
 
 @app.route('/create_user')
 def create_new_user():
+    """View page to create new user."""
 
     return render_template('new_users.html')
 
@@ -51,6 +52,7 @@ def new_user():
 
 @app.route('/login', methods = ['POST'])
 def process_login():
+    """Check login credentials."""
 
     email = request.form.get('email')
     password = request.form.get('password')
@@ -79,12 +81,6 @@ def all_conditions():
 
 
 
-
-
-
-
-
-
 @app.route("/conditions/condition_id")
 def show_condition(condition_id):
     """Show details on a condition."""
@@ -95,9 +91,21 @@ def show_condition(condition_id):
 
 
 
+@app.route('/profile')
+def main_profile():
+    """Shows main profile page."""
 
-# @app.route('profile')
-# def main_profile():
+    return render_template("profile.html")
+
+
+
+@app.route("/conditions/results")
+def get_results():
+    """Return search results."""
+
+    result = request.args.get("result")
+
+
 
 
     
