@@ -34,7 +34,6 @@ def create_condition(title, all_synonyms, word_synonyms, url):
         word_synonyms = word_synonyms,
         url = url,
     )
-
     return condition
 
 
@@ -46,13 +45,34 @@ def get_conditions():
 
 
 
-
-
-
 def get_condition_by_id(condition_id):
     """Return condition by id."""
 
     return Condition.query.get(condition_id)
+
+
+
+def get_search_results(result):
+    """Return all results that match search."""
+
+    
+
+    title = Condition.query.filter(Condition.title.like(f"%{result}%")).all()
+    all_synonyms = Condition.query.filter(Condition.all_synonyms.like(f"%{result}%")).all()
+
+    all_results = title + all_synonyms
+    
+
+    return all_results
+
+    
+
+
+
+
+
+
+
 
 
 

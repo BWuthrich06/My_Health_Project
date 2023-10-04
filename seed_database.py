@@ -34,18 +34,40 @@ for condition in condition_data:
         url = None
 
 
-    if synonyms:
-        all_synonyms = ','.join(synonyms)   #joining as a string
+    list_word_synonyms = word_synonyms.split(';')  #turns word_synonyms into list
+    combined_synonyms = synonyms + list_word_synonyms  #combine both synonym lists into one
+    set_synonyms = set(combined_synonyms)   #turn into set to remove duplicates
+    list_all_synonyms = list(set_synonyms)   #turn back into list
+
+    if list_all_synonyms:
+        all_synonyms = ', '.join(list_all_synonyms)   #joining as a string
+    
     else:
         all_synonyms = None     #if no synonyms exist
 
 
-    if not word_synonyms:   #check to see if no word_synonyms exist
-        word_synonyms = None
+    #iterate through each condition
+        #add condition to database, commited has id number
+        #iterate through synonyms (list)
+            #query synonyms table in database
+                #if synonym in db
+                    #add synonym to condition.synonyms
+                #else if not in db
+                    #add synonym to db, commit so has id numb
+                    #add synonym to condition.synonyms
+
+        #split at (;) into list
+        #iterate through word_synonyms
+            #same as above
+
+        #commit condition
+
+
+
 
 
     #create condition and add to list
-    new_condition = crud.create_condition(title, all_synonyms, word_synonyms, url)
+    new_condition = crud.create_condition(title, all_synonyms, url)
     conditions_in_db.append(new_condition)
 
 #Add and commit conditions to database

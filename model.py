@@ -24,24 +24,6 @@ class User(db.Model):
     
 
 
-class Condition(db.Model):
-    """A Condition"""
-
-    __tablename__ = "conditions"
-
-    condition_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(150))
-    all_synonyms = db.Column(db.String(500))
-    word_synonyms = db.Column(db.String(500))
-    url = db.Column(db.String(300))
-
-    user_conditions = db.relationship("User_condition", back_populates="condition")
-
-
-    def __repr__(self):
-        return f"<Condition condition_id = {self.condition_id} title = {self.title}>"
-    
-
 
 class User_condition(db.Model):
     """A user condition"""
@@ -60,6 +42,52 @@ class User_condition(db.Model):
 
     def __repr__(self):
         return f"<Favorite favorite_id = {self.favorite_id} date_added = {self.date_added}>"
+    
+
+
+class Condition(db.Model):
+    """A Condition"""
+
+    __tablename__ = "conditions"
+
+    condition_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(150))
+    all_synonyms = db.Column(db.String(500))
+    word_synonyms = db.Column(db.String(500))
+    url = db.Column(db.String(300))
+
+    user_conditions = db.relationship("User_condition", back_populates="condition")
+    synonyms = db.relationship("Synonym", secondary="condition_synonyms", back_populates = "conditions")
+
+
+    def __repr__(self):
+        return f"<Condition condition_id = {self.condition_id} title = {self.title}>"
+    
+
+class Synonym(db.Model):
+    """A Synonym."""
+
+    __tablename__ = "synonyms"
+
+    synonym_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    synonym = db.Column(db.String(200))
+
+    conditions = db.relationship("Condition", secondary="condition_synonyms", back_populates = "synonyms")
+
+    
+
+class ConditionSynonyms(db.Model):
+    """A Condition's Synonyms."""
+
+    __tablename__ = "condition_synonyms"
+
+    condition_synonym_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
+    synonym_id = db.Column(db.Integer, db. ForeignKey("synonyms.synonym_id"))
+
+
+
+
     
 
 def connect_to_db(flask_app, db_uri="postgresql:///conditions", echo= True):
