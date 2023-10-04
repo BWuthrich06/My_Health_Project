@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+
+{% for condition in results %}
+<h3><a href="{{ condition.url }}">{{ condition.title }}</a></h3>
+<p>Synonyms:
+    {% if condition.all_synonyms %}
+        {% for synonym in condition.all_synonyms %}
+        <span>{{ synonym }}, </span>
+
+        {% endfor %}
+    {% endif %}
+</p>
+{% endfor %}
+
+{% endblock %}
+
+
+
