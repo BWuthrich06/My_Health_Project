@@ -25,7 +25,6 @@ def homepage():
 def create_new_user():
     """View page to create new user."""
 
-
     return render_template('new_users.html')
 
 
@@ -39,8 +38,8 @@ def new_user():
     password = request.form.get('password')
 
     if crud.get_user_by_email(email):
-        flash("Email unavailable")
-        return redirect ('/create_user')
+        flash("Account already active, please log in.")
+        return redirect ('/')
 
     else:
         user = crud.create_user(email, name, password)
@@ -108,13 +107,6 @@ def get_results():
     result = request.args.get("result")
 
     results = crud.get_search_results(result)
-    print("this is our search results from get search results")
-    print(results)
-
-
-    for condition in results:
-        if condition.all_synonyms is not None:
-            condition.all_synonyms = condition.all_synonyms.split(',')
 
     return render_template('results.html', results = results)
 

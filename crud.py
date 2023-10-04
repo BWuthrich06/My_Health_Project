@@ -55,14 +55,14 @@ def get_condition_by_id(condition_id):
 def get_search_results(result):
     """Return all results that match search."""
 
-    
-
     title = Condition.query.filter(Condition.title.like(f"%{result}%")).all()
     all_synonyms = Condition.query.filter(Condition.all_synonyms.like(f"%{result}%")).all()
 
-    all_results = title + all_synonyms
+    results = title + all_synonyms
+    set_results = set(results)
+    all_results = list(set_results)
     
-
+    
     return all_results
 
     

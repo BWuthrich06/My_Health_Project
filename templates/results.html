@@ -3,17 +3,19 @@
 
 {% block body %}
 
+
 {% for condition in results %}
 <h3><a href="{{ condition.url }}">{{ condition.title }}</a></h3>
-<p>Synonyms:
-    {% if condition.all_synonyms %}
-        {% for synonym in condition.all_synonyms %}
-        <span>{{ synonym }}, </span>
 
-        {% endfor %}
+    {% if condition.all_synonyms %}
+    <p>Synonyms:<span> {{ condition.all_synonyms }}  </span>
+    {% else %}
+    <p>Synonyms: None</p>
+                
     {% endif %}
 </p>
 {% endfor %}
+
 
 {% endblock %}
 

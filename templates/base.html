@@ -15,9 +15,9 @@
   </head>
   <body>
     {% for msg in get_flashed_messages() %}
-      <h4 class="flash-msg">
+      <h5 class="flash-msg">
         {{ msg }}
-      </h4>
+      </h5>
     {% endfor %}
 
     {% block body %}{% endblock %}
