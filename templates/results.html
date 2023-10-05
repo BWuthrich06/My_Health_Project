@@ -4,8 +4,16 @@
 {% block body %}
 
 
+<h1>Search results for "{{ result }}"</h1>
+<a href ="/conditions/search">Go Back to Search</a>
+<br><br><br>
+
+<!--Loop through each condition from results-->
 {% for condition in results %}
 <h3><a href="{{ condition.url }}">{{ condition.title }}</a></h3>
+
+    <!--Button to add to personal conditions-->
+    <i class="bi bi-plus-square-fill" id="condition_button">
 
     {% if condition.all_synonyms %}
     <p>Synonyms:<span> {{ condition.all_synonyms }}  </span>
@@ -13,6 +21,8 @@
     <p>Synonyms: None</p>
                 
     {% endif %}
+
+    
 </p>
 {% endfor %}
 

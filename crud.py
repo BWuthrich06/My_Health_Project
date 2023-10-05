@@ -70,16 +70,16 @@ def get_search_results(result):
 
 
 
-# def create_user_condition(condition_id, user_id, title, date_added=datetime.now(), comments=None):
-#     """Create and return a user_condition."""
+def create_user_condition(condition_id, user_id, title, date_added=datetime.now(), comments=None):
+    """Create and return a user_condition."""
 
-#     new_user_condition = User_condition(
-#         condition_id = condition_id,
-#         user_id = user_id,
-#         title = Condition.title,
-#         date_added = date_added,
-#     )
+    new_user_condition = User_condition(
+        condition_id = condition_id,
+        user_id = user_id,
+        title = Condition.title,
+        date_added = date_added,
+    )
 
-#     return new_user_condition
+    return new_user_condition
 
     

@@ -47,13 +47,20 @@ def new_user():
         db.session.commit()
         flash("Account succesfully created.")
 
-    return redirect('/')
+        session['email'] = email
+        session['name'] = name
+        session['user_id'] = user.user_id
+
+    return redirect('/profile')
 
 
 
 @app.route('/login', methods = ['POST'])
 def process_login():
     """Check login credentials."""
+
+    if 'email' in session:
+        return redirect('/profile')
 
     email = request.form.get('email')
     password = request.form.get('password')
@@ -67,17 +74,20 @@ def process_login():
     else:
         flash("Login successful.")
         session['email'] = email
-        name = user.name
+    
 
-    return render_template('profile.html', name = name)
+    return redirect('/profile')
 
 
 
 @app.route('/profile')
 def main_profile():
     """Shows main profile page."""
+    
+    user = crud.get_user_by_email(session['email'])
+    name = user.name
 
-    return render_template("profile.html")
+    return render_template("profile.html", name=name)
 
 
 
@@ -109,10 +119,18 @@ def get_results():
     results = crud.get_search_results(result)
 
     if results:
-        return render_template('results.html', results = results)
+        return render_template('results.html', results = results, result = result)
     else:
         flash("No results matched.")
         return redirect('/conditions/search')
+    
+    
+
+@app.route('/profile/saved')
+def get_saved_conditions():
+    """Return saved conditions."""
+
+
         
 
 

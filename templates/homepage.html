@@ -5,8 +5,8 @@
 
   <h1>Welcome to Continuing Care</h1>
   <br>
-
-  <h3>Please Log In</h3>
+{% if 'email' not in session %}
+  <h3>Login</h3>
   <br>
 
   <form action="/login" method="POST">
@@ -20,6 +20,40 @@
   <br>
 
   <h3>New User? </h3>
-  <h4><a href = "/create_user">Create A New Account</a></h4>
+  <h5><a href = "/create_user">Create A New Account</a></h5>
+  <br><br>
+
+  <p>Empower yourself with knowledge about your health conditions.<br>
+    Taking control of your health starts with understanding you're diagnosis.</p>
+    <br>
+  
+    <p>Continuing Care provides information on variety of conditions that<br>
+    let you explore and understand your health issues better including <br>
+    causes, symptoms and treatments.</p>
+    <br>
+    
+    <p>Create a personalized account to track and save the health conditions<br>
+       that pertain to you, or that you are interested in learning more about.</p>
+
+{% else %}
+
+<a href="/profile">My Profile</a>
+<br><br>
+
+<p>Empower yourself with knowledge about your health conditions.<br>
+  Taking control of your health starts with understanding you're diagnosis.</p>
+  <br>
+
+  <p>Continuing Care provides information on variety of conditions that<br>
+  let you explore and understand your health issues better including <br>
+  causes, symptoms and treatments.</p>
+  <br>
+  
+  <p>Create a personalized account to track and save the health conditions<br>
+     that pertain to you, or that you are interested in learning more about.</p>
+  
+ 
+{% endif %}
+
 {% endblock %}
 

@@ -46,23 +46,6 @@ for condition in condition_data:
         all_synonyms = None     #if no synonyms exist
 
 
-    #iterate through each condition
-        #add condition to database, commited has id number
-        #iterate through synonyms (list)
-            #query synonyms table in database
-                #if synonym in db
-                    #add synonym to condition.synonyms
-                #else if not in db
-                    #add synonym to db, commit so has id numb
-                    #add synonym to condition.synonyms
-
-        #split at (;) into list
-        #iterate through word_synonyms
-            #same as above
-
-        #commit condition
-
-
 
 
 
