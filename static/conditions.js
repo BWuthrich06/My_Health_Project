@@ -19,16 +19,31 @@
 
 
 
-const addButton = document.querySelector('#condition_button');
-addButton.addEventListener('click', addCondition);
+const addButtons = document.querySelectorAll('button.condition_add');
+for (const addButton of addButtons) {
+    addButton.addEventListener('click', addCondition);
+} 
 
 function addCondition(evt) {
-    evt.preventDefault();
-
-    fetch(`/conditions/results?result={}`)
-    .then((response) => response.json())
-    .then((responseJSON) => {
-
+    const data = {
+        condition : evt.target.id,
+    }
+    fetch('/addcondition', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        }
     })
+        .then((response) => response.json())
+        .then((responseJSON) => {
+            alert(responseJSON.message);
+            window.location.pathname = ('/profile/saved')
+        })
+
+
+
+
+
 }
 

@@ -34,7 +34,7 @@ class User_condition(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
     date_added = db.Column(db.DateTime)
-    comments = db.Column(db.Text)
+    comments = db.Column(db.Text, nullable = True)
 
     user = db.relationship("User", back_populates="user_conditions")
     condition = db.relationship("Condition", back_populates="user_conditions")

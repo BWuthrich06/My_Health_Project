@@ -124,11 +124,47 @@ def get_results():
         flash("No results matched.")
         return redirect('/conditions/search')
     
+
+@app.route('/addcondition', methods = ["POST"])
+def add_condition_to_user():
+
+    condition = int(request.json.get("condition"))
     
+    user = crud.get_user_by_email(session['email'])
+    user_condition = crud.create_user_condition(condition, user.user_id)
+    db.session.add(user_condition)
+    db.session.commit()
+   
+    return {"message": "This works"}
+   
+
+
 
 @app.route('/profile/saved')
 def get_saved_conditions():
     """Return saved conditions."""
+
+    email = session['email']
+    
+    user = crud.get_user_by_email(email)
+    # condition = crud.get_condition_by_id(condition.condition_id)
+
+    #write crud function to get all user conditions by user_id
+    #use function here to get list of users conditions
+    #pass that to render temp
+    #jinja for loop template on html
+
+
+
+
+# get user 
+# get all conditions of user
+# pass into render temp call
+  
+
+
+
+    return render_template("saved_conditions.html", user=user)
 
 
         
@@ -142,3 +178,4 @@ def get_saved_conditions():
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
+
