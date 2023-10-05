@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Search for Condition{% endblock %}
+
+{% block body %}
+
+<h3>Search for Health Condition</h3>
+  <br>
+
+  <h3>My Profile</h3>
+  <br>
+  <form action = "/conditions/results">
+    <input type="text", name="result">
+    <button id = search_result type="submit">Search</button>
+  </form>
+  <br>
+
+
+{% endblock %}
+
