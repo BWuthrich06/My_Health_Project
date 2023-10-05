@@ -5,14 +5,17 @@
      rel="stylesheet" 
      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
      crossorigin="anonymous">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+
     <title>
       {% block title %}{% endblock %}
     </title>
 
     {% block head %}{% endblock %}
   </head>
+  
   <body>
     {% for msg in get_flashed_messages() %}
       <h5 class="flash-msg">

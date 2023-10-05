@@ -1,4 +1,5 @@
 from model import db, User, Condition, User_condition, connect_to_db
+from datetime import datetime
 
 
 
@@ -65,27 +66,20 @@ def get_search_results(result):
     
     return all_results
 
-    
 
 
 
 
+# def create_user_condition(condition_id, user_id, title, date_added=datetime.now(), comments=None):
+#     """Create and return a user_condition."""
 
-
-
-
-
-
-# def create_favorite(condition_id, user_id, title, date_added, comments=None):
-#     """Create and return a favorite."""
-
-#     favorite = Favorite(
-#         condition_id = Condition.condition_id,
-#         user_id = User.user_id,
+#     new_user_condition = User_condition(
+#         condition_id = condition_id,
+#         user_id = user_id,
 #         title = Condition.title,
 #         date_added = date_added,
 #     )
 
-#     return favorite
+#     return new_user_condition
 
     

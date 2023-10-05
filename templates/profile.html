@@ -2,7 +2,7 @@
 {% block title %}Welcome {{ name }} {% endblock %}
 
 {% block body %}
-  <h1>Welcome {{ name }}</h1>
+  <h1>Welcome, {{ name }}</h1>
   <br>
 
   <h3>My Profile</h3>
@@ -15,12 +15,7 @@
   <h3><a href="/conditions">See All Health Conditions</a></h3>
   <br>
 
-  <h3>Search for Health Condition</h3>
-  <form action = "/conditions/results">
-    <input type="text", name="result">
-    <button id = search_result type="submit">Search</button>
-  </form>
-  <br>
-
+  <h3><a href ="/conditions/search">Search for Health Condition</h3>
+ 
 {% endblock %}
 

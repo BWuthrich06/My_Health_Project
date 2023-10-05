@@ -62,6 +62,7 @@ def process_login():
 
     if not user or user.password != password:
         flash("Invalid credentials.")
+        return redirect('/')
 
     else:
         flash("Login successful.")
@@ -69,6 +70,14 @@ def process_login():
         name = user.name
 
     return render_template('profile.html', name = name)
+
+
+
+@app.route('/profile')
+def main_profile():
+    """Shows main profile page."""
+
+    return render_template("profile.html")
 
 
 
@@ -82,21 +91,12 @@ def all_conditions():
 
 
 
-@app.route("/conditions/condition_id")
-def show_condition(condition_id):
-    """Show details on a condition."""
+@app.route('/conditions/search')
+def search_conditions():
+    """Search for conditions."""
 
-    condition = crud.get_condition_by_id(condition_id)
+    return render_template('condition_search.html')
 
-    return render_template("condition_details.html", condition = condition)
-
-
-
-@app.route('/profile')
-def main_profile():
-    """Shows main profile page."""
-
-    return render_template("profile.html")
 
 
 
@@ -108,16 +108,13 @@ def get_results():
 
     results = crud.get_search_results(result)
 
-    return render_template('results.html', results = results)
+    if results:
+        return render_template('results.html', results = results)
+    else:
+        flash("No results matched.")
+        return redirect('/conditions/search')
+        
 
-
-
-
-
-
-
-
-    
 
 
 
