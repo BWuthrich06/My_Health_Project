@@ -2,12 +2,25 @@
 {% block title %}Saved Conditions{% endblock %}
 
 {% block body %}  
-  <h1>My Saved Conditions</h1>
+<br>
+  <h1>My Saved Conditions</h1><br>
 
 {% for user_condition in all_user_conditions %}
   <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
   <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
-  <br>
+  <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+  <form>
+    <label>Comments:</label>
+    <textarea name="comments-box" id="comments-box"></textarea>
+    <input class="comments-submit" type="submit">
+  </form>
+  <p>Your Comments:</p>
+    <ul id="user_comments">
+
+    </ul>
+  
+  <br><br>
+  
 {% endfor %}
 
   

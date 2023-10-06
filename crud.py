@@ -1,5 +1,5 @@
 from model import db, User, Condition, User_condition, connect_to_db
-from datetime import datetime
+from datetime import date
 
 
 
@@ -42,13 +42,12 @@ def get_space_between_synonyms(synonyms):
 
 
 
-def create_condition(title, all_synonyms, word_synonyms, url):
+def create_condition(title, all_synonyms, url):
     """Create and return a condition."""
 
     condition = Condition(
         title = title,
         all_synonyms = all_synonyms,
-        word_synonyms = word_synonyms,
         url = url,
     )
     return condition
@@ -66,6 +65,7 @@ def get_condition_by_id(condition_id):
     """Return condition by id."""
 
     return Condition.query.get(condition_id)
+
 
 
 def get_all_conditions_by_user_id(user_id):
@@ -98,7 +98,7 @@ def create_user_condition(condition_id, user_id):
     new_user_condition = User_condition(
         condition_id = condition_id,
         user_id = user_id,
-        date_added = datetime.now(),
+        date_added = date.today(),
     )
 
     return new_user_condition

@@ -132,10 +132,11 @@ def add_condition_to_user():
     
     user = crud.get_user_by_email(session['email'])
     user_condition = crud.create_user_condition(condition, user.user_id)
+    flash("Condition has been successfully added.")
     db.session.add(user_condition)
     db.session.commit()
    
-    return {"message": "Condition has been added."}
+    return {"message": "Condition has been successfully added."}
    
 
 
@@ -156,6 +157,17 @@ def get_saved_conditions():
 
 
     return render_template('/saved_conditions.html', all_user_conditions=all_user_conditions)
+
+
+@app.route('/addcomments', methods = ["POST"])
+def add_comments():
+    """Adds users comments to own condition."""
+
+    
+
+    return render_template('saved_conditions.html', comment=comment)
+
+
 
  
 

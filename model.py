@@ -1,7 +1,6 @@
 """Models for health conditions app"""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -33,7 +32,7 @@ class User_condition(db.Model):
     favorite_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
-    date_added = db.Column(db.DateTime)
+    date_added = db.Column(db.Date)
     comments = db.Column(db.Text, nullable = True)
 
     user = db.relationship("User", back_populates="user_conditions")
