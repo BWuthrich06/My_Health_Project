@@ -97,7 +97,7 @@ def all_conditions():
 
     conditions = crud.get_conditions()
 
-    return render_template("all_conditions.html", conditions = conditions)
+    return render_template("all_conditions.html", conditions=conditions)
 
 
 
@@ -135,7 +135,7 @@ def add_condition_to_user():
     db.session.add(user_condition)
     db.session.commit()
    
-    return {"message": "This works"}
+    return {"message": "Condition has been added."}
    
 
 
@@ -147,24 +147,20 @@ def get_saved_conditions():
     email = session['email']
     
     user = crud.get_user_by_email(email)
-    # condition = crud.get_condition_by_id(condition.condition_id)
-
-    #write crud function to get all user conditions by user_id
-    #use function here to get list of users conditions
-    #pass that to render temp
-    #jinja for loop template on html
-
-
+    user_id = user.user_id
+    
+    
+    list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
+    set_user_conditions = set(list_user_conditions)
+    all_user_conditions = list(set_user_conditions)
 
 
-# get user 
-# get all conditions of user
-# pass into render temp call
-  
+    return render_template('/saved_conditions.html', all_user_conditions=all_user_conditions)
+
+ 
 
 
 
-    return render_template("saved_conditions.html", user=user)
 
 
         

@@ -28,24 +28,22 @@ for condition in condition_data:
     url = condition["info_link_data"] 
 
 
-    if url and url[0]:
+    if url != [] and url[0]:
         url = url[0][0]     #url is at index 0 in list at index 0
     else:
         url = None
-
+    
 
     list_word_synonyms = word_synonyms.split(';')  #turns word_synonyms into list
     combined_synonyms = synonyms + list_word_synonyms  #combine both synonym lists into one
     set_synonyms = set(combined_synonyms)   #turn into set to remove duplicates
     list_all_synonyms = list(set_synonyms)   #turn back into list
 
+
     if list_all_synonyms:
-        all_synonyms = ', '.join(list_all_synonyms)   #joining as a string
-    
+        all_synonyms = crud.get_space_between_synonyms(list_all_synonyms)
     else:
         all_synonyms = None     #if no synonyms exist
-
-
 
 
 

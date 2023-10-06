@@ -10,21 +10,20 @@
 
 <!--Loop through each condition from results-->
 {% for condition in results %}
+    {% if condition.url %}
 <h3><a href="{{ condition.url }}">{{ condition.title }}</a></h3>
-
-    <!--Button to add to personal conditions-->
     
+    <!--Button to add to personal conditions-->
     <button id="{{ condition.condition_id }}" class="condition_add"> + Add Condition</button>
 
-    {% if condition.all_synonyms %}
-    <p>Synonyms:<span> {{ condition.all_synonyms }}  </span>
-    {% else %}
-    <p>Synonyms: None</p>
-                
-    {% endif %}
+        <!--Loop through all conditions synonyms-->
+        {% if condition.all_synonyms %}
+            <p><b>Synonyms: </b><span>{{ condition.all_synonyms }}</span>
+        {% else %}
+            <p><b>Synonyms: </b> None</p>
+        {% endif %}  
 
-    
-</p>
+    {% endif %}           
 {% endfor %}
 
 

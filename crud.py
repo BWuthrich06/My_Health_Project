@@ -24,6 +24,22 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+def get_space_between_synonyms(synonyms):
+    spaced_comma_synonyms = []
+
+    for synonym in synonyms:
+        list_synonyms = synonym.split(',')
+
+        spaced_words = []
+        for synonym in list_synonyms:
+            synonym = synonym.strip()
+            spaced_words.append(synonym)
+
+        synonym = ', '.join(spaced_words)
+        spaced_comma_synonyms.append(synonym)
+        
+    return spaced_comma_synonyms
+
 
 
 def create_condition(title, all_synonyms, word_synonyms, url):
@@ -50,6 +66,14 @@ def get_condition_by_id(condition_id):
     """Return condition by id."""
 
     return Condition.query.get(condition_id)
+
+
+def get_all_conditions_by_user_id(user_id):
+    """Return all conditions of user."""
+
+    user = User.query.get(user_id)
+
+    return user.user_conditions
 
 
 

@@ -4,14 +4,13 @@
 {% block body %}  
   <h1>My Saved Conditions</h1>
 
-   {{ user }}
-  <div id="saved">
-    <ul>
+{% for user_condition in all_user_conditions %}
+  <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
+  <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
+  <br>
+{% endfor %}
 
-    </ul>
-
-  </div>
- 
+  
  
 
 
