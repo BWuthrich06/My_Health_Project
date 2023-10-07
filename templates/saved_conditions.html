@@ -12,13 +12,13 @@
   <form>
     <label>Comments:</label>
     <textarea name="comments-box" id="comments-box"></textarea>
-    <input class="comments-submit" type="submit">
-  </form>
+    <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
+  
   <p>Your Comments:</p>
     <ul id="user_comments">
-
+       <li>{{ user_condition.comments }}</li> 
     </ul>
-  
+  </form>
   <br><br>
   
 {% endfor %}
@@ -26,6 +26,6 @@
   
  
 
-
+<script src="/static/comments.js"></script>
 {% endblock %}
 

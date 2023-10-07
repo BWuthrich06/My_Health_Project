@@ -103,4 +103,12 @@ def create_user_condition(condition_id, user_id):
 
     return new_user_condition
 
+
+def create_comment(favorite_id, formInput):
+
+    user_condition = User_condition.query.get(favorite_id)
+
+    user_condition.comments = formInput
+    print(user_condition.comments)
+   
     

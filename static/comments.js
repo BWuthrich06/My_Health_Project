@@ -8,24 +8,34 @@ for (const commentButton of commentButtons) {
 function addComments(evt) {
     evt.preventDefault();
 
-    let formInput = document.querySelector('#comments-box');
+    console.log(evt.target.id);
+    const parent = evt.target.parentElement
+    
 
-    formInput = formInput.value;
-
-    // const comments = {
-    //     comment : evt.target.id
-    // }
+    let formInput = parent.querySelector('#comments-box');
+        formInput = formInput.value;
+        console.log(formInput);
+        
+    const comments = {
+        favorite_id : evt.target.id,
+        comment : formInput,
+    }
+       
 
     fetch('/addcomments', {
         method: "POST",
-        body: JSON.stringify(formInput),
+        body: JSON.stringify(comments),
         headers: {
             'Content-Type': 'application/json',
         }
     })
         .then((response) => response.json())
         .then((responseJSON) => {
-            responseJSON.insertAdjacentHTML('beforeend', '<li>Comment goes here</li>')
-        })
+            console.log(responseJSON)
+            const userComment = parent.querySelector('#user_comments')
+            console.log(userComment)
+            console.log(parent)
+            userComment.insertAdjacentHTML('beforeend',`<li>${formInput}</li>`)
+        });
         
 }

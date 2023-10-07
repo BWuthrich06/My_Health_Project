@@ -41,7 +41,7 @@ for condition in condition_data:
 
 
     if list_all_synonyms:
-        all_synonyms = crud.get_space_between_synonyms(list_all_synonyms)
+        all_synonyms = ', '.join(list_all_synonyms)
     else:
         all_synonyms = None     #if no synonyms exist
 

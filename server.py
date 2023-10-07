@@ -151,6 +151,7 @@ def get_saved_conditions():
     user_id = user.user_id
     
     
+    
     list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
     set_user_conditions = set(list_user_conditions)
     all_user_conditions = list(set_user_conditions)
@@ -163,9 +164,14 @@ def get_saved_conditions():
 def add_comments():
     """Adds users comments to own condition."""
 
-    
+    favorite_id = request.json.get('favorite_id')
+    formInput = request.json.get('comment')
 
-    return render_template('saved_conditions.html', comment=comment)
+    comment = crud.create_comment(favorite_id, formInput)
+    print(comment)
+    db.session.commit()
+
+    return {"message": "Comment has been successfully added."}
 
 
 
