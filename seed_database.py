@@ -42,6 +42,8 @@ for condition in condition_data:
 
     if list_all_synonyms:
         all_synonyms = ', '.join(list_all_synonyms)
+        all_synonyms = all_synonyms.lower()
+        all_synonyms = all_synonyms.title()
     else:
         all_synonyms = None     #if no synonyms exist
 

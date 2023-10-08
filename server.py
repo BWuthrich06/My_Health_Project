@@ -129,16 +129,24 @@ def get_results():
 def add_condition_to_user():
 
     condition = int(request.json.get("condition"))
-    
     user = crud.get_user_by_email(session['email'])
-    user_condition = crud.create_user_condition(condition, user.user_id)
-    flash("Condition has been successfully added.")
-    db.session.add(user_condition)
-    db.session.commit()
-   
-    return {"message": "Condition has been successfully added."}
-   
+    user_id = user.user_id
 
+    list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
+
+    for user_condition in list_user_conditions:
+        if user_condition.condition_id == condition:
+            flash("Condition already previously added.")
+            return {"message": "Condition already previously added."}
+
+
+    saved_condition = crud.create_user_condition(condition, user_id)
+    flash("Condition has been successfully added.")
+    db.session.add(saved_condition)
+    db.session.commit()
+
+    return {"message": "Condition has been successfully added."}
+    
 
 
 @app.route('/profile/saved')
@@ -151,10 +159,12 @@ def get_saved_conditions():
     user_id = user.user_id
     
     
-    
     list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
     set_user_conditions = set(list_user_conditions)
     all_user_conditions = list(set_user_conditions)
+    # print(all_user_conditions)
+
+    
 
 
     return render_template('/saved_conditions.html', all_user_conditions=all_user_conditions)
@@ -168,22 +178,9 @@ def add_comments():
     formInput = request.json.get('comment')
 
     comment = crud.create_comment(favorite_id, formInput)
-    print(comment)
     db.session.commit()
 
     return {"message": "Comment has been successfully added."}
-
-
-
- 
-
-
-
-
-
-        
-
-
 
 
 

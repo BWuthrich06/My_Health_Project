@@ -109,6 +109,8 @@ def create_comment(favorite_id, formInput):
     user_condition = User_condition.query.get(favorite_id)
 
     user_condition.comments = formInput
-    print(user_condition.comments)
+
+    db.session.commit()
+   
    
     

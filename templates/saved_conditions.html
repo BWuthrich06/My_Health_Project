@@ -3,9 +3,10 @@
 
 {% block body %}  
 <br>
-  <h1>My Saved Conditions</h1><br>
+  <h1>My Saved Conditions</h1>
 
 {% for user_condition in all_user_conditions %}
+<br>
   <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
   <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
   <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
@@ -14,13 +15,14 @@
     <textarea name="comments-box" id="comments-box"></textarea>
     <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
   
-  <p>Your Comments:</p>
-    <ul id="user_comments">
-       <li>{{ user_condition.comments }}</li> 
-    </ul>
+    <p>Your Comments:</p>
+    {% if user_condition.comments %}
+      <ul id="user_comments">
+        <li>{{ user_condition.comments }}</li>   
+      </ul>
   </form>
   <br><br>
-  
+    {% endif %}
 {% endfor %}
 
   
