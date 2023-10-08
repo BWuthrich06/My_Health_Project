@@ -82,6 +82,7 @@ def get_search_results(result):
 
     title = Condition.query.filter(Condition.title.like(f"%{result}%")).all()
     all_synonyms = Condition.query.filter(Condition.all_synonyms.like(f"%{result}%")).all()
+    print(all_synonyms)
 
     results = title + all_synonyms
     set_results = set(results)
@@ -110,6 +111,9 @@ def create_comment(favorite_id, formInput):
 
     user_condition.comments = formInput
 
+    # comment = user_condition.comments
+    # db.session.add(comment)
+    
     db.session.commit()
    
    

@@ -1,10 +1,9 @@
 'use strict';
 
 
-
 //Listens for add condition button clicked on search result page
-const addButtons = document.querySelectorAll('button.condition_add');
-for (const addButton of addButtons) {
+const addAllButtons = document.querySelectorAll('button.all_condition_add');
+for (const addButton of addAllButtons) {
     addButton.addEventListener('click', addCondition);
 } 
 
@@ -24,6 +23,5 @@ function addCondition(evt) {
             window.location.pathname = ('/profile/saved')
         })
 
-    }
-
+}
 

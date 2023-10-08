@@ -34,13 +34,31 @@ class User_condition(db.Model):
     condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
     date_added = db.Column(db.Date)
     comments = db.Column(db.Text, nullable = True)
+    # comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
 
     user = db.relationship("User", back_populates="user_conditions")
     condition = db.relationship("Condition", back_populates="user_conditions")
+    # comments = db.relationship("Comment", back_populates="user_condition")
 
 
     def __repr__(self):
         return f"<Favorite favorite_id = {self.favorite_id} date_added = {self.date_added}>"
+    
+
+    
+# class Comment(db.Model):
+#     """A Comment."""
+
+#     __tablename__ = "comments"
+
+#     comment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     comment = db.Column(db.Text)
+
+#     user_condition = db.relationship("User_condition", back_populates="comments")
+
+#     def __repr__(self):
+#         return f"<Comment comment_id = {self.comment_id} comment = {self.comment}>"
+    
     
 
 
@@ -62,6 +80,7 @@ class Condition(db.Model):
     def __repr__(self):
         return f"<Condition condition_id = {self.condition_id} title = {self.title}>"
     
+
 
 class Synonym(db.Model):
     """A Synonym."""

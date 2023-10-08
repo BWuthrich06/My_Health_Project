@@ -109,12 +109,12 @@ def search_conditions():
 
 
 
-
 @app.route('/conditions/results')
 def get_results():
     """Return search results."""
 
     result = request.args.get("result")
+    result = result.title()
 
     results = crud.get_search_results(result)
 
@@ -124,6 +124,7 @@ def get_results():
         flash("No results matched.")
         return redirect('/conditions/search')
     
+
 
 @app.route('/addcondition', methods = ["POST"])
 def add_condition_to_user():
@@ -158,14 +159,9 @@ def get_saved_conditions():
     user = crud.get_user_by_email(email)
     user_id = user.user_id
     
-    
     list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
     set_user_conditions = set(list_user_conditions)
     all_user_conditions = list(set_user_conditions)
-    # print(all_user_conditions)
-
-    
-
 
     return render_template('/saved_conditions.html', all_user_conditions=all_user_conditions)
 
@@ -178,6 +174,7 @@ def add_comments():
     formInput = request.json.get('comment')
 
     comment = crud.create_comment(favorite_id, formInput)
+    # db.session.add(comment)
     db.session.commit()
 
     return {"message": "Comment has been successfully added."}

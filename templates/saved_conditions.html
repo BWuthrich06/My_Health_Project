@@ -5,29 +5,35 @@
 <br>
   <h1>My Saved Conditions</h1>
 
-{% for user_condition in all_user_conditions %}
-<br>
-  <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
-  <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
-  <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
-  <form>
-    <label>Comments:</label>
-    <textarea name="comments-box" id="comments-box"></textarea>
-    <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
-  
-    <p>Your Comments:</p>
-    {% if user_condition.comments %}
-      <ul id="user_comments">
-        <li>{{ user_condition.comments }}</li>   
-      </ul>
-  </form>
-  <br><br>
-    {% endif %}
-{% endfor %}
+{% if all_user_conditions %}
 
-  
- 
+  {% for user_condition in all_user_conditions %}
+  <br>
+    <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
+    <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
+    <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+    <form>
+      <label>Comments:</label>
+      <textarea name="comments-box" id="comments-box"></textarea>
+      <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
+    
+      <p>Your Comments:</p>
+      {% if user_condition.comments %}
+        <ul id="user_comments">
+          <li>{{ user_condition.comments }}</li>   
+        </ul>
+    </form>
+    <br><br>
+      {% endif %}
+  {% endfor %}
+
+{% else %}
+<p>You currently have no saved conditions.</p>
+
+{% endif %}
+
 
 <script src="/static/comments.js"></script>
+
 {% endblock %}
 
