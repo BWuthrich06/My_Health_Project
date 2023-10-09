@@ -17,11 +17,9 @@ class User(db.Model):
 
     user_conditions = db.relationship("User_condition", back_populates="user")
 
-
     def __repr__(self):
         return f"<User user_id = {self.user_id} email = {self.email} name = {self.name}>"
     
-
 
 
 class User_condition(db.Model):
@@ -33,34 +31,31 @@ class User_condition(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
     date_added = db.Column(db.Date)
-    comments = db.Column(db.Text, nullable = True)
-    # comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
 
     user = db.relationship("User", back_populates="user_conditions")
     condition = db.relationship("Condition", back_populates="user_conditions")
-    # comments = db.relationship("Comment", back_populates="user_condition")
-
+    comments = db.relationship("Comment", back_populates="user_condition")
 
     def __repr__(self):
         return f"<Favorite favorite_id = {self.favorite_id} date_added = {self.date_added}>"
     
 
     
-# class Comment(db.Model):
-#     """A Comment."""
+class Comment(db.Model):
+    """A Comment."""
 
-#     __tablename__ = "comments"
+    __tablename__ = "comments"
 
-#     comment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-#     comment = db.Column(db.Text)
+    comment_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    comment = db.Column(db.Text)
+    favorite_id = db.Column(db.Integer, db.ForeignKey("user_conditions.favorite_id"))
 
-#     user_condition = db.relationship("User_condition", back_populates="comments")
+    user_condition = db.relationship("User_condition", back_populates="comments")
 
-#     def __repr__(self):
-#         return f"<Comment comment_id = {self.comment_id} comment = {self.comment}>"
+    def __repr__(self):
+        return f"<Comment comment_id = {self.comment_id} comment = {self.comment}>"
     
     
-
 
 class Condition(db.Model):
     """A Condition"""
@@ -71,40 +66,13 @@ class Condition(db.Model):
     title = db.Column(db.String(150))
     all_synonyms = db.Column(db.String(500))
     word_synonyms = db.Column(db.String(500))
-    url = db.Column(db.String(300))
+    url = db.Column(db.String(500))
 
     user_conditions = db.relationship("User_condition", back_populates="condition")
-    synonyms = db.relationship("Synonym", secondary="condition_synonyms", back_populates = "conditions")
-
 
     def __repr__(self):
         return f"<Condition condition_id = {self.condition_id} title = {self.title}>"
     
-
-
-class Synonym(db.Model):
-    """A Synonym."""
-
-    __tablename__ = "synonyms"
-
-    synonym_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    synonym = db.Column(db.String(200))
-
-    conditions = db.relationship("Condition", secondary="condition_synonyms", back_populates = "synonyms")
-
-    
-
-class ConditionSynonyms(db.Model):
-    """A Condition's Synonyms."""
-
-    __tablename__ = "condition_synonyms"
-
-    condition_synonym_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    condition_id = db.Column(db.Integer, db.ForeignKey("conditions.condition_id"))
-    synonym_id = db.Column(db.Integer, db. ForeignKey("synonyms.synonym_id"))
-
-
-
 
     
 

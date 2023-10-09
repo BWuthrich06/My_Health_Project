@@ -1,4 +1,4 @@
-from model import db, User, Condition, User_condition, connect_to_db
+from model import db, User, Condition, User_condition, Comment, connect_to_db
 from datetime import date
 
 
@@ -87,9 +87,10 @@ def get_search_results(result):
     results = title + all_synonyms
     set_results = set(results)
     all_results = list(set_results)
+
+    sorted_results = sorted(all_results, key=lambda x: x.title)
     
-    
-    return all_results
+    return sorted_results
 
 
 
@@ -106,15 +107,12 @@ def create_user_condition(condition_id, user_id):
 
 
 def create_comment(favorite_id, formInput):
+    """Create a new comment."""
 
-    user_condition = User_condition.query.get(favorite_id)
+    new_comment = Comment(comment=formInput, favorite_id=favorite_id)
 
-    user_condition.comments = formInput
-
-    # comment = user_condition.comments
-    # db.session.add(comment)
+    return new_comment
     
-    db.session.commit()
    
    
     

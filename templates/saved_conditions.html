@@ -20,7 +20,9 @@
       <p>Your Comments:</p>
       {% if user_condition.comments %}
         <ul id="user_comments">
-          <li>{{ user_condition.comments }}</li>   
+          {% for comment in user_condition.comments %}
+          <li>{{ comment.comment }}</li>
+          {% endfor %}
         </ul>
     </form>
     <br><br>

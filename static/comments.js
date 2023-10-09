@@ -28,8 +28,9 @@ function addComments(evt) {
     })
         .then((response) => response.json())
         .then((responseJSON) => {
-            const userComment = parent.querySelector('#user_comments')
-            userComment.insertAdjacentHTML('beforeend',`<li>${formInput}</li>`)
+            // const userComment = parent.querySelector('#user_comments')
+            // userComment.insertAdjacentHTML('beforeend',`<li>${formInput}</li>`)
+            window.location.pathname = ('/profile/saved')
         });
         
 }

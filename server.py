@@ -174,10 +174,11 @@ def add_comments():
     formInput = request.json.get('comment')
 
     comment = crud.create_comment(favorite_id, formInput)
-    # db.session.add(comment)
+    flash("Comment successfully saved.")
+    db.session.add(comment)
     db.session.commit()
-
-    return {"message": "Comment has been successfully added."}
+    
+    return redirect('/profile/saved')
 
 
 
