@@ -18,7 +18,6 @@
       <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
     
       <p>Your Comments:</p>
-      {% if user_condition.comments %}
         <ul id="user_comments">
           {% for comment in user_condition.comments %}
           <li>{{ comment.comment }}</li>
@@ -26,11 +25,9 @@
         </ul>
     </form>
     <br><br>
-      {% endif %}
+      
   {% endfor %}
 
-{% else %}
-<p>You currently have no saved conditions.</p>
 
 {% endif %}
 

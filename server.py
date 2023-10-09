@@ -178,7 +178,7 @@ def add_comments():
     db.session.add(comment)
     db.session.commit()
     
-    return redirect('/profile/saved')
+    return {"message": "Comment added successfully."}
 
 
 
