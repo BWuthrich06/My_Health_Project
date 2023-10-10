@@ -30,6 +30,7 @@ function addComments(evt) {
         .then((responseJSON) => {
             const userComment = parent.querySelector('#user_comments')
             userComment.insertAdjacentHTML('beforeend',`<li>${formInput}</li>`)
+            window.location.reload(true);
         });
         
 }
@@ -60,7 +61,7 @@ function deleteComments(evt) {
     })
         .then((response) => response.json())
         .then((responseJSON) => {
-            
+            window.location.reload(true);
             
         });
         
@@ -79,9 +80,9 @@ function deleteCondition(evt) {
     evt.preventDefault();
 
     const data = {
-        condition_id : evt.target.id,
+        favorite_id : evt.target.id,
     }
-    fetch('/deletecondition', {
+    fetch('/deleteusercondition', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -90,6 +91,7 @@ function deleteCondition(evt) {
     })
         .then((response) => response.json())
         .then((responseJSON) => {
+            window.location.reload(true);
            
         })
 

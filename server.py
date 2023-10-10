@@ -197,15 +197,15 @@ def delete_comments():
     return {"message": "Comment deleted."}
 
 
-@app.route('/deletecondition', methods = ["POST"])
+@app.route('/deleteusercondition', methods = ["POST"])
 def delete_condition():
     """Deletes user condition."""
 
-    condition_id = int(request.json.get("condition_id"))
+    favorite_id = int(request.json.get("favorite_id"))
 
-    condition = crud.get_condition_by_id(condition_id)
+    user_condition = crud.delete_user_condition(favorite_id)
 
-    db.session.delete(condition)
+    db.session.delete(user_condition)
     db.session.commit()
 
     return {"message": "Condition deleted."}

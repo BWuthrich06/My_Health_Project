@@ -119,6 +119,12 @@ def create_comment(favorite_id, formInput):
 
     return new_comment
     
-   
+
+def delete_user_condition(favorite_id):
+    """Delete user condition."""
+
+    user_condition = User_condition.query.get(favorite_id)
+
+    return user_condition
    
     
