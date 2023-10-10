@@ -5,18 +5,42 @@
 <br>
   <h1>Welcome, {{ name }}</h1>
   <br>
+ 
+<br>
+  <h3>My Saved Conditions</h3>
+
+{% if all_user_conditions %}
+  {% for user_condition in all_user_conditions %}
+  <br>
+    <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
+
+    <button class="delete-condition" id="{{ user_condition.favorite_id}}">Delete Condition</button>
+
+    <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
+    <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+
+    <form>
+      <label>Comments:</label>
+      <textarea name="comments-box" id="comments-box"></textarea>
+      <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
+    
+      <p>Your Comments:</p>
+        <ul id="user_comments">
+          {% for comment in user_condition.comments %}
+          <li>{{ comment.comment }}</li>
+          <button class="delete-comment" id="{{ comment.comment_id }}">Delete</button>
+          {% endfor %}
+        </ul>
+    </form>
+    <br><br>
+      
+  {% endfor %}
+{% endif %}
+
+
+<script src="/static/comments.js"></script>
   
-  <h3>My Profile</h3>
-  <br>
 
-  <h3><a href="/profile/saved">Saved Conditions</a></h3>
-  <br>
-  
-
-  <h3><a href="/conditions">Health Conditions A to Z</a></h3>
-  <br>
-
-  <h3><a href ="/conditions/search">Search for Health Condition</h3>
  
 {% endblock %}
 

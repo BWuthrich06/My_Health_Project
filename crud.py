@@ -24,6 +24,8 @@ def get_user_by_email(email):
 
     return User.query.filter(User.email == email).first()
 
+
+
 def get_space_between_synonyms(synonyms):
     spaced_comma_synonyms = []
 

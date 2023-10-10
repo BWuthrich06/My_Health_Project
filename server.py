@@ -39,6 +39,7 @@ def new_user():
 
     if crud.get_user_by_email(email):
         flash("Account already active, please log in.")
+
         return redirect ('/')
 
     else:
@@ -69,13 +70,13 @@ def process_login():
 
     if not user or user.password != password:
         flash("Invalid credentials.")
+
         return redirect('/')
 
     else:
         flash("Login successful.")
         session['email'] = email
     
-
     return redirect('/profile')
 
 
@@ -86,8 +87,16 @@ def main_profile():
     
     user = crud.get_user_by_email(session['email'])
     name = user.name
+    user_id = user.user_id
 
-    return render_template("profile.html", name=name)
+    
+    list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
+    set_user_conditions = set(list_user_conditions)
+    all_user_conditions = list(set_user_conditions)
+    
+    all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
+
+    return render_template("profile.html", name=name, all_user_conditions=all_user_conditions)
 
 
 
@@ -120,6 +129,7 @@ def get_results():
 
     if results:
         return render_template('results.html', results = results, result = result)
+    
     else:
         flash("No results matched.")
         return redirect('/conditions/search')
@@ -138,6 +148,7 @@ def add_condition_to_user():
     for user_condition in list_user_conditions:
         if user_condition.condition_id == condition:
             flash("Condition already added.")
+            
             return {"message": "Condition already previously added."}
 
 
@@ -150,22 +161,7 @@ def add_condition_to_user():
     
 
 
-@app.route('/profile/saved')
-def get_saved_conditions():
-    """Return saved conditions."""
 
-    email = session['email']
-    
-    user = crud.get_user_by_email(email)
-    user_id = user.user_id
-    
-    list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
-    set_user_conditions = set(list_user_conditions)
-    all_user_conditions = list(set_user_conditions)
-    
-    all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
-
-    return render_template('/saved_conditions.html', all_user_conditions=all_user_conditions)
 
 
 @app.route('/addcomments', methods = ["POST"])

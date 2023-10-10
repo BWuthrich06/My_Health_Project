@@ -20,7 +20,7 @@ function addCondition(evt) {
     })
         .then((response) => response.json())
         .then((responseJSON) => {
-            window.location.pathname = ('/profile/saved')
+            window.location.pathname = ('/profile')
         })
 
 }
