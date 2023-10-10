@@ -35,9 +35,17 @@ for condition in condition_data:
     else:
         url = None
     
+    if word_synonyms:
+        list_word_synonyms = word_synonyms.split(';')  #turns word_synonyms into list
+    else:
+        list_word_synonyms = word_synonyms
+        list_word_synonyms = None
 
-    list_word_synonyms = word_synonyms.split(';')  #turns word_synonyms into list
-    combined_synonyms = synonyms + list_word_synonyms  #combine both synonym lists into one
+    if list_word_synonyms != None:
+        combined_synonyms = synonyms + list_word_synonyms  #combine both synonym lists into one
+    else:
+        combined_synonyms = synonyms
+        
     set_synonyms = set(combined_synonyms)   #turn into set to remove duplicates
     list_all_synonyms = list(set_synonyms)   #turn back into list
 
@@ -46,6 +54,7 @@ for condition in condition_data:
         all_synonyms = ', '.join(list_all_synonyms)
         all_synonyms = all_synonyms.lower()
         all_synonyms = all_synonyms.title()
+        print(all_synonyms)
     else:
         all_synonyms = None     #if no synonyms exist
 

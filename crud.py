@@ -27,6 +27,7 @@ def get_user_by_email(email):
 
 
 def get_space_between_synonyms(synonyms):
+    """Remove space between synonyms."""
     spaced_comma_synonyms = []
 
     for synonym in synonyms:
@@ -60,6 +61,7 @@ def get_conditions():
     """Return all conditions."""
 
     return Condition.query.all()
+
 
 
 def get_comment_by_id(comment_id):
@@ -114,12 +116,14 @@ def create_user_condition(condition_id, user_id):
     return new_user_condition
 
 
+
 def create_comment(favorite_id, formInput):
     """Create a new comment."""
 
     new_comment = Comment(comment=formInput, favorite_id=favorite_id)
 
     return new_comment
+    
     
 
 def delete_user_condition(favorite_id):

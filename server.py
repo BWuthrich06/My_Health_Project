@@ -52,7 +52,7 @@ def new_user():
         session['name'] = name
         session['user_id'] = user.user_id
 
-    return redirect('/profile')
+        return redirect('/profile')
 
 
 
@@ -89,7 +89,6 @@ def main_profile():
     name = user.name
     user_id = user.user_id
 
-    
     list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
     set_user_conditions = set(list_user_conditions)
     all_user_conditions = list(set_user_conditions)
@@ -148,9 +147,8 @@ def add_condition_to_user():
     for user_condition in list_user_conditions:
         if user_condition.condition_id == condition:
             flash("Condition already added.")
-            
-            return {"message": "Condition already previously added."}
 
+            return {"message": "Condition already previously added."}
 
     saved_condition = crud.create_user_condition(condition, user_id)
     flash("Condition has been successfully added.")
@@ -159,9 +157,6 @@ def add_condition_to_user():
 
     return {"message": "Condition has been successfully added."}
     
-
-
-
 
 
 @app.route('/addcomments', methods = ["POST"])
@@ -193,6 +188,7 @@ def delete_comments():
     return {"message": "Comment deleted."}
 
 
+
 @app.route('/deleteusercondition', methods = ["POST"])
 def delete_condition():
     """Deletes user condition."""
@@ -205,6 +201,18 @@ def delete_condition():
     db.session.commit()
 
     return {"message": "Condition deleted."}
+
+
+
+@app.route('/logout', methods = ["POST"])
+def logout_user():
+    """Logs out user from session."""
+
+    session.clear()
+
+    return redirect('/')
+
+
 
 
 

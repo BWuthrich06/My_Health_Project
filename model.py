@@ -64,7 +64,7 @@ class Condition(db.Model):
 
     condition_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(150))
-    all_synonyms = db.Column(db.String(500))
+    all_synonyms = db.Column(db.String(800))
     word_synonyms = db.Column(db.String(500))
     url = db.Column(db.String(500))
 

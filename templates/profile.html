@@ -7,19 +7,39 @@
   <br>
  
 <br>
-  <h3>My Saved Conditions</h3>
+  <h3>My Health Conditions</h3>
 
 {% if all_user_conditions %}
   {% for user_condition in all_user_conditions %}
   <br>
     <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
 
-    <button class="delete-condition" id="{{ user_condition.favorite_id}}">Delete Condition</button>
+    <button class="delete-condition" id="{{ user_condition.favorite_id}}"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button>
+    
 
     <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
     <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
 
-    <form>
+
+    <div class="form-floating">
+      <form>
+      <label for="floatingTextarea">Comments</label>
+      <textarea class="form-control" name="comments-box" placeholder="Leave a comment here" id="comments-box"></textarea>
+      <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
+      
+      <p>Your Comments:</p>
+      <ul id="user_comments">
+        {% for comment in user_condition.comments %}
+        <li>{{ comment.comment }}</li>
+        <button class="delete-comment" id="{{ comment.comment_id }}"><i class="bi bi-trash" id="{{ comment.comment_id }}"></i></button>
+        <!-- <button class="delete-comment" id="{{ comment.comment_id }}">Delete</button> -->
+        {% endfor %}
+      </ul>
+      </form>
+    </div>
+
+
+    <!-- <form>
       <label>Comments:</label>
       <textarea name="comments-box" id="comments-box"></textarea>
       <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
@@ -31,7 +51,7 @@
           <button class="delete-comment" id="{{ comment.comment_id }}">Delete</button>
           {% endfor %}
         </ul>
-    </form>
+    </form> -->
     <br><br>
       
   {% endfor %}
