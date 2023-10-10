@@ -60,6 +60,12 @@ def get_conditions():
     return Condition.query.all()
 
 
+def get_comment_by_id(comment_id):
+    """Return comment by id."""
+
+    return Comment.query.get(comment_id)
+
+
 
 def get_condition_by_id(condition_id):
     """Return condition by id."""
@@ -88,9 +94,9 @@ def get_search_results(result):
     set_results = set(results)
     all_results = list(set_results)
 
-    sorted_results = sorted(all_results, key=lambda x: x.title)
+    all_results = sorted(all_results, key=lambda x: x.title)
     
-    return sorted_results
+    return all_results
 
 
 

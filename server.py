@@ -137,7 +137,7 @@ def add_condition_to_user():
 
     for user_condition in list_user_conditions:
         if user_condition.condition_id == condition:
-            flash("Condition already previously added.")
+            flash("Condition already added.")
             return {"message": "Condition already previously added."}
 
 
@@ -162,6 +162,8 @@ def get_saved_conditions():
     list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
     set_user_conditions = set(list_user_conditions)
     all_user_conditions = list(set_user_conditions)
+    
+    all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
 
     return render_template('/saved_conditions.html', all_user_conditions=all_user_conditions)
 
@@ -174,11 +176,39 @@ def add_comments():
     formInput = request.json.get('comment')
 
     comment = crud.create_comment(favorite_id, formInput)
-    flash("Comment successfully saved.")
+   
     db.session.add(comment)
     db.session.commit()
     
     return {"message": "Comment added successfully."}
+
+
+@app.route('/deletecomments', methods = ["POST"])
+def delete_comments():
+    """Deletes user comment."""
+
+    comment_id = request.json.get("comment_id")
+
+    comment = crud.get_comment_by_id(comment_id)
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return {"message": "Comment deleted."}
+
+
+@app.route('/deletecondition', methods = ["POST"])
+def delete_condition():
+    """Deletes user condition."""
+
+    condition_id = int(request.json.get("condition_id"))
+
+    condition = crud.get_condition_by_id(condition_id)
+
+    db.session.delete(condition)
+    db.session.commit()
+
+    return {"message": "Condition deleted."}
 
 
 

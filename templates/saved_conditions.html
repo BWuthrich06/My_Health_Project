@@ -6,12 +6,15 @@
   <h1>My Saved Conditions</h1>
 
 {% if all_user_conditions %}
-
   {% for user_condition in all_user_conditions %}
   <br>
     <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
+
+    <button class="delete-condition" id="{{ user_condition.favorite_id}}">Delete Condition</button>
+
     <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
     <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+
     <form>
       <label>Comments:</label>
       <textarea name="comments-box" id="comments-box"></textarea>
@@ -21,14 +24,13 @@
         <ul id="user_comments">
           {% for comment in user_condition.comments %}
           <li>{{ comment.comment }}</li>
+          <button class="delete-comment" id="{{ comment.comment_id }}">Delete</button>
           {% endfor %}
         </ul>
     </form>
     <br><br>
       
   {% endfor %}
-
-
 {% endif %}
 
 
