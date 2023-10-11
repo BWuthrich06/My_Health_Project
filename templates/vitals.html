@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Create account{% endblock %}
+
+{% block body %}
+  <br>
+  <h1>Vital Signs</h1>
+  <br>
+
+  <h3>Vitals to document:</h3>
+  <br>
+
+  <form action="/vitals/results" method="POST">
+    
+    <p>Systolic Blood Pressure <input type="text" name="systolic"></p>
+    <p>Diastolic Blood Pressure <input type="text" name="diastolic"></p>
+    <p>Heart Rate <input type="text" name="heart_rate"></p>
+    <p>Oxygen Saturation <input type="text" name="oxygen"></p>
+    <p>Weight (lbs) <input type="text" name="weight"></p>
+    <p>Glucose <input type="text" name="glucose"></p>
+    <br>
+    
+    <p><input type="submit"></p>
+  </form>
+
+{% endblock %}
+

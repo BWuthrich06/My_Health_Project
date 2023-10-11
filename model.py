@@ -16,10 +16,31 @@ class User(db.Model):
     password = db.Column(db.String(50))
 
     user_conditions = db.relationship("User_condition", back_populates="user")
+    vitals = db.relationship("Vital", back_populates="user")
 
     def __repr__(self):
         return f"<User user_id = {self.user_id} email = {self.email} name = {self.name}>"
     
+
+class Vital(db.Model):
+    """User Vitals."""
+
+    __tablename__ = "vitals"
+
+    vital_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    date_time = db.Column(db.DateTime)
+    systolic = db.Column(db.Integer, nullable=True)
+    diastolic = db.Column(db.Integer, nullable=True)
+    heart_rate = db.Column(db.Integer, nullable=True)
+    oxygen = db.Column(db.Integer, nullable=True)
+    weight = db.Column(db.Float, nullable=True)
+    glucose = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    user = db.relationship("User", back_populates="vitals")
+
+    def __repr__(self):
+        return f"<Vital id = {self.vital_id} date = {self.date_time}>"
 
 
 class User_condition(db.Model):

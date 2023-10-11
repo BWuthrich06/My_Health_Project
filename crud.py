@@ -1,5 +1,6 @@
-from model import db, User, Condition, User_condition, Comment, connect_to_db
+from model import db, User, Condition, User_condition, Comment, Vital, connect_to_db
 from datetime import date
+from datetime import datetime
 
 
 
@@ -133,4 +134,30 @@ def delete_user_condition(favorite_id):
 
     return user_condition
    
+
+def get_vitals_by_user_id(user_id):
+    """Get vitals by user."""
+
+    vitals = Vital.query.filter_by(user_id=user_id).all()
+
+    return vitals
+
+
+def create_vital(user_id, systolic, diastolic, heart_rate, oxygen, weight, glucose):
+    "Create and return a new set of vitals."
+
+    new_vital = Vital(
+        user_id = user_id,
+        date_time = datetime.now(),
+        systolic = systolic,
+        diastolic = diastolic,
+        heart_rate = heart_rate,
+        oxygen = oxygen,
+        weight = weight,
+        glucose = glucose
+        )
+
+    return new_vital
+
+
     

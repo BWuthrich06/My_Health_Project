@@ -204,7 +204,7 @@ def delete_condition():
 
 
 
-@app.route('/logout', methods = ["POST"])
+@app.route('/logout', methods = ['POST'])
 def logout_user():
     """Logs out user from session."""
 
@@ -213,7 +213,44 @@ def logout_user():
     return redirect('/')
 
 
+@app.route('/vitals')
+def document_vitals():
+    """User can input vitals."""
 
+    return render_template('vitals.html')
+
+
+@app.route('/vitals/results', methods= ['POST'])
+def get_vital_results():
+    """Results of vitals input."""
+
+    systolic = int(request.form.get("systolic"))
+    diastolic = int(request.form.get("diastolic"))
+    heart_rate = int(request.form.get("heart_rate"))
+    oxygen = int(request.form.get("oxygen"))
+    weight = float(request.form.get("weight"))
+    glucose = int(request.form.get("glucose"))
+
+    user = crud.get_user_by_email(session['email'])
+    user_id = user.user_id
+
+    vitals = crud.create_vital(user_id, systolic, diastolic, heart_rate, oxygen, weight, glucose)
+    flash("Vitals documented.")
+    db.session.add(vitals)
+    db.session.commit()
+
+    return redirect('/vitals/allrecords')
+
+
+@app.route('/vitals/allrecords')
+def show_all_vitals():
+    """Shows all records of vitals."""
+
+    user = crud.get_user_by_email(session['email'])
+    user_id = user.user_id
+    vitals = crud.get_vitals_by_user_id(user_id)
+
+    return render_template("vitals_results.html", vitals=vitals)
 
 
 

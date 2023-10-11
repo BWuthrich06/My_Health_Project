@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Create account{% endblock %}
+
+{% block body %}
+  <br>
+  <h1>Your Documented Vital Signs</h1>
+  <br>
+
+
+<div id="blood_pressure">
+    <h3>Blood Pressure</h3>
+    <ul>
+    {% for vital in vitals %}
+        {% if vital.systolic and vital.diastolic %}
+            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.systolic }}/{{ vital.diastolic }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div><br>
+
+<div id="heart_rate">
+    <h3>Heart Rate</h3>
+    <ul>
+    {% for vital in vitals %}
+        {% if vital.heart_rate %}
+            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.heart_rate }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div><br>
+
+<div id="oxygen">
+    <h3>Oxygen Saturation</h3>
+    <ul>
+    {% for vital in vitals %}
+        {% if vital.oxygen %}
+            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.oxygen }}</li>
+        {% endif %}
+    {% endfor %}
+    
+    </ul>
+</div><br>
+
+<div id="weight">
+    <h3>Weight</h3>
+    <ul>
+    {% for vital in vitals %}
+        {% if vital.weight %}
+            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.weight }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div><br>
+
+<div id="glucose">
+    <h3>Glucose</h3>
+    <ul>
+    {% for vital in vitals %}
+        {% if vital.glucose %}
+            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.glucose }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+</div><br>
+ 
+
+
+
+{% endblock %}
+
