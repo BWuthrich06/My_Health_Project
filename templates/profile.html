@@ -9,32 +9,35 @@
 <br>
   <h3>My Health Conditions</h3>
 
+  <!--If user has saved conditions-->
 {% if all_user_conditions %}
+  <!--Loop through each condition-->
   {% for user_condition in all_user_conditions %}
   <br>
-    <h3><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></h3>
-
+    <!--Condition title and url link-->
+    <a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a>
+    <!--Delete condition button-->
     <button class="delete-condition" id="{{ user_condition.favorite_id}}"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button>
     
-
+    <!--Lists synonyms conditions-->
     <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
+    <!--Shows date condition added to profile-->
     <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
 
-
+    <!--Comments box-->
     <div class="form-floating">
       <form>
-      <label for="floatingTextarea">Comments</label>
-      <textarea class="form-control" name="comments-box" placeholder="Leave a comment here" id="comments-box"></textarea>
-      <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
-      
-      <p>Your Comments:</p>
-      <ul id="user_comments">
-        {% for comment in user_condition.comments %}
-        <li>{{ comment.comment }}</li>
-        <button class="delete-comment" id="{{ comment.comment_id }}"><i class="bi bi-trash" id="{{ comment.comment_id }}"></i></button>
-        <!-- <button class="delete-comment" id="{{ comment.comment_id }}">Delete</button> -->
-        {% endfor %}
-      </ul>
+        <label for="floatingTextarea">Comments</label>
+        <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea>
+        <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
+        
+        <!--Comments user entered will show up here as list-->
+        <p><br>Your Comments:</p>
+          <ul id="user_comments">
+            {% for comment in user_condition.comments %}
+              <li> {{ comment.comment }} <button class="delete-comment" id="{{ comment.comment_id }}"><i class="bi bi-trash" id="{{ comment.comment_id }}"></i></button></li>
+            {% endfor %}
+          </ul>
       </form>
     </div>
 

@@ -3,27 +3,30 @@
 
 {% block body %}
 
-
+<br>
 <h1>Search results for "{{ result }}"</h1>
 <a href ="/conditions/search">Go Back to Search</a>
-<br><br><br>
+<br><br><br><br>
 
 <!--Loop through each condition from results-->
 {% for condition in results %}
+
+    <!--List condition if it has url-->
     {% if condition.url %}
-<h3><a href="{{ condition.url }}">{{ condition.title }}</a></h3>
+        <p><a href="{{ condition.url }}">{{ condition.title }}</a>
     
-    <!--Button to add to personal conditions-->
-    <button id="{{ condition.condition_id }}" class="condition_add"> + Add Condition</button>
+        <!--Button to add to personal conditions-->
+        <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
 
         <!--Loop through all conditions synonyms-->
         {% if condition.all_synonyms %}
-            <p><b>Synonyms: </b><span>{{ condition.all_synonyms }}</span>
+            <p><b>Synonyms: </b><span>{{ condition.all_synonyms }}</span></p>
         {% else %}
             <p><b>Synonyms: </b> None</p>
         {% endif %}  
-
-    {% endif %}           
+                
+    {% endif %}
+    <br>
 {% endfor %}
 
 
