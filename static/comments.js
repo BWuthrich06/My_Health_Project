@@ -28,33 +28,54 @@ function addComments(evt) {
     })
         .then((response) => response.json())
         .then((responseJSON) => {
-            const userComment = parent.querySelector('#user_comments')
-            userComment.insertAdjacentHTML('beforeend',`<li>${formInput}</li>`)
             window.location.reload(true);
         });
         
 }
 
 
+
+
+
 //Listens for button clicked to delete comments to user condition.
-const deleteCommentButtons = document.querySelectorAll('button.delete-comment');
+const deleteCommentButtons = document.querySelectorAll('button.delete-selected');
+
+deleteCommentButtons.forEach(button => {
+    button.addEventListener('click', deleteComments);
+});
+
+function deleteComments(evt) {
+    console.log('Delete selected clicked');
+    evt.preventDefault();
+}
+
+
 for (const deleteCommentButton of deleteCommentButtons) {
     deleteCommentButton.addEventListener('click', deleteComments);
 } 
+
 
 function deleteComments(evt) {
     evt.preventDefault();
 
     const parent = evt.target.parentElement
     console.log(parent);
+    const checkedBoxes = parent.querySelectorAll('input.delete-comment:checked');
+    console.log(checkedBoxes);
+
+    let commentIds = []
+    for (let box of checkedBoxes) {
+        box = box.value;
+        commentIds.push(box);
+    }
         
-    const comment = {
-        comment_id : evt.target.id,
+    const comments = {
+        comment_ids : commentIds,
     }
        
     fetch('/deletecomments', {
         method: "POST",
-        body: JSON.stringify(comment),
+        body: JSON.stringify(comments),
         headers: {
             'Content-Type': 'application/json',
         }

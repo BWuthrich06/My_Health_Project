@@ -203,12 +203,14 @@ def add_comments():
 def delete_comments():
     """Deletes user comment."""
 
-    comment_id = request.json.get("comment_id")
+    comment_ids = request.json.get("comment_ids")
+  
+    for comment_id in comment_ids:
+        comment = crud.get_comment_by_id(comment_id)
 
-    comment = crud.get_comment_by_id(comment_id)
-
-    db.session.delete(comment)
-    db.session.commit()
+        if comment:
+            db.session.delete(comment)
+            db.session.commit()
 
     return {"message": "Comment deleted."}
 

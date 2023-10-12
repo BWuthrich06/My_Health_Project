@@ -19,7 +19,7 @@
     <a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a>
 
     <!--Delete condition button-->
-    <button class="delete-condition" id="{{ user_condition.favorite_id}}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}"></i></button>
+    <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}"></i></button>
   
     <!--Lists synonyms conditions-->
     <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
@@ -34,36 +34,23 @@
         <label for="floatingTextarea">Comments</label>
         <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea>
         <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
+      
         
         <!--Comments user entered will show up here as list-->
         <p><br>Your Comments:</p>
 
           <ul id="user_comments">
             {% for comment in user_condition.comments %}
-
-              <li> {{ comment.comment }} <button class="delete-comment" id="{{ comment.comment_id }}">
-                <i class="bi bi-trash" id="{{ comment.comment_id }}" title="Delete Comment"></i></button></li>
+              {% if comment %}
+                <li> {{ comment.comment }}
+                <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li>
+              {% endif %}
             {% endfor %}
-          </ul>
-
-      </form>
-
+          </ul>   
     </div>
-
-    <!-- <form>
-      <label>Comments:</label>
-      <textarea name="comments-box" id="comments-box"></textarea>
-      <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Add Comment</button>
-    
-      <p>Your Comments:</p>
-        <ul id="user_comments">
-          {% for comment in user_condition.comments %}
-          <li>{{ comment.comment }}</li>
-          <button class="delete-comment" id="{{ comment.comment_id }}">Delete</button>
-          {% endfor %}
-        </ul>
-    </form> -->
-    <br><br>
+    <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
+  </form>
+    <br><br><br>
       
   {% endfor %}
 {% endif %}
