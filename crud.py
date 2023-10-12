@@ -143,7 +143,7 @@ def get_vitals_by_user_id(user_id):
     return vitals
 
 
-def create_vital(user_id, systolic, diastolic, heart_rate, oxygen, weight, glucose):
+def create_vital(user_id, systolic=None, diastolic=None, heart_rate=None, oxygen=None, weight=None, glucose=None):
     "Create and return a new set of vitals."
 
     new_vital = Vital(

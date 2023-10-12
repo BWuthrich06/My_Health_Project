@@ -42,7 +42,7 @@ def new_user():
 
         return redirect ('/')
 
-    else:
+    elif email and name and password:
         user = crud.create_user(email, name, password)
         db.session.add(user)
         db.session.commit()
@@ -53,6 +53,10 @@ def new_user():
         session['user_id'] = user.user_id
 
         return redirect('/profile')
+    
+    else:
+        flash("Missing values, please fill in all fields.")
+        return redirect('/create_user')
 
 
 
@@ -85,17 +89,22 @@ def process_login():
 def main_profile():
     """Shows main profile page."""
     
-    user = crud.get_user_by_email(session['email'])
-    name = user.name
-    user_id = user.user_id
+    if 'email' in session:
+        user = crud.get_user_by_email(session['email'])
+        name = user.name
+        user_id = user.user_id
 
-    list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
-    set_user_conditions = set(list_user_conditions)
-    all_user_conditions = list(set_user_conditions)
+        list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
+        set_user_conditions = set(list_user_conditions)
+        all_user_conditions = list(set_user_conditions)
+        
+        all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
+
+        return render_template("profile.html", name=name, all_user_conditions=all_user_conditions)
     
-    all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
-
-    return render_template("profile.html", name=name, all_user_conditions=all_user_conditions)
+    else:
+        flash("You must login first.")
+        return redirect('/')
 
 
 
@@ -103,9 +112,14 @@ def main_profile():
 def all_conditions():
     """View all conditions."""
 
-    conditions = crud.get_conditions()
+    if "email" in session:
 
-    return render_template("all_conditions.html", conditions=conditions)
+        conditions = crud.get_conditions()
+        return render_template("all_conditions.html", conditions=conditions)
+
+    else:
+        flash("You must login first.")
+        return redirect('/')
 
 
 
@@ -113,7 +127,12 @@ def all_conditions():
 def search_conditions():
     """Search for conditions."""
 
-    return render_template('condition_search.html')
+    if 'email' in session:
+        return render_template('condition_search.html')
+    
+    else:
+        flash("You must login first.")
+        return redirect('/')
 
 
 
@@ -121,18 +140,24 @@ def search_conditions():
 def get_results():
     """Return search results."""
 
-    result = request.args.get("result")
-    result = result.title()
+    if 'email' in session:
 
-    results = crud.get_search_results(result)
+        result = request.args.get("result")
+        result = result.title()
 
-    if results:
-        return render_template('results.html', results = results, result = result)
+        results = crud.get_search_results(result)
+
+        if results:
+            return render_template('results.html', results = results, result = result)
+        
+        else:
+            flash("No matching results.")
+            return redirect('/conditions/search')
     
     else:
-        flash("No results matched.")
-        return redirect('/conditions/search')
-    
+        flash("You must login first")
+        return redirect('/')
+        
 
 
 @app.route('/addcondition', methods = ["POST"])
@@ -217,19 +242,54 @@ def logout_user():
 def document_vitals():
     """User can input vitals."""
 
-    return render_template('vitals.html')
+    if 'email' in session: 
+        return render_template('vitals.html')
+    else:
+        flash("You must login first.")
+        return redirect('/')
+   
 
 
 @app.route('/vitals/results', methods= ['POST'])
 def get_vital_results():
     """Results of vitals input."""
 
-    systolic = int(request.form.get("systolic"))
-    diastolic = int(request.form.get("diastolic"))
-    heart_rate = int(request.form.get("heart_rate"))
-    oxygen = int(request.form.get("oxygen"))
-    weight = float(request.form.get("weight"))
-    glucose = int(request.form.get("glucose"))
+    systolic = request.form.get("systolic")
+    diastolic = request.form.get("diastolic")
+    heart_rate = request.form.get("heart_rate")
+    oxygen = request.form.get("oxygen")
+    weight = request.form.get("weight")
+    glucose = request.form.get("glucose")
+
+    if systolic:
+        systolic = int(systolic)
+    else:
+        systolic = None
+
+    if diastolic:
+        diastolic = int(diastolic)
+    else:
+        diastolic = None
+
+    if heart_rate:
+        heart_rate = int(heart_rate)
+    else:
+        heart_rate = None
+
+    if oxygen:
+        oxygen = int(oxygen)
+    else:
+        oxygen = None
+
+    if weight:
+        weight = float(weight)
+    else:
+        weight = None
+
+    if glucose:
+        glucose = int(glucose)
+    else:
+        glucose = None
 
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
@@ -246,11 +306,17 @@ def get_vital_results():
 def show_all_vitals():
     """Shows all records of vitals."""
 
-    user = crud.get_user_by_email(session['email'])
-    user_id = user.user_id
-    vitals = crud.get_vitals_by_user_id(user_id)
+    if 'email' in session:
 
-    return render_template("vitals_results.html", vitals=vitals)
+        user = crud.get_user_by_email(session['email'])
+        user_id = user.user_id
+        vitals = crud.get_vitals_by_user_id(user_id)
+
+        return render_template("vitals_results.html", vitals=vitals)
+    
+    else:
+        flash("You must login first.")
+        return redirect('/')
 
 
 
