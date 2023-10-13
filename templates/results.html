@@ -1,32 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}Search Results{% endblock %}
 
-{% block body %}
+{% block body %}<br>
 
-<br>
-<h1>Search results for "{{ result }}"</h1>
-<a href ="/conditions/search">Go Back to Search</a>
-<br><br><br><br>
+<p class="intro_results">Here is a list of health conditions matching your search criteria.<br>
+   If you wish to see more information on a health condition, click<br>
+   on the name of health condition.</p>
+
+<p class="intro_results">Click "Add" next to condition you would like to save to your profile.</p><br><br>
+
+<!--Link to go back to search page.-->
+<p id="back_to_search"><a href ="/conditions/search">Go Back to Search</a></p>
+
+<h1>Search results for "{{ result }}"</h1><br>
 
 <!--Loop through each condition from results-->
 {% for condition in results %}
 
     <!--List condition if it has url-->
     {% if condition.url %}
-        <p><a href="{{ condition.url }}">{{ condition.title }}</a>
+        <p class="condition_result"><a href="{{ condition.url }}">{{ condition.title }}</a>
     
         <!--Button to add to personal conditions-->
         <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
 
         <!--Loop through all conditions synonyms-->
         {% if condition.all_synonyms %}
-            <p><b>Synonyms: </b><span>{{ condition.all_synonyms }}</span></p>
+            <p class="result_synonyms"><b>Synonyms: </b><span>{{ condition.all_synonyms }}</span></p>
         {% else %}
-            <p><b>Synonyms: </b> None</p>
+            <p class="result_synonyms"><b>Synonyms: </b> None</p>
+
         {% endif %}  
                 
-    {% endif %}
-    <br>
+    {% endif %}<br><br>
+  
 {% endfor %}
 
 

@@ -1,13 +1,14 @@
 """Server for Health Condition app"""
-
+import os
 from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 
+secret_key = os.environ.get('secret_key')
 
 app = Flask(__name__)
-app.secret_key = 'dev'
+app.secret_key = secret_key
 app.jinja_env.undefined = StrictUndefined
 
 
@@ -314,9 +315,10 @@ def show_all_vitals():
 
         user = crud.get_user_by_email(session['email'])
         user_id = user.user_id
+        name = user.name
         vitals = crud.get_vitals_by_user_id(user_id)
 
-        return render_template("vitals_results.html", vitals=vitals)
+        return render_template("vitals_results.html", vitals=vitals, name=name)
     
     else:
         flash("You must login first.")

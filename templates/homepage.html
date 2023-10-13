@@ -3,57 +3,60 @@
 
 {% block body %}
 
-  <h1>Welcome to Health Pocket</h1>
-  <br>
-{% if 'email' not in session %}
-  <h3>Login</h3>
-  <br>
-
-  <form action="/login" method="POST">
-    <p>Email <input type="text" name="email"></p>
-    <p>Password <input type="password" name="password"></p>
-    <br>
-    <p><input type="submit"></p>
-  </form>
-  <br>
-  <br>
-  <br>
-
-  <h3>New User? </h3>
-  <h5><a href = "/create_user">Create A New Account</a></h5>
-  <br><br>
-
-  <p>Empower yourself with knowledge about your health conditions.<br>
-    Taking control of your health starts with understanding you're diagnosis.</p>
-    <br>
+  <h1>Welcome to Health Pocket</h1><br>
   
-    <p>Health Pocket provides information on variety of conditions that<br>
-    let you explore and understand your health issues better including <br>
-    causes, symptoms and treatments.</p>
-    <br>
+  {% if 'email' not in session %}
+    <h3>Login</h3><br>
+  
+    <form action="/login" method="POST">
+      <p>Email <input type="text" name="email"></p>
+      <p>Password <input type="password" name="password"></p>
+      <br>
+      <p><input type="submit"></p>
+    </form><br><br><br>
+
+    <h3>New User? </h3>
+    <h5><a href = "/create_user">Create A New Account</a></h5><br><br>
+  
+    <div class="introduction">
+      <p>Empower yourself with knowledge about your health conditions.<br>
+         Taking control of your health starts with understanding you're diagnosis.</p><br>
     
-    <p>Create a personalized account to track and save the health conditions<br>
-       that pertain to you, or that you are interested in learning more about.</p>
+      <p>Health Pocket provides information on variety of conditions that<br>
+         let you explore and understand your health issues better including<br>
+         causes, symptoms and treatments.</p><br>
+    
+      <p>Create a personalized account to track and save the health conditions<br>
+         that pertain to you, or that you are interested in learning more about.</p><br>
 
-{% else %}
+      <p>Health Pocket also allows you to keep a record of your vitals such as<br>
+         blood pressure, heart rate, oxygen, weight, and glucose readings.<br>
+         You will have access to your vitals as a form to provide to you physician<br>
+         or a graph to show a better picture of your health overtime.</p><br>
+    </div>
 
-<a href="/profile">My Health Pocket</a>
-<br><br>
+  {% else %}
 
-<p>Empower yourself with knowledge about your health conditions.<br>
-  Taking control of your health starts with understanding you're diagnosis.</p>
-  <br>
+    <a href="/profile">My Health Pocket</a><br><br>
 
-  <p>Health Pocket provides information on variety of conditions that<br>
-  let you explore and understand your health issues better including <br>
-  causes, symptoms and treatments.</p>
-  <br>
+    <div class="introduction">
+      <p>Empower yourself with knowledge about your health conditions.<br>
+         Taking control of your health starts with understanding you're diagnosis.</p><br>
+
+      <p>Health Pocket provides information on variety of conditions that<br>
+         let you explore and understand your health issues better including <br>
+         causes, symptoms and treatments.</p><br>
   
-  <p>Create a personalized account to track and save the health conditions<br>
-     that pertain to you, or that you are interested in learning more about.</p>
-  
- 
-{% endif %}
+      <p>Create a personalized account to track and save the health conditions<br>
+         that pertain to you, or that you are interested in learning more about.</p><br>
+    
+      <p>Health Pocket also allows you to keep a record of your vitals such as<br>
+         blood pressure, heart rate, oxygen, weight, and glucose readings.<br>
+         You will have access to your vitals as a form to provide to you physician<br>
+         or a graph to show a better picture of your health overtime.</p><br>
+    </div>
+
+  {% endif %}
 
 {% endblock %}
 

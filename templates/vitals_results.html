@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
-{% block title %}Create account{% endblock %}
+{% block title %}Vital Signs{% endblock %}
 
 {% block body %}
   <br>
-  <h1>Your Documented Vital Signs</h1>
+  <h1>{{ name }},</h1>
+  <h3>Your Vital Signs Record:</h3><br>
+  <p>Here, you'll find a comprehensive log of all recorded vital signs.<br>
+    For a visual representation of your vitals over time,<br>
+    explore our easy-to-read graphs below.</p>
   
-  <h4><a href="/vitals_graph">See Graph of Vitals</a></h4><br><br><br>
+  <h4><a href="/vitals_graph">View Vital Sign Graphs</a></h4><br><br>
 
 
 <div id="blood_pressure_result">
