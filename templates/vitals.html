@@ -9,18 +9,20 @@
   <h3>Vitals to document:</h3>
   <br>
 
-  <form action="/vitals/results" method="POST">
+  <form id="vitalSignForm">
     
-    <p>Systolic Blood Pressure <input type="text" name="systolic"></p>
-    <p>Diastolic Blood Pressure <input type="text" name="diastolic"></p>
-    <p>Heart Rate <input type="text" name="heart_rate"></p>
-    <p>Oxygen Saturation <input type="text" name="oxygen"></p>
-    <p>Weight (lbs) <input type="text" name="weight"></p>
-    <p>Glucose <input type="text" name="glucose"></p>
+    <p>Systolic Blood Pressure <input type="text" id="systolic" name="systolic"></p>
+    <p>Diastolic Blood Pressure <input type="text" id="diastolic" name="diastolic"></p>
+    <p>Heart Rate <input type="text" id="heart_rate" name="heart_rate"></p>
+    <p>Oxygen Saturation <input type="text" id="oxygen" name="oxygen"></p>
+    <p>Weight (lbs) <input type="text" id="weight" name="weight"></p>
+    <p>Glucose <input type="text" id="glucose" name="glucose"></p>
     <br>
     
-    <p><input type="submit"></p>
+    <button type="submit" class="submit-vitals">Submit</button>
   </form>
+
+  <script src='static/vitals.js'></script>
 
 {% endblock %}
 

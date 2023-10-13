@@ -7,8 +7,9 @@
   <br>
 
 
-<div id="blood_pressure">
+<div id="blood_pressure_result">
     <h3>Blood Pressure</h3>
+    <a href="/vitals_graph">Blood Pressure Graph</a>
     <ul>
     {% for vital in vitals %}
         {% if vital.systolic and vital.diastolic %}
@@ -18,7 +19,7 @@
     </ul>
 </div><br>
 
-<div id="heart_rate">
+<div id="heart_rate_result">
     <h3>Heart Rate</h3>
     <ul>
     {% for vital in vitals %}
@@ -29,7 +30,7 @@
     </ul>
 </div><br>
 
-<div id="oxygen">
+<div id="oxygen_result">
     <h3>Oxygen Saturation</h3>
     <ul>
     {% for vital in vitals %}
@@ -40,7 +41,7 @@
     </ul>
 </div><br>
 
-<div id="weight">
+<div id="weight_result">
     <h3>Weight</h3>
     <ul>
     {% for vital in vitals %}
@@ -51,7 +52,7 @@
     </ul>
 </div><br>
 
-<div id="glucose">
+<div id="glucose_result">
     <h3>Glucose</h3>
     <ul>
     {% for vital in vitals %}

@@ -256,12 +256,12 @@ def document_vitals():
 def get_vital_results():
     """Results of vitals input."""
 
-    systolic = request.form.get("systolic")
-    diastolic = request.form.get("diastolic")
-    heart_rate = request.form.get("heart_rate")
-    oxygen = request.form.get("oxygen")
-    weight = request.form.get("weight")
-    glucose = request.form.get("glucose")
+    systolic = request.json.get("systolic")
+    diastolic = request.json.get("diastolic")
+    heart_rate = request.json.get("heartRate")
+    oxygen = request.json.get("oxygen")
+    weight = request.json.get("weight")
+    glucose = request.json.get("glucose")
 
     if systolic:
         systolic = int(systolic)
@@ -301,7 +301,9 @@ def get_vital_results():
     db.session.add(vitals)
     db.session.commit()
 
-    return redirect('/vitals/allrecords')
+    return {"Message": "Vitals added successfully."}
+
+
 
 
 @app.route('/vitals/allrecords')
@@ -319,6 +321,44 @@ def show_all_vitals():
     else:
         flash("You must login first.")
         return redirect('/')
+
+
+@app.route('/vitals_graph')
+def show_vital_graphs():
+    """Shows graphs of vital signs."""
+
+    return render_template('vitals_graph.html')
+
+
+
+@app.route('/all_vitals_graph')
+def get_all_vitals_for_graph():
+    """Gets all vitals."""
+
+    user = crud.get_user_by_email(session['email'])
+    user_id = user.user_id
+
+    vitals = crud.get_vitals_by_user_id(user_id)
+
+    data = []
+
+    for vital in vitals:
+        vital = {
+            'date_time': vital.date_time.strftime("%m/%d/%Y %I:%M %p"),
+            'systolic': vital.systolic,
+            'diastolic': vital.diastolic,
+            'heart_rate': vital.heart_rate,
+            'oxygen': vital.oxygen,
+            'weight': vital.weight,
+            'glucose': vital.glucose
+            }
+        data.append(vital)
+
+
+    return jsonify({'vitals': data})
+
+
+
 
 
 

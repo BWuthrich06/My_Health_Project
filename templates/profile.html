@@ -38,17 +38,21 @@
         
         <!--Comments user entered will show up here as list-->
         <p><br>Your Comments:</p>
-
+        {% if user_condition.comments %}
           <ul id="user_comments">
             {% for comment in user_condition.comments %}
-              {% if comment %}
                 <li> {{ comment.comment }}
+                  <!--For each comment, checkbox to delete-->
                 <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li>
-              {% endif %}
             {% endfor %}
-          </ul>   
+          </ul> 
+          <!--Delete checkboxes checked of comments-->
+          <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
+
+        {% endif %}
+
     </div>
-    <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
+    
   </form>
     <br><br><br>
       
