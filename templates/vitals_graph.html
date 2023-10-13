@@ -9,27 +9,45 @@
 
 {% block body %}
 <br>
-<h1>Vital Signs</h1>
+<h1>Vital Signs</h1><br>
+
+<p><a href="#bp_chart_graph">Blood Pressure</a></p>
+<p><a href="#hr_chart_graph">Heart Rate</a></p>
+<p><a href="#oxygen_chart_graph">Oxygen Saturation</a></p>
+<p><a href="#weight_chart_graph">Weight</a></p>
+<p><a href="#glucose_chart_graph">Glucose</a></p>
+
+
+<br><br><br>
+
+<div class="chart-container" id="bp_chart_graph">
+    <h3>Blood Pressure</h3>
+    <canvas id="blood_pressure_chart" width="600" height="300"></canvas>
+</div>
 <br><br>
 
-<h3>Blood Pressure</h3>
-<canvas id="blood_pressure_chart" width="600" height="300"></canvas>
-<br><br>
-
-<h3>Heart Rate</h3>
-<canvas id="heart_rate_chart"></canvas>
+<div class="chart-container" id="hr_chart_graph">
+    <h3>Heart Rate</h3>
+    <canvas id="heart_rate_chart"></canvas>
+</div>
 <br>
 
-<h3>Oxygen Saturation</h3>
-<canvas id="oxygen_chart"></canvas>
+<div class="chart-container" id="oxygen_chart_graph">
+    <h3>Oxygen Saturation</h3>
+    <canvas id="oxygen_chart"></canvas>
+</div>
 <br>
 
-<h3>Weight</h3>
-<canvas id="weight_chart"></canvas>
+<div class="chart-container" id="weight_chart_graph">
+    <h3>Weight</h3>
+    <canvas id="weight_chart"></canvas>
+</div>
 <br>
 
-<h3>Glucose</h3>
-<canvas id="glucose_chart"></canvas>
+<div class="chart-container" id="glucose_chart_graph">    
+    <h3>Glucose</h3>
+    <canvas id="glucose_chart"></canvas>
+</div>
 <br>
 
 

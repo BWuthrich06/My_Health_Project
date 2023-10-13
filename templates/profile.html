@@ -14,30 +14,28 @@
   <!--Loop through each condition-->
   {% for user_condition in all_user_conditions %}
   <br>
-
+  <div id="saved_condition">
     <!--Condition title and url link-->
-    <a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a>
+    <p class="saved_condition_name"><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></p>
 
     <!--Delete condition button-->
-    <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}"></i></button>
+    <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button>
   
     <!--Lists synonyms conditions-->
-    <p><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
+    <p class="saved_synonyms"><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
 
     <!--Shows date condition added to profile-->
-    <p>Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+    <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
 
     <!--Comments box-->
     <div class="form-floating">
-
       <form>
         <label for="floatingTextarea">Comments</label>
         <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea>
         <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
-      
-        
+    
         <!--Comments user entered will show up here as list-->
-        <p><br>Your Comments:</p>
+        <p class="saved_comments"><br>Your Comments:</p>
         {% if user_condition.comments %}
           <ul id="user_comments">
             {% for comment in user_condition.comments %}
@@ -50,10 +48,10 @@
           <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
 
         {% endif %}
-
+      </form>
     </div>
-    
-  </form>
+  </div> 
+ 
     <br><br><br>
       
   {% endfor %}

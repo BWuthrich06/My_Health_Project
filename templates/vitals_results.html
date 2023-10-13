@@ -4,12 +4,12 @@
 {% block body %}
   <br>
   <h1>Your Documented Vital Signs</h1>
-  <br>
+  
+  <h4><a href="/vitals_graph">See Graph of Vitals</a></h4><br><br><br>
 
 
 <div id="blood_pressure_result">
     <h3>Blood Pressure</h3>
-    <a href="/vitals_graph">Blood Pressure Graph</a>
     <ul>
     {% for vital in vitals %}
         {% if vital.systolic and vital.diastolic %}

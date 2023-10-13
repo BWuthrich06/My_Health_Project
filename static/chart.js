@@ -34,23 +34,18 @@ fetch('/all_vitals_graph')
                         label: 'Systolic',
                         data: systolic,
                         backgroundColor: 'rgba(237, 82, 15, 0.92)',
+                        borderColor: 'rgba(237, 82, 15, 0.92)',
                         },
                         {
                         label: 'Diastolic',
                         data: diastolic,
                         backgroundColor: 'rgba(237, 168, 24, 0.92)',
+                        borderColor: 'rgba(237, 168, 24, 0.92)',
                         }]
                     },
-                options: {
-                    scales: {
-                        y: {
-                            suggestedMin: 40,
-                            suggestedMax: 250,
-                        }
-                    }
+               
                 }
-    }
-)
+            )
 
 
         let heartRateChart = new Chart(
@@ -62,17 +57,11 @@ fetch('/all_vitals_graph')
                         label: 'Heart Rate',
                         data: heart_rate,
                         backgroundColor: 'rgba(23, 204, 85, 0.93)',
+                        borderColor: 'rgba(23, 204, 85, 0.93)',
                         }] 
                     },
-                options: {
-                    scales: {
-                        y: {
-                            suggestedMin: 30,
-                            suggestedMax: 200,
-                        }
-                    }
-                }
-        })
+             
+                })
 
 
 
@@ -86,17 +75,11 @@ fetch('/all_vitals_graph')
                         label: 'Oxgyen',
                         data: oxygen,
                         backgroundColor: 'rgba(27, 52, 124, 0.93)',
+                        borderColor: 'rgba(27, 52, 124, 0.93)',
                         }] 
                     },
-                options: {
-                    scales: {
-                        y: {
-                            suggestedMin: 60,
-                            suggestedMax: 100,
-                        }
-                    }
-                }
-        })
+               
+                })
 
 
 
@@ -109,17 +92,11 @@ fetch('/all_vitals_graph')
                         label: 'Weight',
                         data: weight,
                         backgroundColor: 'rgba(40, 182, 208, 0.91)',
+                        borderColor: 'rgba(40, 182, 208, 0.91)',
                         }] 
                     },
-                options: {
-                    scales: {
-                        y: {
-                            suggestedMin: 0,
-                            suggestedMax: 900,
-                        }
-                    }
-                }
-        })
+             
+                })
 
 
         
@@ -132,39 +109,10 @@ fetch('/all_vitals_graph')
                         label: 'Glucose',
                         data: glucose,
                         backgroundColor: 'rgba(101, 84, 192, 0.84)',
+                        borderColor: 'rgba(101, 84, 192, 0.84)',
                         }] 
                     },
-                options: {
-                    scales: {
-                        y: {
-                            suggestedMin: 30,
-                            suggestedMax: 600,
-                        }
-                    }
-                }
-        })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+               
+                })
 
 });
