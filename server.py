@@ -1,6 +1,6 @@
 """Server for Health Condition app"""
 
-from flask import Flask, render_template, request, flash, session, redirect
+from flask import Flask, render_template, request, flash, session, redirect, jsonify
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
@@ -354,8 +354,7 @@ def get_all_vitals_for_graph():
             }
         data.append(vital)
 
-
-    return jsonify({'vitals': data})
+    return jsonify ({'vitals': data})
 
 
 

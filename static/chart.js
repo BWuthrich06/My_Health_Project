@@ -3,27 +3,168 @@
 fetch('/all_vitals_graph')
     .then((response) => response.json())
     .then((responseJSON) => {
-        const data = responseJSON
+        const vitals = responseJSON.vitals;
 
-        const dates = data.dates;
-        const systolic = data.systolic;
-        const diastolic = data.diastolic;
-    })
+        const dates = [];
+        const systolic = [];
+        const diastolic = [];
+        const heart_rate = []
+        const oxygen = []
+        const weight = []
+        const glucose = []
 
-const bpChart = new Chart(
-    document.querySelector('#blood_pressure_chart'), {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [{
-                label: 'Systolic',
-                data: systolic
-            },
-            {
-                label: 'Diastolic',
-                data: diastolic
-            }]
+        for (const vital of vitals) {
+            dates.push(vital.date_time);
+            systolic.push(vital.systolic);
+            diastolic.push(vital.diastolic);
+            heart_rate.push(vital.heart_rate);
+            oxygen.push(vital.oxygen);
+            weight.push(vital.weight);
+            glucose.push(vital.glucose);
         }
+
+    
+
+        let bpChart = new Chart(
+            document.querySelector('#blood_pressure_chart'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Systolic',
+                        data: systolic,
+                        backgroundColor: 'rgba(237, 82, 15, 0.92)',
+                        },
+                        {
+                        label: 'Diastolic',
+                        data: diastolic,
+                        backgroundColor: 'rgba(237, 168, 24, 0.92)',
+                        }]
+                    },
+                options: {
+                    scales: {
+                        y: {
+                            suggestedMin: 40,
+                            suggestedMax: 250,
+                        }
+                    }
+                }
     }
 )
 
+
+        let heartRateChart = new Chart(
+            document.querySelector('#heart_rate_chart'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Heart Rate',
+                        data: heart_rate,
+                        backgroundColor: 'rgba(23, 204, 85, 0.93)',
+                        }] 
+                    },
+                options: {
+                    scales: {
+                        y: {
+                            suggestedMin: 30,
+                            suggestedMax: 200,
+                        }
+                    }
+                }
+        })
+
+
+
+
+        let oxygenChart = new Chart(
+            document.querySelector('#oxygen_chart'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Oxgyen',
+                        data: oxygen,
+                        backgroundColor: 'rgba(27, 52, 124, 0.93)',
+                        }] 
+                    },
+                options: {
+                    scales: {
+                        y: {
+                            suggestedMin: 60,
+                            suggestedMax: 100,
+                        }
+                    }
+                }
+        })
+
+
+
+        let weightChart = new Chart(
+            document.querySelector('#weight_chart'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Weight',
+                        data: weight,
+                        backgroundColor: 'rgba(40, 182, 208, 0.91)',
+                        }] 
+                    },
+                options: {
+                    scales: {
+                        y: {
+                            suggestedMin: 0,
+                            suggestedMax: 900,
+                        }
+                    }
+                }
+        })
+
+
+        
+        let glucoseChart = new Chart(
+            document.querySelector('#glucose_chart'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Glucose',
+                        data: glucose,
+                        backgroundColor: 'rgba(101, 84, 192, 0.84)',
+                        }] 
+                    },
+                options: {
+                    scales: {
+                        y: {
+                            suggestedMin: 30,
+                            suggestedMax: 600,
+                        }
+                    }
+                }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
