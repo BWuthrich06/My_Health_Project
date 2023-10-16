@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Find Physician{% endblock %}
+
+{% block body %}<br>
+
+<h1>Search for Physician</h1><br><br>
+
+  <form action = "/physician/search">
+    <p><b>Enter zipcode: </b><input type="text", name="zipcode", placeholder="Zipcode"></p><br>
+    <!-- <p><b>Enter specialty if any: </b><input type="text", name="specialty", placeholder="Specialty"></p>
+    <p>Example: Primary, Cardiologist, Nephrologist</p><br><br> -->
+    <button id = search_result type="submit">Find Physician</button>
+  </form><br>
+
+  
+{% endblock %}
+

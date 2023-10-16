@@ -1,9 +1,10 @@
 """Server for Health Condition app"""
 import os
-from flask import Flask, render_template, request, flash, session, redirect, jsonify
+from flask import Flask, render_template, request, flash, session, redirect, jsonify, request
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
+import requests
 
 
 
@@ -380,8 +381,33 @@ def find_physician():
 def get_physician_results():
     """Return results of physicians for user."""
 
+    
+
     zipcode = request.args.get("zipcode")
-    specialty = request.args.get("specialty")
+
+    if zipcode:
+
+        zipcode = zipcode
+        radius = 50000
+        type = "doctor"
+
+        params = {
+            "zipcode": zipcode,
+            "radius": radius,
+            "type": type,
+            "api_key": API_KEY,        
+        }
+
+        url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+
+        places_nearby = requests.get(url, params=params)
+
+    else:
+        flash("Please enter a valid zipcode.")
+        return redirect('/findphysician')
+
+    
+   
 
 
 
