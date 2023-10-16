@@ -13,7 +13,7 @@
 
     <p></p>
 
-<h5>Click to jump to corresponding graph</h5>
+<h5 id="link_to_graph">View Associated Graph</h5>
     <p><a href="#bp_chart_graph">Blood Pressure</a></p>
     <p><a href="#hr_chart_graph">Heart Rate</a></p>
     <p><a href="#oxygen_chart_graph">Oxygen Saturation</a></p>
@@ -22,28 +22,32 @@
 
 <div class="chart-container" id="bp_chart_graph">
     <h3>Blood Pressure</h3>
+    <p>Normal Systolic Range: 90-120</p>
+    <p>Normal Diastolic Range: less than 80</p>
     <canvas id="blood_pressure_chart" width="600" height="300"></canvas>
-</div><br>
+</div><br><br><br><br>
 
 <div class="chart-container" id="hr_chart_graph">
     <h3>Heart Rate</h3>
+    <p>Normal Range: 60-100</p>
     <canvas id="heart_rate_chart"></canvas>
-</div><br>
+</div><br><br><br>
 
 <div class="chart-container" id="oxygen_chart_graph">
     <h3>Oxygen Saturation</h3>
+    Normal Range: 92-100
     <canvas id="oxygen_chart"></canvas>
-</div><br>
+</div><br><br><br>
 
 <div class="chart-container" id="weight_chart_graph">
     <h3>Weight</h3>
     <canvas id="weight_chart"></canvas>
-</div><br>
+</div><br><br>
 
 <div class="chart-container" id="glucose_chart_graph">    
     <h3>Glucose</h3>
     <canvas id="glucose_chart"></canvas>
-</div><br>
+</div><br><br>
 
 
 <script src="static/chart.js"></script>

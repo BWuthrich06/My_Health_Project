@@ -5,6 +5,15 @@ from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 
+
+
+import googlemaps
+import pprint
+import time
+API_KEY = os.environ.get('my_api_key')
+
+
+
 secret_key = os.environ.get('secret_key')
 
 app = Flask(__name__)
@@ -357,6 +366,24 @@ def get_all_vitals_for_graph():
         data.append(vital)
 
     return jsonify ({'vitals': data})
+
+
+
+@app.route('/findphysician')
+def find_physician():
+    """Search for physician."""
+
+    return render_template('find_physician.html')
+
+
+@app.route("/physician/search")
+def get_physician_results():
+    """Return results of physicians for user."""
+
+    zipcode = request.args.get("zipcode")
+    specialty = request.args.get("specialty")
+
+
 
 
 
