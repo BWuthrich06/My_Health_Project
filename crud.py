@@ -1,6 +1,7 @@
 from model import db, User, Condition, User_condition, Comment, Vital, connect_to_db
 from datetime import date
 from datetime import datetime
+import time
 
 import requests
 import pprint
@@ -168,23 +169,31 @@ def create_vital(user_id, systolic=None, diastolic=None, heart_rate=None, oxygen
     return new_vital
 
 
+
 def get_place_details(place_id, API_KEY):
     """Returns details of each place from location results."""
 
+    fields='name,formatted_address,formatted_phone_number,photos,url,website,vicinity'
 
     params = {
         "place_id": place_id,
-        "fields": ["name","formatted_address","formatted_phone_number","photos","url","vicinity"],
+        "fields": fields,
         "key": API_KEY,
     }
 
     url = "https://maps.googleapis.com/maps/api/place/details/json?"
 
     res = requests.get(url, params=params)
-    data = res.json()
-    print(data)
 
-    return data
+    if res.status_code == 200:
+        data = res.json()
+
+        return data
+    
+    else:
+        return "Error, data request unsuccessful."
+    
+
 
 
 
@@ -194,26 +203,30 @@ def find_nearby_doctors(location, API_KEY):
     latitude = str(location['latitude'])
     longitude = str(location['longitude'])
 
+    data_type = "doctor"
+    radius = 33000
     location = f"{latitude},{longitude}"
-    radius = 50000
-    type = "doctor"
 
     params = {
             "location": location,
+            "type": data_type,
             "radius": radius,
-            "type": type,
-            "key": API_KEY,        
+            "key": API_KEY,      
         }
     
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 
     res = requests.get(url, params=params)
-    nearby_data = res.json()
 
-    return nearby_data
+    if res.status_code == 200:
+        nearby_data = res.json()
+        print(nearby_data)
 
-
-
+        return nearby_data
+    
+    else:
+        return "Error, data request unsuccessful."
+    
 
 
 def get_lat_long(zipcode, API_KEY):

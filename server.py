@@ -6,6 +6,8 @@ import crud
 from jinja2 import StrictUndefined
 import requests
 import json
+import time
+import re
 
 
 
@@ -408,23 +410,26 @@ def find_physician():
 def get_physician_results():
     """Return results of physicians for user."""
 
-    #Get zipcode back user put in
+    #Get zipcode user entered
     zipcode = request.args.get("zipcode")
     print(zipcode)
 
-    if zipcode:
+    regex_zipcode = "\d{5}"
 
-        location = '33.5013596,-111.8210866'
+    #List to hold all dictionary results of relevant data
+    all_details = [] 
+
+    if len(zipcode) == 5 and re.match(regex_zipcode, zipcode):
 
         #Get latitude/longitude from user zipcode
-        # location = crud.get_lat_long(zipcode, API_KEY)
+        location = crud.get_lat_long(zipcode, API_KEY)
 
         if location:
-            pprint(location)
+
+    
             #Get results of doctors nearby location
             data = crud.find_nearby_doctors(location, API_KEY)
-            pprint(data)
-        
+           
             if data:
 
                 #loop through each result
@@ -435,11 +440,24 @@ def get_physician_results():
 
                     #Get more details on each result from nearby doctors
                     place_details = crud.get_place_details(place_id, API_KEY)
-                    pprint(place_details)
-            
-            return place_details
-                    
 
+                    #Dictionary of relevant data from place_details
+                    rel_details = {
+                        'name': place_details['result']['name'],
+                        'address': place_details['result']['formatted_address'],
+                        'phone': place_details['result']['formatted_phone_number'],
+                        'url': place_details['result']['url'],
+                    }
+
+                    #Add dictionary to all_details list
+                    all_details.append(rel_details)
+                    
+                    
+            pprint(all_details)   
+
+            return render_template('physician_results.html', all_details=all_details)
+
+      
                         
         else:
             flash("Please enter a valid zipcode.")

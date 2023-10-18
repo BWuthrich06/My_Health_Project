@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Physician Results{% endblock %}
+
+{% block body %}<br>
+
+<h1>Physician Results</h1><br><br>
+
+{% for detail in all_details %}
+
+<p>{% if detail['name'] %}
+    <span class="doctor_name">{{ detail['name'] }}</span>
+    {% endif %}<br>
+
+    {% if detail['address'] %}
+        {{ detail['address'] }}
+    {% endif %}<br>
+
+    {% if detail['phone'] %}
+        {{ detail['phone'] }}
+    {% endif %}<br>
+
+    {% if detail['url'] %}
+        <a href ="{{ detail['url'] }}">Website</a>
+    {% endif %}</p>
+
+
+{% endfor %}
+
+
+  
+{% endblock %}
+
