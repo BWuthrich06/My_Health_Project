@@ -2,6 +2,14 @@ from model import db, User, Condition, User_condition, Comment, Vital, connect_t
 from datetime import date
 from datetime import datetime
 
+import requests
+import pprint
+import os
+import json
+
+
+API_KEY = os.environ.get('my_api_key')
+
 
 
 def create_user(email, name, password):
@@ -158,6 +166,84 @@ def create_vital(user_id, systolic=None, diastolic=None, heart_rate=None, oxygen
         )
 
     return new_vital
+
+
+def get_place_details(place_id, API_KEY):
+    """Returns details of each place from location results."""
+
+
+    params = {
+        "place_id": place_id,
+        "fields": ["name","formatted_address","formatted_phone_number","photos","url","vicinity"],
+        "key": API_KEY,
+    }
+
+    url = "https://maps.googleapis.com/maps/api/place/details/json?"
+
+    res = requests.get(url, params=params)
+    data = res.json()
+    print(data)
+
+    return data
+
+
+
+def find_nearby_doctors(location, API_KEY):
+    """Returns nearby doctors that match location."""
+    
+    latitude = str(location['latitude'])
+    longitude = str(location['longitude'])
+
+    location = f"{latitude},{longitude}"
+    radius = 50000
+    type = "doctor"
+
+    params = {
+            "location": location,
+            "radius": radius,
+            "type": type,
+            "key": API_KEY,        
+        }
+    
+    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+
+    res = requests.get(url, params=params)
+    nearby_data = res.json()
+
+    return nearby_data
+
+
+
+
+
+def get_lat_long(zipcode, API_KEY):
+    """Takes a zip code and returns the latitide and longitude."""
+
+    params = {
+        "address": zipcode, 
+        "key": API_KEY,
+    }
+
+    url = "https://maps.googleapis.com/maps/api/geocode/json?"
+
+    res = requests.get(url, params=params)
+
+    if res.status_code == 200:
+
+        result = res.json()
+        
+        latitude = result['results'][0]['geometry']['location']['lat']
+        longitude = result['results'][0]['geometry']['location']['lng']
+
+        lat_long_result = {'latitude': latitude, 'longitude': longitude}
+
+        return lat_long_result
+    
+    else:
+        return "Error, unable to request data."
+
+
+
 
 
     

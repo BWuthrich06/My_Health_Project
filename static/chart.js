@@ -43,6 +43,9 @@ fetch('/all_vitals_graph')
                         borderColor: 'rgba(237, 168, 24, 0.92)',
                         }]
                     },
+                    options: {
+                        spanGaps: true,
+                    },
                
                 }
             )
@@ -59,6 +62,9 @@ fetch('/all_vitals_graph')
                         backgroundColor: 'rgba(23, 204, 85, 0.93)',
                         borderColor: 'rgba(23, 204, 85, 0.93)',
                         }] 
+                    },
+                    options: {
+                        spanGaps: true,
                     },
              
                 })
@@ -78,6 +84,9 @@ fetch('/all_vitals_graph')
                         borderColor: 'rgba(27, 52, 124, 0.93)',
                         }] 
                     },
+                    options: {
+                        spanGaps: true,
+                    },
                
                 })
 
@@ -95,6 +104,9 @@ fetch('/all_vitals_graph')
                         borderColor: 'rgba(40, 182, 208, 0.91)',
                         }] 
                     },
+                    options: {
+                        spanGaps: true,
+                    },
              
                 })
 
@@ -111,6 +123,9 @@ fetch('/all_vitals_graph')
                         backgroundColor: 'rgba(101, 84, 192, 0.84)',
                         borderColor: 'rgba(101, 84, 192, 0.84)',
                         }] 
+                    },
+                    options: {
+                        spanGaps: true,
                     },
                
                 })

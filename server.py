@@ -5,17 +5,18 @@ from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 import requests
+import json
 
 
 
 import googlemaps
-import pprint
+from pprint import pprint
 import time
-API_KEY = os.environ.get('my_api_key')
+API_KEY = os.environ['my_api_key']
 
 
 
-secret_key = os.environ.get('secret_key')
+secret_key = os.environ['secret_key']
 
 app = Flask(__name__)
 app.secret_key = secret_key
@@ -246,6 +247,7 @@ def delete_condition():
 def logout_user():
     """Logs out user from session."""
 
+    #Clears user session on logout.
     session.clear()
 
     return redirect('/')
@@ -255,8 +257,10 @@ def logout_user():
 def document_vitals():
     """User can input vitals."""
 
+    #Check to see if user is logged in.
     if 'email' in session: 
         return render_template('vitals.html')
+    
     else:
         flash("You must login first.")
         return redirect('/')
@@ -267,6 +271,7 @@ def document_vitals():
 def get_vital_results():
     """Results of vitals input."""
 
+    #Get form input results of users vitals entered.
     systolic = request.json.get("systolic")
     diastolic = request.json.get("diastolic")
     heart_rate = request.json.get("heartRate")
@@ -304,10 +309,13 @@ def get_vital_results():
     else:
         glucose = None
 
+    #Get user_id
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
 
+    #Create new set of vitals user entered.
     vitals = crud.create_vital(user_id, systolic, diastolic, heart_rate, oxygen, weight, glucose)
+
     flash("Vitals documented.")
     db.session.add(vitals)
     db.session.commit()
@@ -321,11 +329,15 @@ def get_vital_results():
 def show_all_vitals():
     """Shows all records of vitals."""
 
+    #Check to see if user is logged in
     if 'email' in session:
 
+        #Get user
         user = crud.get_user_by_email(session['email'])
         user_id = user.user_id
         name = user.name
+
+        #Get all vitals by user id
         vitals = crud.get_vitals_by_user_id(user_id)
 
         return render_template("vitals_results.html", vitals=vitals, name=name)
@@ -339,7 +351,13 @@ def show_all_vitals():
 def show_vital_graphs():
     """Shows graphs of vital signs."""
 
-    return render_template('vitals_graph.html')
+    #Check to see if user is logged in.
+    if 'email' in session:
+        return render_template('vitals_graph.html')
+    
+    else:
+        flash("You must login first.")
+        return redirect('/')
 
 
 
@@ -350,10 +368,12 @@ def get_all_vitals_for_graph():
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
 
+    #Get all vitals of user
     vitals = crud.get_vitals_by_user_id(user_id)
 
     data = []
 
+    #Loop through all vitals and put values in dictionary
     for vital in vitals:
         vital = {
             'date_time': vital.date_time.strftime("%m/%d/%Y %I:%M %p"),
@@ -374,45 +394,63 @@ def get_all_vitals_for_graph():
 def find_physician():
     """Search for physician."""
 
-    return render_template('find_physician.html')
+    #Check to see if user is logged in
+    if 'email' in session:
+        return render_template('find_physician.html')
+    
+    else:
+        flash("You must login first.")
+        return redirect('/')
+
 
 
 @app.route("/physician/search")
 def get_physician_results():
     """Return results of physicians for user."""
 
-    
-
+    #Get zipcode back user put in
     zipcode = request.args.get("zipcode")
+    print(zipcode)
 
     if zipcode:
 
-        zipcode = zipcode
-        radius = 50000
-        type = "doctor"
+        location = '33.5013596,-111.8210866'
 
-        params = {
-            "zipcode": zipcode,
-            "radius": radius,
-            "type": type,
-            "api_key": API_KEY,        
-        }
+        #Get latitude/longitude from user zipcode
+        # location = crud.get_lat_long(zipcode, API_KEY)
 
-        url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+        if location:
+            pprint(location)
+            #Get results of doctors nearby location
+            data = crud.find_nearby_doctors(location, API_KEY)
+            pprint(data)
+        
+            if data:
 
-        places_nearby = requests.get(url, params=params)
+                #loop through each result
+                for result in data['results']:
 
+                    #Get each results place_id
+                    place_id = result['place_id']
+
+                    #Get more details on each result from nearby doctors
+                    place_details = crud.get_place_details(place_id, API_KEY)
+                    pprint(place_details)
+            
+            return place_details
+                    
+
+                        
+        else:
+            flash("Please enter a valid zipcode.")
+            return redirect('/findphysician')
+     
     else:
         flash("Please enter a valid zipcode.")
         return redirect('/findphysician')
 
     
    
-
-
-
-
-
 
 
 
