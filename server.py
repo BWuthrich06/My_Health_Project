@@ -426,14 +426,29 @@ def get_physician_results():
 
         if location:
 
-    
+            all_results = []
+
             #Get results of doctors nearby location
             data = crud.find_nearby_doctors(location, API_KEY)
+
+            #Append data to all_results list
+            all_results.extend(data['results'])
+
+            #Check to see if there is more results
+            more_data = data.get('next_page_token')
+
+            if more_data:
+                time.sleep(2)
+                data_2 = crud.find_nearby_doctors(location, API_KEY, page_token=more_data)
+                pprint(data_2)
+
+                all_results.extend(data_2['results'])
+
            
-            if data:
+            if all_results:
 
                 #loop through each result
-                for result in data['results']:
+                for result in all_results:
 
                     #Get each results place_id
                     place_id = result['place_id']

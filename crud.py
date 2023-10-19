@@ -197,7 +197,7 @@ def get_place_details(place_id, API_KEY):
 
 
 
-def find_nearby_doctors(location, API_KEY):
+def find_nearby_doctors(location, API_KEY, page_token=None):
     """Returns nearby doctors that match location."""
     
     latitude = str(location['latitude'])
@@ -211,7 +211,8 @@ def find_nearby_doctors(location, API_KEY):
             "location": location,
             "type": data_type,
             "radius": radius,
-            "key": API_KEY,      
+            "key": API_KEY,
+            "pageToken": "next_page_token"      
         }
     
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
