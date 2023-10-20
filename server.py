@@ -398,7 +398,7 @@ def find_physician():
 
     #Check to see if user is logged in
     if 'email' in session:
-        return render_template('find_physician.html')
+        return render_template('find_physician.html', APIKEY=API_KEY)
     
     else:
         flash("You must login first.")
@@ -406,23 +406,23 @@ def find_physician():
 
 
 
-@app.route("/physician/search")
-def get_physician_results():
-    """Return results of physicians for user."""
+# @app.route("/physician/search")
+# def get_physician_results():
+#     """Return results of physicians for user."""
 
-    #Get zipcode user entered
-    zipcode = request.args.get("zipcode")
-    print(zipcode)
+#     #Get zipcode user entered
+#     zipcode = request.args.get("zipcode")
+#     print(zipcode)
 
-    regex_zipcode = "\d{5}"
+#     regex_zipcode = "\d{5}"
 
-    #List to hold all dictionary results of relevant data
-    all_details = [] 
+#     #List to hold all dictionary results of relevant data
+#     all_details = [] 
 
-    if len(zipcode) == 5 and re.match(regex_zipcode, zipcode):
+#     if len(zipcode) == 5 and re.match(regex_zipcode, zipcode):
 
-        #Get latitude/longitude from user zipcode
-        location = crud.get_lat_long(zipcode, API_KEY)
+#         #Get latitude/longitude from user zipcode
+#         location = crud.get_lat_long(zipcode, API_KEY)
 
         if location:
 

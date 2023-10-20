@@ -204,7 +204,7 @@ def find_nearby_doctors(location, API_KEY, page_token=None):
     longitude = str(location['longitude'])
 
     data_type = "doctor"
-    radius = 33000
+    radius = 16000
     location = f"{latitude},{longitude}"
 
     params = {

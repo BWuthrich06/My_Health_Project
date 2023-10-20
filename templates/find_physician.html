@@ -5,12 +5,18 @@
 
 <h1>Search for Physician</h1><br><br>
 
-  <form action = "/physician/search">
-    <p><b>Enter zipcode: </b><input type="text", name="zipcode", placeholder="Zipcode"></p><br>
+  <form id="physician_search">
+    <p><b>Enter zipcode: </b><input type="text",id="zipcode" name="zipcode", placeholder="Zipcode"></p><br>
    
-    <button id = search_result type="submit">Find Physician</button>
+    <button id ="search_result" type="submit">Find Physician</button>
   </form><br>
 
   
+<script src="static/physicians.js"></script>
+
+<script>
+   const key = "{{ APIKEY }}"
+</script>
+
 {% endblock %}
 
