@@ -1,112 +1,103 @@
 'use strict';
 
-//Listens for search button to find physician.
-const findPhysicianButton = document.querySelector("#search_result");
-findPhysicianButton.addEventListener('click', () => {
+let map;
+let service;
 
-    //Get zipcode user entered.
-    let zipcode = document.querySelector('#zipcode');
-    zipcode = zipcode.value;
+function initialize() {
+ 
+    map = new google.maps.Map(document.getElementById('physician_map'))
+    service = new google.maps.places.PlacesService(map); // One object to represent the connection to Google Places
+}
 
-    //Check if zipcode entered is 5 digits.
-    const regexZipcode = /\d{5}/;
-    if (zipcode.length === 5 && regexZipcode.test(zipcode)) {
+//Takes in a zipcode and returns latitude,longitude.
+async function getLatLong(zipcode) {
 
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${key}`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${zipcode}&key=${key}`;
 
-        //Make request to Google Geocode API to get latitude/longitude from zipcode
-        fetch(url)
-            .then(response => response.json())
-            .then(responseDATA => {
-                const latitude = responseDATA.results[0].geometry.location.lat;
-                console.log("Latitude:", latitude);
+    //Make request to Google Geocode API to get latitude/longitude from zipcode
+    const response = await fetch(url);
+    const responseDATA = await response.json();
+    
+    //Latitude
+    const latitude = responseDATA.results[0].geometry.location.lat;
+    console.log("Latitude:", latitude);
+     
+    //Longitude
+    const longitude = responseDATA.results[0].geometry.location.lng;
+    console.log("Longitude:", longitude);
             
-                const longitude = responseDATA.results[0].geometry.location.lng;
-                console.log("Longitude:", longitude);
-                
-                const latLongResult = {'latitude': latitude, 'longitude': longitude}
-            })
-
-            .catch(error => {
-                console.error("Error:", error);
-            })
+    const latLongResult = {'latitude': latitude, 'longitude': longitude};
             
-    } else {
-        flash("Please enter a valid 5-digit zipcode.");
-    }
-
-});
-
-                if (latLongResult) {
-                    //Get results of doctors nearby location
-                    function findNearbyDoctors(latLongResult, API_KEY, pageToken = null)
-
-                        const latitude = str(latLongResult.latitude);
-                        const longitude = str(latLongResult.longitude);
-
-                        const dataType = "doctor"
-                        const radius = 16000
-                        const location = `${latitude},${longitude}`
-                        const pageToken = "next_page_token" 
-
-                        let allResults = []
-
-                        const url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&type=${dataType}&radius=${radius}&key=${API_KEY}&pageToken=${pageToken}`
-
-                        
+    return latLongResult;
+};
 
 
-                
 
-                    //Append data to all_results list
-                    all_results.extend(data['results'])
+function getNearbyDoctors(latLong, callback) {
 
-                    //Check to see if there is more results
-                    more_data = data.get('next_page_token')
+    // //Get latitude and longitude
+    const latitude = latLong.latitude;
+    const longitude = latLong.longitude;
 
-                        if (more_data) {
+    // //Params to pass through to API request
+    const dataType = "doctor";
+    const radius = 16000;
+    const destination = new google.maps.LatLng(latitude,longitude);
 
-                            time.sleep(2)
-                            data_2 = crud.find_nearby_doctors(location, API_KEY, page_token=more_data)
-                            pprint(data_2)
+    // list to store all data from request
+    let allResults = [];
 
-                            all_results.extend(data_2['results'])
-                        }
-                        
+    const request = {
+        location: destination,
+        radius: radius,
+        type: [dataType]
+        };
+
+    //Request to find all nearby doctors from zipcode entered, add data to allResults list
+    service.nearbySearch(request, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+
+            console.log(results);
+            let doctorData = results;
+            allResults.push(doctorData);
+            console.log(allResults);
+            callback(allResults);
+            }   
+        })
+       
 }
 
 
-  
-def find_nearby_doctors(location, API_KEY, page_token=None):
-    """Returns nearby doctors that match location."""
+
+let latLong;
+
+//Listens for search button to find physician.
+const findPhysicianButton = document.querySelector("#search_result");
+findPhysicianButton.addEventListener('click', async (evt) => {
+    evt.preventDefault();
     
-  
-   
-    params = {
-            "location": location,
-            "type": data_type,
-            "radius": radius,
-            "key": API_KEY,
-            "pageToken": "next_page_token"      
-        }
-    
-    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+    // //Get zipcode user entered.
+    let zipcode = document.querySelector('#zipcode');
+    zipcode = zipcode.value;
+    console.log(zipcode)
 
-    res = requests.get(url, params=params)
+    //Check if zipcode entered is 5 digits.
+    const regexZipcode = /\d{5}/;
 
-    if res.status_code == 200:
-        nearby_data = res.json()
-        print(nearby_data)
+    if (zipcode.length === 5 && regexZipcode.test(zipcode)) {
 
-        return nearby_data
-    
-    else:
-        return "Error, data request unsuccessful."
-    
+         latLong = await getLatLong(zipcode)
+         console.log(latLong)
+    }
+            if (latLong) {
 
-
-
-    
-
-
-
+                const nearbyDoctors = getNearbyDoctors(latLong, function() {
+                    console.log(nearbyDoctors);
+                    })
+                   
+            }
+                
+        
+})
+                        
+ 

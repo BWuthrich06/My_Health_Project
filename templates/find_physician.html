@@ -6,17 +6,29 @@
 <h1>Search for Physician</h1><br><br>
 
   <form id="physician_search">
-    <p><b>Enter zipcode: </b><input type="text",id="zipcode" name="zipcode", placeholder="Zipcode"></p><br>
+    <p><b>Enter zipcode: </b><input type="text" id="zipcode" name="zipcode" placeholder="Zipcode"></p><br>
    
     <button id ="search_result" type="submit">Find Physician</button>
   </form><br>
 
+  <div id="physician_map">
+
+  </div>
+
   
 <script src="static/physicians.js"></script>
+
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key={{ APIKEY }}&libraries=places&callback=initialize">
+</script>
+
+
 
 <script>
    const key = "{{ APIKEY }}"
 </script>
+
+
 
 {% endblock %}
 
