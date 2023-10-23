@@ -52,7 +52,7 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                             console.log(placeId);
 
                             //Get more details on each result from nearby doctors
-                            let placeDetails = getPlaceDetails(placeId);
+                            let placeDetails = await getPlaceDetails(placeId);
                             console.log(placeDetails);
 
                             if (placeDetails) {
@@ -68,7 +68,7 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                                 console.log(relDetails);
                     
                                 //Add dictionary to all_details list
-                                allDetails = allDetails.push(relDetails);
+                                allDetails = allDetails.concat(relDetails);
                                 console.log(allDetails);
                                 }
                             }
