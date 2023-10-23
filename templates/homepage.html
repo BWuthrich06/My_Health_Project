@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Welcome{% endblock %}
 
-{% block body %}
+{% block body %}<br>
   
-  <h1>Welcome to Health Pocket</h1><br>
+  <h1>Welcome to Continuing Care</h1><br>
   
   {% if 'email' not in session %}
     <h3>Login</h3><br>
@@ -22,35 +22,35 @@
       <p>Empower yourself with knowledge about your health conditions.<br>
          Taking control of your health starts with understanding you're diagnosis.</p><br>
     
-      <p>Health Pocket provides information on variety of conditions that<br>
+      <p>Continuing Care provides information on variety of conditions that<br>
          let you explore and understand your health issues better including<br>
          causes, symptoms and treatments.</p><br>
     
       <p>Create a personalized account to track and save the health conditions<br>
          that pertain to you, or that you are interested in learning more about.</p><br>
 
-      <p>Health Pocket also allows you to keep a record of your vitals such as<br>
+      <p>Continuing Care also allows you to keep a record of your vitals such as<br>
          blood pressure, heart rate, oxygen, weight, and glucose readings.<br>
          You will have access to your vitals as a form to provide to you physician<br>
          or a graph to show a better picture of your health overtime.</p><br>
     </div>
 
-  {% else %}
+  {% else %}<br>
 
-    <a href="/profile">My Health Pocket</a><br><br>
+    <a href="/profile">My Profile</a><br><br>
 
     <div class="introduction">
       <p>Empower yourself with knowledge about your health conditions.<br>
          Taking control of your health starts with understanding you're diagnosis.</p><br>
 
-      <p>Health Pocket provides information on variety of conditions that<br>
+      <p>Continuing Care provides information on variety of conditions that<br>
          let you explore and understand your health issues better including <br>
          causes, symptoms and treatments.</p><br>
   
       <p>Create a personalized account to track and save the health conditions<br>
          that pertain to you, or that you are interested in learning more about.</p><br>
     
-      <p>Health Pocket also allows you to keep a record of your vitals such as<br>
+      <p>Continuing Care also allows you to keep a record of your vitals such as<br>
          blood pressure, heart rate, oxygen, weight, and glucose readings.<br>
          You will have access to your vitals as a form to provide to you physician<br>
          or a graph to show a better picture of your health overtime.</p><br>

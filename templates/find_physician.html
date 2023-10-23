@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Find Physician{% endblock %}
 
-{% block body %}<br>
+{% block body %}
+<div id="invalid_zipcode"></div>
+<br>
 
 <h1>Search for Physician</h1><br><br>
 
@@ -9,9 +11,12 @@
     <p><b>Enter zipcode: </b><input type="text" id="zipcode" name="zipcode" placeholder="Zipcode"></p><br>
    
     <button id ="search_result" type="submit">Find Physician</button>
-  </form><br>
+  </form><br><br><br>
 
-  <div id="physician_map">
+  <div id="physician_map"></div>
+
+
+  <div id="physicianResultsContainer">
 
   </div>
 
