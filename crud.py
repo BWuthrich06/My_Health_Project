@@ -197,36 +197,36 @@ def get_place_details(place_id, API_KEY):
 
 
 
-def find_nearby_doctors(location, API_KEY, page_token=None):
-    """Returns nearby doctors that match location."""
+# def find_nearby_doctors(location, API_KEY, page_token=None):
+#     """Returns nearby doctors that match location."""
     
-    latitude = str(location['latitude'])
-    longitude = str(location['longitude'])
+#     latitude = str(location['latitude'])
+#     longitude = str(location['longitude'])
 
-    data_type = "doctor"
-    radius = 16000
-    location = f"{latitude},{longitude}"
+#     data_type = "doctor"
+#     radius = 16000
+#     location = f"{latitude},{longitude}"
 
-    params = {
-            "location": location,
-            "type": data_type,
-            "radius": radius,
-            "key": API_KEY,
-            "pageToken": "next_page_token"      
-        }
+#     params = {
+#             "location": location,
+#             "type": data_type,
+#             "radius": radius,
+#             "key": API_KEY,
+#             "pageToken": "next_page_token"      
+#         }
     
-    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+#     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 
-    res = requests.get(url, params=params)
+#     res = requests.get(url, params=params)
 
-    if res.status_code == 200:
-        nearby_data = res.json()
-        print(nearby_data)
+#     if res.status_code == 200:
+#         nearby_data = res.json()
+#         print(nearby_data)
 
-        return nearby_data
+#         return nearby_data
     
-    else:
-        return "Error, data request unsuccessful."
+#     else:
+#         return "Error, data request unsuccessful."
     
 
 
