@@ -169,29 +169,37 @@ def create_vital(user_id, systolic=None, diastolic=None, heart_rate=None, oxygen
     return new_vital
 
 
+def get_physicians_by_user_id(user_id):
+    """Returns physicians for user."""
 
-def get_place_details(place_id, API_KEY):
-    """Returns details of each place from location results."""
+    user = User.query.get(user_id)
 
-    fields='name,formatted_address,formatted_phone_number,photos,url,website,vicinity'
+    return user.doctors
 
-    params = {
-        "place_id": place_id,
-        "fields": fields,
-        "key": API_KEY,
-    }
 
-    url = "https://maps.googleapis.com/maps/api/place/details/json?"
 
-    res = requests.get(url, params=params)
+# def get_place_details(place_id, API_KEY):
+#     """Returns details of each place from location results."""
 
-    if res.status_code == 200:
-        data = res.json()
+#     fields='name,formatted_address,formatted_phone_number,photos,url,website,vicinity'
 
-        return data
+#     params = {
+#         "place_id": place_id,
+#         "fields": fields,
+#         "key": API_KEY,
+#     }
+
+#     url = "https://maps.googleapis.com/maps/api/place/details/json?"
+
+#     res = requests.get(url, params=params)
+
+#     if res.status_code == 200:
+#         data = res.json()
+
+#         return data
     
-    else:
-        return "Error, data request unsuccessful."
+#     else:
+#         return "Error, data request unsuccessful."
     
 
 
@@ -230,31 +238,31 @@ def get_place_details(place_id, API_KEY):
     
 
 
-def get_lat_long(zipcode, API_KEY):
-    """Takes a zip code and returns the latitide and longitude."""
+# def get_lat_long(zipcode, API_KEY):
+#     """Takes a zip code and returns the latitide and longitude."""
 
-    params = {
-        "address": zipcode, 
-        "key": API_KEY,
-    }
+#     params = {
+#         "address": zipcode, 
+#         "key": API_KEY,
+#     }
 
-    url = "https://maps.googleapis.com/maps/api/geocode/json?"
+#     url = "https://maps.googleapis.com/maps/api/geocode/json?"
 
-    res = requests.get(url, params=params)
+#     res = requests.get(url, params=params)
 
-    if res.status_code == 200:
+#     if res.status_code == 200:
 
-        result = res.json()
+#         result = res.json()
         
-        latitude = result['results'][0]['geometry']['location']['lat']
-        longitude = result['results'][0]['geometry']['location']['lng']
+#         latitude = result['results'][0]['geometry']['location']['lat']
+#         longitude = result['results'][0]['geometry']['location']['lng']
 
-        lat_long_result = {'latitude': latitude, 'longitude': longitude}
+#         lat_long_result = {'latitude': latitude, 'longitude': longitude}
 
-        return lat_long_result
+#         return lat_long_result
     
-    else:
-        return "Error, unable to request data."
+#     else:
+#         return "Error, unable to request data."
 
 
 

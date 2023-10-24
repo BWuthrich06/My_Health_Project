@@ -406,84 +406,50 @@ def find_physician():
 
 
 
+@app.route('/add_physician')
+def add_physician():
+    """Add physician to user profile."""
+
+    place_id = request.json.get("placeID")
+    name = request.json.get("name")
+    address = request.json.get("address")
+    phone = request.json.get("phone")
+    url = request.json.get("url")
+    user = crud.get_user_by_email(session['email'])
+    user_id = user.user_id
+
+    physicians = crud.get_physicians_by_user_id(user_id)
+
+    if physicians:
+
+        for physician in physicians:
+
+            if physician.place_id == doctor:
+                flash("Physician already added.")
+
+                return {"message": "Physician already previously added."}
+
+    saved_physician = crud.create_physician(physician, place_id, name, address, phone, url, user_id)
+    flash("Physician has been successfully added.")
+    db.session.add(saved_physician)
+    db.session.commit()
+
+    return {"message": "Condition has been successfully added."}
+
+    
+
+
+
+
+
 # @app.route("/physician/search")
 # def get_physician_results():
 #     """Return results of physicians for user."""
 
-#     #Get zipcode user entered
-#     zipcode = request.args.get("zipcode")
-#     print(zipcode)
 
-#     regex_zipcode = "\d{5}"
-
-#     #List to hold all dictionary results of relevant data
-#     all_details = [] 
-
-#     if len(zipcode) == 5 and re.match(regex_zipcode, zipcode):
-
-#         #Get latitude/longitude from user zipcode
-#         location = crud.get_lat_long(zipcode, API_KEY)
-
-#         if location:
-
-            # all_results = []
-
-            # #Get results of doctors nearby location
-            # data = crud.find_nearby_doctors(location, API_KEY)
-
-            # #Append data to all_results list
-            # all_results.extend(data['results'])
-
-            # #Check to see if there is more results
-            # more_data = data.get('next_page_token')
-
-            # if more_data:
-            #     time.sleep(2)
-            #     data_2 = crud.find_nearby_doctors(location, API_KEY, page_token=more_data)
-            #     pprint(data_2)
-
-                # all_results.extend(data_2['results'])
-
-           
-            # if all_results:
-
-            #     #loop through each result
-            #     for result in all_results:
-
-            #         #Get each results place_id
-            #         place_id = result['place_id']
-
-            #         #Get more details on each result from nearby doctors
-            #         place_details = crud.get_place_details(place_id, API_KEY)
-
-            #         #Dictionary of relevant data from place_details
-            #         rel_details = {
-            #             'name': place_details['result']['name'],
-            #             'address': place_details['result']['formatted_address'],
-            #             'phone': place_details['result']['formatted_phone_number'],
-            #             'url': place_details['result']['url'],
-            #         }
-
-            #         #Add dictionary to all_details list
-            #         all_details.append(rel_details)
-                    
-                    
-            # pprint(all_details)   
-
-            # return render_template('physician_results.html', all_details=all_details)
+#     return render_template('physician_results.html')
 
       
-                        
-#         else:
-#             flash("Please enter a valid zipcode.")
-#             return redirect('/findphysician')
-     
-#     else:
-#         flash("Please enter a valid zipcode.")
-#         return redirect('/findphysician')
-
-    
-   
 
 
 

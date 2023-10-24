@@ -3,12 +3,12 @@
 let map;
 let service;
 
-
 let latLong;
 let nearbyDoctors;
 let allResults;
 let allDetails;
 let zipcode;
+let searchResults;
 
 
 //Listens for search button to find physician.
@@ -32,30 +32,39 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                 if (nearbyDoctors) {
                     // list to store all data from request
                     allResults = nearbyDoctors; 
-                    console.log(allResults);
-                  
+                    
+                    let physicianDetails = document.querySelector("#physicianResultsContainer");
+
+                    searchResults = document.createElement('h2');
+                    physicianDetails.appendChild(searchResults);
 
                 } else {
                     console.error(error);
                 }
         };
-        
+
                     if (allResults) {
+                        //Show results for entered zipcode on webpage
+                        let physicianDetails = document.querySelector("#physicianResultsContainer");
+                        searchResults = document.createElement('h2');
+                        physicianDetails.appendChild(searchResults);
+                        searchResults.innerHTML = `Search Results for ${zipcode}:`
+                    
+                        //Array to hold all relDetails
+                        allDetails = []
 
-                        allDetails = [];
-
+                        //Loop through each result
                         for (const result of allResults) {
 
                             //Get each results place_id
                             let placeId = result.place_id;
 
-                            //Get more details on each result from nearby doctors
+                            //Get details on each result from nearby doctors
                             let placeDetails = await getPlaceDetails(placeId);
-                            console.log(placeDetails);
                             
                             if (placeDetails) {
 
-                                //Dictionary of relevant data from place_details
+                                //Dictionary of relevant data from placeDetails
                                 let relDetails = {
                                     'name': placeDetails.name,
                                     'address': placeDetails.formatted_address,
@@ -64,26 +73,34 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                                     'place_id': placeDetails.place_id
                                     };
 
-                                console.log(relDetails);
-                    
-                                //Add dictionary to all_details list
-                                allDetails = allDetails.concat(relDetails);
-                                }
-                            }
-                        console.log(allDetails)   
-                        physicianResults();    
+                                    //Add each relDetials to allDetails array
+                                    allDetails = allDetails.concat(relDetails);
+
+                                    //Call function that renders result to webpage
+                                    let result = physicianResults(relDetails);
+                                };
+                        };
+
+                        console.log(allDetails);
 
                     } else {
-                        console.error("error");
+                        //Show no results on webpage.
+                        let physicianDetails = document.querySelector("#physicianResultsContainer");
+                        searchResults = document.createElement('h2');
+                        physicianDetails.appendChild(searchResults);
+                        searchResults.innerHTML = `No results near ${zipcode}`
                     };
+                   
     } else {
+        //Message to appear on browser for invalid zipcode.
         const invalidZipcode = document.querySelector('#invalid_zipcode');
         const message = document.createElement('h5');
         invalidZipcode.appendChild(message);
         message.innerHTML = "Please enter valid 5 digit zipcode."
+    }});
 
-    };   
-});
+
+
 
           
 
@@ -105,6 +122,7 @@ async function getLatLong(zipcode) {
     const response = await fetch(url);
     const responseDATA = await response.json();
 
+    //If results empty
     if (responseDATA.results && responseDATA.results.length === 0) {
         const invalidZipcode = document.querySelector('#invalid_zipcode');
         const message = document.createElement('h5');
@@ -150,7 +168,11 @@ function getNearbyDoctors(latLong) {
         location: destination,
         radius: radius,
         type: [dataType],
+        pageToken: "nextPageToken"
         };
+
+
+
 
     //Request to find all nearby doctors from zipcode entered, add data to allResults list
     service.nearbySearch(request, (results, status) => {
@@ -194,22 +216,20 @@ function getPlaceDetails(placeId) {
 
 
 
-function physicianResults() {
+function physicianResults(relDetails) {
     //Renders details on webpage of each physician result.
 
     let physicianDetails = document.querySelector("#physicianResultsContainer");
 
-    let searchResults = document.createElement('h2');
-        physicianDetails.appendChild(searchResults);
+    // let searchResults = document.createElement('h2');
+    //     physicianDetails.appendChild(searchResults);
         
-        if (allDetails) {
-            searchResults.innerHTML = `Search Results for ${zipcode}:`
+    //     if (relDetails) {
+    //         searchResults.innerHTML = `Search Results for ${zipcode}:`
 
-        } else {
-            searchResults.innerHTML = `No results near ${zipcode}`
-        }
-    
-    for (const detail of allDetails) {
+    //     } else {
+    //         searchResults.innerHTML = `No results near ${zipcode}`
+    //     }
 
         let physicianHTML = document.createElement('div');
         physicianDetails.appendChild(physicianHTML);
@@ -219,31 +239,36 @@ function physicianResults() {
         //Concat string of name, address, phone, url with <br> between each.
         let detailString = ""
 
-        if (detail.name) {
-            let string1 = detail.name;
+        //Add name to string
+        if (relDetails.name) {
+            let string1 = relDetails.name;
             detailString += '<br>' + string1;
         }
 
-        if (detail.address) {
-            const string2 = detail.address;
+        //Add address to string
+        if (relDetails.address) {
+            const string2 = relDetails.address;
             detailString += '<br>'
             detailString += string2;
         }
 
-        if (detail.phone) {
-            const string3 = detail.phone;
+        //Add phone number to string
+        if (relDetails.phone) {
+            const string3 = relDetails.phone;
             detailString += '<br>'
             detailString += string3;
         }
 
-        if (detail.url) {
+        //Add url to string
+        if (relDetails.url) {
             const url = document.createElement('a');
-            url.href = detail.url;
+            url.href = relDetails.url;
             url.innerText = "View on Map";
             const string4 = url.outerHTML;
             detailString += '<br>' + string4 + '<br>'
         }
 
+        //Render string to webpage
         individualDetail.innerHTML = detailString;
 
         //Create add physician button for each entry
@@ -251,8 +276,8 @@ function physicianResults() {
         individualDetail.appendChild(physicianButton);
         physicianButton.innerText = "+ Add";
         physicianButton.classList.add('addPhysician');
-};
-};
+    }
+
 
 
 
@@ -269,25 +294,25 @@ for (const addPhysicianButton of addPhysicianButtons) {
 
 
 
-function addPhysician(evt) {
-//Add physician to user profile page
+// function addPhysician(evt) {
+// //Add physician to user profile page
 
-    const data = {
-        place_id : evt.target.id,
-    }
-    fetch('/add_physician', {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-        .then((response) => response.json())
-        .then((responseJSON) => {
-            window.location.pathname = ('/profile')
-        })
+//     const data = {
+//         place_id : evt.target.id,
+//     }
+//     fetch('/add_physician', {
+//         method: "POST",
+//         body: JSON.stringify(data),
+//         headers: {
+//             'Content-Type': 'application/json',
+//         }
+//     })
+//         .then((response) => response.json())
+//         .then((responseJSON) => {
+//             window.location.pathname = ('/profile')
+//         })
 
-    }
+//     }
     
     
     
