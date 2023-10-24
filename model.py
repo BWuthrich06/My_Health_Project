@@ -17,9 +17,31 @@ class User(db.Model):
 
     user_conditions = db.relationship("User_condition", back_populates="user")
     vitals = db.relationship("Vital", back_populates="user")
+    doctors = db.relationship("Doctor", back_populates="user")
 
     def __repr__(self):
         return f"<User user_id = {self.user_id} email = {self.email} name = {self.name}>"
+    
+
+
+class Doctor(db.Model):
+    """A Doctor."""
+
+    __tablename__ = "doctors"
+
+    place_id = db.Column(db.String(150), primary_key=True)
+    name = db.Column(db.String(150), nullable=True)
+    address = db.Column(db.String(300), nullable=True)
+    phone = db.Column(db.String(15), nullable=True)
+    url = db.Column(db.String(500), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+
+    user = db.relationship("User", back_populates="doctors")
+    
+    def __repr__(self):
+        return f"<Doctor name = {self.name} phone = {self.phone}>"
+
+
     
 
 class Vital(db.Model):
@@ -43,6 +65,7 @@ class Vital(db.Model):
         return f"<Vital id = {self.vital_id} date = {self.date_time}>"
 
 
+
 class User_condition(db.Model):
     """A user condition"""
 
@@ -60,6 +83,7 @@ class User_condition(db.Model):
     def __repr__(self):
         return f"<Favorite favorite_id = {self.favorite_id} date_added = {self.date_added}>"
     
+
 
     
 class Comment(db.Model):

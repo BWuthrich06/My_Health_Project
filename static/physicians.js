@@ -38,7 +38,7 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                 } else {
                     console.error(error);
                 }
-            }; 
+        };
         
                     if (allResults) {
 
@@ -51,6 +51,7 @@ findPhysicianButton.addEventListener('click', async (evt) => {
 
                             //Get more details on each result from nearby doctors
                             let placeDetails = await getPlaceDetails(placeId);
+                            console.log(placeDetails);
                             
                             if (placeDetails) {
 
@@ -60,6 +61,7 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                                     'address': placeDetails.formatted_address,
                                     'phone': placeDetails.formatted_phone_number,
                                     'url': placeDetails.url,
+                                    'place_id': placeDetails.place_id
                                     };
 
                                 console.log(relDetails);
@@ -70,14 +72,17 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                             }
                         console.log(allDetails)   
                         physicianResults();    
-        };
+
+                    } else {
+                        console.error("error");
+                    };
     } else {
         const invalidZipcode = document.querySelector('#invalid_zipcode');
         const message = document.createElement('h5');
         invalidZipcode.appendChild(message);
         message.innerHTML = "Please enter valid 5 digit zipcode."
 
-    }    
+    };   
 });
 
           
@@ -100,13 +105,18 @@ async function getLatLong(zipcode) {
     const response = await fetch(url);
     const responseDATA = await response.json();
 
-    if (!responseDATA.results) {
+    if (responseDATA.results && responseDATA.results.length === 0) {
         const invalidZipcode = document.querySelector('#invalid_zipcode');
         const message = document.createElement('h5');
         invalidZipcode.appendChild(message);
         message.innerHTML = "Please enter valid 5 digit zipcode."
 
     } else {
+
+        //Clear error message on browser
+        const invalidZipcode = document.querySelector('#invalid_zipcode');
+        invalidZipcode.innerHTML = ""
+
         //Latitude
         const latitude = responseDATA.results[0].geometry.location.lat;
      
@@ -162,7 +172,7 @@ function getPlaceDetails(placeId) {
     return new Promise((resolve, reject) => {
 
     //Params I want back from request
-    let fields=['name','formatted_address','formatted_phone_number','photos','url']
+    let fields=['place_id','name','formatted_address','formatted_phone_number','photos','url']
 
     //Required Params
     let request = {
@@ -185,6 +195,7 @@ function getPlaceDetails(placeId) {
 
 
 function physicianResults() {
+    //Renders details on webpage of each physician result.
 
     let physicianDetails = document.querySelector("#physicianResultsContainer");
 
@@ -205,32 +216,24 @@ function physicianResults() {
         let individualDetail = document.createElement('p');
         physicianHTML.appendChild(individualDetail);
         
+        //Concat string of name, address, phone, url with <br> between each.
         let detailString = ""
 
         if (detail.name) {
             let string1 = detail.name;
             detailString += '<br>' + string1;
-            // const name = document.createElement('p');
-            // name.innerText = detail.name;
-            // physicianHTML.appendChild(name);
         }
 
         if (detail.address) {
             const string2 = detail.address;
             detailString += '<br>'
             detailString += string2;
-            // const address = document.createElement('p');
-            // address.innerText = detail.address;
-            // physicianHTML.appendChild(address);
         }
 
         if (detail.phone) {
             const string3 = detail.phone;
             detailString += '<br>'
             detailString += string3;
-            // const phone = document.createElement('p')
-            // phone.innerText = detail.phone
-            // physicianHTML.appendChild(phone);
         }
 
         if (detail.url) {
@@ -238,12 +241,57 @@ function physicianResults() {
             url.href = detail.url;
             url.innerText = "View on Map";
             const string4 = url.outerHTML;
-            detailString += '<br>'
-            detailString += string4
-            detailString += '<br>' + '<br>'
+            detailString += '<br>' + string4 + '<br>'
         }
 
         individualDetail.innerHTML = detailString;
+
+        //Create add physician button for each entry
+        const physicianButton = document.createElement('button');
+        individualDetail.appendChild(physicianButton);
+        physicianButton.innerText = "+ Add";
+        physicianButton.classList.add('addPhysician');
 };
 };
+
+
+
+
+
+
+
+
+//Event listoner for each Add Physician button
+const addPhysicianButtons = document.querySelectorAll('button.addPhysician');
+for (const addPhysicianButton of addPhysicianButtons) {
+    addPhysicianButton.addEventListener('click', addPhysician);
+    }
+
+
+
+function addPhysician(evt) {
+//Add physician to user profile page
+
+    const data = {
+        place_id : evt.target.id,
+    }
+    fetch('/add_physician', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => response.json())
+        .then((responseJSON) => {
+            window.location.pathname = ('/profile')
+        })
+
+    }
+    
+    
+    
+
+
+
 
