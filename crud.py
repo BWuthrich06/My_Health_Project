@@ -1,4 +1,4 @@
-from model import db, User, Condition, User_condition, Comment, Vital, connect_to_db
+from model import db, User, Condition, User_condition, Comment, Vital, Physician, connect_to_db
 from datetime import date
 from datetime import datetime
 import time
@@ -174,95 +174,22 @@ def get_physicians_by_user_id(user_id):
 
     user = User.query.get(user_id)
 
-    return user.doctors
+    return user.physicians
 
+def create_physician(place_id, name, address, phone, url, user_id):
+    """Create and return a user physician."""
 
+    physician = Physician(
+        place_id = place_id,
+        name = name,
+        address = address,
+        phone = phone,
+        url = url,
+        user_id = user_id
+    )
 
-# def get_place_details(place_id, API_KEY):
-#     """Returns details of each place from location results."""
+    return physician
 
-#     fields='name,formatted_address,formatted_phone_number,photos,url,website,vicinity'
-
-#     params = {
-#         "place_id": place_id,
-#         "fields": fields,
-#         "key": API_KEY,
-#     }
-
-#     url = "https://maps.googleapis.com/maps/api/place/details/json?"
-
-#     res = requests.get(url, params=params)
-
-#     if res.status_code == 200:
-#         data = res.json()
-
-#         return data
-    
-#     else:
-#         return "Error, data request unsuccessful."
-    
-
-
-
-
-# def find_nearby_doctors(location, API_KEY, page_token=None):
-#     """Returns nearby doctors that match location."""
-    
-#     latitude = str(location['latitude'])
-#     longitude = str(location['longitude'])
-
-#     data_type = "doctor"
-#     radius = 16000
-#     location = f"{latitude},{longitude}"
-
-#     params = {
-#             "location": location,
-#             "type": data_type,
-#             "radius": radius,
-#             "key": API_KEY,
-#             "pageToken": "next_page_token"      
-#         }
-    
-#     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
-
-#     res = requests.get(url, params=params)
-
-#     if res.status_code == 200:
-#         nearby_data = res.json()
-#         print(nearby_data)
-
-#         return nearby_data
-    
-#     else:
-#         return "Error, data request unsuccessful."
-    
-
-
-# def get_lat_long(zipcode, API_KEY):
-#     """Takes a zip code and returns the latitide and longitude."""
-
-#     params = {
-#         "address": zipcode, 
-#         "key": API_KEY,
-#     }
-
-#     url = "https://maps.googleapis.com/maps/api/geocode/json?"
-
-#     res = requests.get(url, params=params)
-
-#     if res.status_code == 200:
-
-#         result = res.json()
-        
-#         latitude = result['results'][0]['geometry']['location']['lat']
-#         longitude = result['results'][0]['geometry']['location']['lng']
-
-#         lat_long_result = {'latitude': latitude, 'longitude': longitude}
-
-#         return lat_long_result
-    
-#     else:
-#         return "Error, unable to request data."
 
 
 

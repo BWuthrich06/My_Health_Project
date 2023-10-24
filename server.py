@@ -47,21 +47,25 @@ def create_new_user():
 def new_user():
     """Create new user."""
 
+    #Get input user entered.
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
 
+    #Check if email is taken.
     if crud.get_user_by_email(email):
         flash("Account already active, please log in.")
 
         return redirect ('/')
 
+    #Create new user account and add to database.
     elif email and name and password:
         user = crud.create_user(email, name, password)
         db.session.add(user)
         db.session.commit()
         flash("Account succesfully created.")
 
+        #Store in session.
         session['email'] = email
         session['name'] = name
         session['user_id'] = user.user_id
@@ -78,19 +82,24 @@ def new_user():
 def process_login():
     """Check login credentials."""
 
+    #Check if user is logged in.
     if 'email' in session:
         return redirect('/profile')
 
+    #get input user entered.
     email = request.form.get('email')
     password = request.form.get('password')
 
+    #Get user email
     user = crud.get_user_by_email(email)
 
+    #Invalid login.
     if not user or user.password != password:
         flash("Invalid credentials.")
 
         return redirect('/')
 
+    #Login success, store session 'email'
     else:
         flash("Login successful.")
         session['email'] = email
@@ -103,7 +112,10 @@ def process_login():
 def main_profile():
     """Shows main profile page."""
     
+    #Check if user is logged in.
     if 'email' in session:
+
+        #Get user id and user name.
         user = crud.get_user_by_email(session['email'])
         name = user.name
         user_id = user.user_id
@@ -114,8 +126,11 @@ def main_profile():
         
         all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
 
-        return render_template("profile.html", name=name, all_user_conditions=all_user_conditions)
+        saved_physicians = crud.get_physicians_by_user_id(user_id)
+
+        return render_template("profile.html", name=name, all_user_conditions=all_user_conditions, saved_physicians=saved_physicians)
     
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
@@ -126,11 +141,14 @@ def main_profile():
 def all_conditions():
     """View all conditions."""
 
+    #Check if user is logged in.
     if "email" in session:
 
+        #Show all health conditions A to Z.
         conditions = crud.get_conditions()
         return render_template("all_conditions.html", conditions=conditions)
 
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
@@ -141,9 +159,11 @@ def all_conditions():
 def search_conditions():
     """Search for conditions."""
 
+    #Check if user is logged in.
     if 'email' in session:
         return render_template('condition_search.html')
     
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
@@ -154,20 +174,23 @@ def search_conditions():
 def get_results():
     """Return search results."""
 
+    #Check if user is logged in.
     if 'email' in session:
 
         result = request.args.get("result")
         result = result.title()
 
+        #Get search results
         results = crud.get_search_results(result)
 
         if results:
-            return render_template('results.html', results = results, result = result)
+            return render_template('results.html', results=results, result=result)
         
         else:
             flash("No matching results.")
             return redirect('/conditions/search')
     
+    #Redirect user to login.
     else:
         flash("You must login first")
         return redirect('/')
@@ -177,18 +200,24 @@ def get_results():
 @app.route('/addcondition', methods = ["POST"])
 def add_condition_to_user():
 
+    #Get condition user wants to add from fetch request.
     condition = int(request.json.get("condition"))
+
+    #Get user id
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
 
+    #Get all conditions user has saved.
     list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
 
+    #Loop through all saved conditions to check if already added.
     for user_condition in list_user_conditions:
         if user_condition.condition_id == condition:
             flash("Condition already added.")
 
             return {"message": "Condition already previously added."}
 
+    #Create new saved user condition, add to database.
     saved_condition = crud.create_user_condition(condition, user_id)
     flash("Condition has been successfully added.")
     db.session.add(saved_condition)
@@ -202,11 +231,12 @@ def add_condition_to_user():
 def add_comments():
     """Adds users comments to own condition."""
 
+    #Get saved user condition and comment user added from fetch request.
     favorite_id = request.json.get('favorite_id')
     formInput = request.json.get('comment')
 
+    #Create new comment for user saved condition, add to database.
     comment = crud.create_comment(favorite_id, formInput)
-   
     db.session.add(comment)
     db.session.commit()
     
@@ -217,11 +247,14 @@ def add_comments():
 def delete_comments():
     """Deletes user comment."""
 
+    #Get comment(s) from fetch request to delete.
     comment_ids = request.json.get("comment_ids")
   
+    #for every comment, get the comment id
     for comment_id in comment_ids:
         comment = crud.get_comment_by_id(comment_id)
 
+        #Delete comment from database
         if comment:
             db.session.delete(comment)
             db.session.commit()
@@ -234,10 +267,11 @@ def delete_comments():
 def delete_condition():
     """Deletes user condition."""
 
+    #Get user saved condition from fetch request to delete.
     favorite_id = int(request.json.get("favorite_id"))
 
+    #Delete user saved condition from database.
     user_condition = crud.delete_user_condition(favorite_id)
-
     db.session.delete(user_condition)
     db.session.commit()
 
@@ -263,6 +297,7 @@ def document_vitals():
     if 'email' in session: 
         return render_template('vitals.html')
     
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
@@ -315,9 +350,8 @@ def get_vital_results():
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
 
-    #Create new set of vitals user entered.
+    #Create new set of vitals user entered and add to database.
     vitals = crud.create_vital(user_id, systolic, diastolic, heart_rate, oxygen, weight, glucose)
-
     flash("Vitals documented.")
     db.session.add(vitals)
     db.session.commit()
@@ -334,7 +368,7 @@ def show_all_vitals():
     #Check to see if user is logged in
     if 'email' in session:
 
-        #Get user
+        #Get user id and user name
         user = crud.get_user_by_email(session['email'])
         user_id = user.user_id
         name = user.name
@@ -344,6 +378,7 @@ def show_all_vitals():
 
         return render_template("vitals_results.html", vitals=vitals, name=name)
     
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
@@ -357,6 +392,7 @@ def show_vital_graphs():
     if 'email' in session:
         return render_template('vitals_graph.html')
     
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
@@ -367,12 +403,14 @@ def show_vital_graphs():
 def get_all_vitals_for_graph():
     """Gets all vitals."""
 
+    #Get user id
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
 
     #Get all vitals of user
     vitals = crud.get_vitals_by_user_id(user_id)
 
+    #List to hold all vitals
     data = []
 
     #Loop through all vitals and put values in dictionary
@@ -400,56 +438,54 @@ def find_physician():
     if 'email' in session:
         return render_template('find_physician.html', APIKEY=API_KEY)
     
+    #Redirect user to login.
     else:
         flash("You must login first.")
         return redirect('/')
 
 
 
-@app.route('/add_physician')
+@app.route('/add_physician', methods=['POST'])
 def add_physician():
     """Add physician to user profile."""
 
+    #Data sent over from fetch request.
     place_id = request.json.get("placeID")
+    print(place_id)
     name = request.json.get("name")
     address = request.json.get("address")
     phone = request.json.get("phone")
     url = request.json.get("url")
+
+    #Get user_id
     user = crud.get_user_by_email(session['email'])
     user_id = user.user_id
 
+    #Get all saved physicians of user.
     physicians = crud.get_physicians_by_user_id(user_id)
+    print(physicians)
 
+    #Check physicians already saved to user
     if physicians:
 
         for physician in physicians:
 
-            if physician.place_id == doctor:
+            if physician.place_id == place_id:
                 flash("Physician already added.")
 
                 return {"message": "Physician already previously added."}
-
-    saved_physician = crud.create_physician(physician, place_id, name, address, phone, url, user_id)
-    flash("Physician has been successfully added.")
+            
+    #Create user physician and save to database.
+    saved_physician = crud.create_physician(place_id, name, address, phone, url, user_id)
+    print(saved_physician)
     db.session.add(saved_physician)
     db.session.commit()
+    flash("Physician has been successfully added.")
 
     return {"message": "Condition has been successfully added."}
 
     
 
-
-
-
-
-# @app.route("/physician/search")
-# def get_physician_results():
-#     """Return results of physicians for user."""
-
-
-#     return render_template('physician_results.html')
-
-      
 
 
 

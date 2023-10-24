@@ -17,17 +17,17 @@ class User(db.Model):
 
     user_conditions = db.relationship("User_condition", back_populates="user")
     vitals = db.relationship("Vital", back_populates="user")
-    doctors = db.relationship("Doctor", back_populates="user")
+    physicians = db.relationship("Physician", back_populates="user")
 
     def __repr__(self):
         return f"<User user_id = {self.user_id} email = {self.email} name = {self.name}>"
     
 
 
-class Doctor(db.Model):
-    """A Doctor."""
+class Physician(db.Model):
+    """A Physician."""
 
-    __tablename__ = "doctors"
+    __tablename__ = "physicians"
 
     place_id = db.Column(db.String(150), primary_key=True)
     name = db.Column(db.String(150), nullable=True)
@@ -36,10 +36,10 @@ class Doctor(db.Model):
     url = db.Column(db.String(500), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
 
-    user = db.relationship("User", back_populates="doctors")
+    user = db.relationship("User", back_populates="physicians")
     
     def __repr__(self):
-        return f"<Doctor name = {self.name} phone = {self.phone}>"
+        return f"<Physician name = {self.name} phone = {self.phone}>"
 
 
     

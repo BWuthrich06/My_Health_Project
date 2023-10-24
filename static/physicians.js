@@ -9,6 +9,7 @@ let allResults;
 let allDetails;
 let zipcode;
 let searchResults;
+let relDetails;
 
 
 //Listens for search button to find physician.
@@ -65,7 +66,7 @@ findPhysicianButton.addEventListener('click', async (evt) => {
                             if (placeDetails) {
 
                                 //Dictionary of relevant data from placeDetails
-                                let relDetails = {
+                                relDetails = {
                                     'name': placeDetails.name,
                                     'address': placeDetails.formatted_address,
                                     'phone': placeDetails.formatted_phone_number,
@@ -78,6 +79,17 @@ findPhysicianButton.addEventListener('click', async (evt) => {
 
                                     //Call function that renders result to webpage
                                     let result = physicianResults(relDetails);
+
+                                    //Create add physician button for each entry
+                                    const physicianButton = document.createElement('button');
+                                    physicianButton.id = relDetails.place_id;
+                                    physicianButton.classList.add('addPhysician');
+                                    physicianButton.innerText = "+ Add";
+                                    individualDetail.appendChild(physicianButton);
+
+                                    physicianButton.addEventListener('click', () => {
+                                        addPhysician(relDetails);
+                                    });
                                 };
                         };
 
@@ -97,6 +109,9 @@ findPhysicianButton.addEventListener('click', async (evt) => {
         const message = document.createElement('h5');
         invalidZipcode.appendChild(message);
         message.innerHTML = "Please enter valid 5 digit zipcode."
+
+    return allDetails;
+
     }});
 
 
@@ -143,10 +158,7 @@ async function getLatLong(zipcode) {
         const latLongResult = {'latitude': latitude, 'longitude': longitude};
              
         return latLongResult;
-        
-
-    }    
-    
+    }       
 };
 
 
@@ -220,99 +232,85 @@ function physicianResults(relDetails) {
     //Renders details on webpage of each physician result.
 
     let physicianDetails = document.querySelector("#physicianResultsContainer");
+    let physicianHTML = document.createElement('div');
+    physicianDetails.appendChild(physicianHTML);
+    let individualDetail = document.createElement('p');
+    physicianHTML.appendChild(individualDetail);
+    
+    //Concat string of name, address, phone, url with <br> between each.
+    let detailString = ""
 
-    // let searchResults = document.createElement('h2');
-    //     physicianDetails.appendChild(searchResults);
-        
-    //     if (relDetails) {
-    //         searchResults.innerHTML = `Search Results for ${zipcode}:`
-
-    //     } else {
-    //         searchResults.innerHTML = `No results near ${zipcode}`
-    //     }
-
-        let physicianHTML = document.createElement('div');
-        physicianDetails.appendChild(physicianHTML);
-        let individualDetail = document.createElement('p');
-        physicianHTML.appendChild(individualDetail);
-        
-        //Concat string of name, address, phone, url with <br> between each.
-        let detailString = ""
-
-        //Add name to string
-        if (relDetails.name) {
-            let string1 = relDetails.name;
-            detailString += '<br>' + string1;
-        }
-
-        //Add address to string
-        if (relDetails.address) {
-            const string2 = relDetails.address;
-            detailString += '<br>'
-            detailString += string2;
-        }
-
-        //Add phone number to string
-        if (relDetails.phone) {
-            const string3 = relDetails.phone;
-            detailString += '<br>'
-            detailString += string3;
-        }
-
-        //Add url to string
-        if (relDetails.url) {
-            const url = document.createElement('a');
-            url.href = relDetails.url;
-            url.innerText = "View on Map";
-            const string4 = url.outerHTML;
-            detailString += '<br>' + string4 + '<br>'
-        }
-
-        //Render string to webpage
-        individualDetail.innerHTML = detailString;
-
-        //Create add physician button for each entry
-        const physicianButton = document.createElement('button');
-        individualDetail.appendChild(physicianButton);
-        physicianButton.innerText = "+ Add";
-        physicianButton.classList.add('addPhysician');
+    //Add name to string
+    if (relDetails.name) {
+        let string1 = relDetails.name;
+        detailString += '<br>' + string1;
     }
 
-
-
-
-
-
-
-
-
-//Event listoner for each Add Physician button
-const addPhysicianButtons = document.querySelectorAll('button.addPhysician');
-for (const addPhysicianButton of addPhysicianButtons) {
-    addPhysicianButton.addEventListener('click', addPhysician);
+    //Add address to string
+    if (relDetails.address) {
+        const string2 = relDetails.address;
+        detailString += '<br>'
+        detailString += string2;
     }
 
+    //Add phone number to string
+    if (relDetails.phone) {
+        const string3 = relDetails.phone;
+        detailString += '<br>'
+        detailString += string3;
+    }
+
+    //Add url to string
+    if (relDetails.url) {
+        const url = document.createElement('a');
+        url.href = relDetails.url;
+        url.innerText = "View on Map";
+        const string4 = url.outerHTML;
+        detailString += '<br>' + string4 + '<br>'
+    }
+
+    //Render string to webpage
+    individualDetail.innerHTML = detailString;
 
 
-// function addPhysician(evt) {
-// //Add physician to user profile page
+    //Create add physician button for each entry
+    const physicianButton = document.createElement('button');
+    physicianButton.id = relDetails.place_id;
+    physicianButton.classList.add('addPhysician');
+    physicianButton.innerText = "+ Add";
+    individualDetail.appendChild(physicianButton);
+};
 
-//     const data = {
-//         place_id : evt.target.id,
-//     }
-//     fetch('/add_physician', {
-//         method: "POST",
-//         body: JSON.stringify(data),
-//         headers: {
-//             'Content-Type': 'application/json',
-//         }
-//     })
-//         .then((response) => response.json())
-//         .then((responseJSON) => {
-//             window.location.pathname = ('/profile')
-//         })
 
-//     }
+
+function addPhysician(relDetails) {
+//Add physician to user profile page
+
+    const data = {
+        placeId : relDetails.place_id,
+        name: relDetails.name,
+        address: relDetails.address,
+        phone: relDetails.phone,
+        url: relDetails.url
+    }
+    console.log(data)
+
+    fetch('/add_physician', {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => response.json())
+        .then((responseJSON) => {
+            window.location.pathname = ('/profile')
+        })
+
+        .catch((error) =>
+            console.log('Error', error));
+
+    }
     
     
     
