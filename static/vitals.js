@@ -9,6 +9,7 @@ addVital.addEventListener('click', addVitals);
 function addVitals(evt) {
     evt.preventDefault();
 
+    //Get values entered by user
     const systolic = document.querySelector('#systolic').value;
     const diastolic = document.querySelector('#diastolic').value;
     const heartRate = document.querySelector('#heart_rate').value;
@@ -16,7 +17,7 @@ function addVitals(evt) {
     const weight = document.querySelector('#weight').value;
     const glucose = document.querySelector('#glucose').value;
     
-
+    //values entered into dictionary to send in fetch request
     const data = {
         systolic: systolic,
         diastolic: diastolic,
