@@ -4,20 +4,10 @@ from flask import Flask, render_template, request, flash, session, redirect, jso
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
-import requests
-import json
-import time
-import re
-
-
-
-import googlemaps
 from pprint import pprint
-import time
+
+
 API_KEY = os.environ['my_api_key']
-
-
-
 secret_key = os.environ['secret_key']
 
 app = Flask(__name__)
