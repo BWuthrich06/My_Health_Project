@@ -191,6 +191,16 @@ def create_physician(place_id, name, address, phone, url, user_id):
     return physician
 
 
+def delete_physician(physician_id):
+    """Delete user physician."""
+
+    physician = Physician.query.get(physician_id)
+
+    return physician
+
+
+
+
 
 
 

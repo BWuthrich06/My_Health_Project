@@ -4,9 +4,9 @@
 {% block body %}
 <br>
   <h1>Welcome, {{ name }}</h1>
-  <br><br>
+  <br><br><br>
  
-  <h3>My Health Conditions</h3>
+  <h3>My Health Conditions</h3><br>
 
 <!--If user has saved conditions-->
 {% if all_user_conditions %}
@@ -16,10 +16,10 @@
   <br>
   <div class="saved_condition">
     <!--Condition title and url link-->
-    <p class="saved_condition_name"><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a></p>
+    <p class="saved_condition_name"><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a>
 
     <!--Delete condition button-->
-    <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button>
+    <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button></p>
   
     <!--Lists synonyms conditions-->
     <p class="saved_synonyms"><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
@@ -31,20 +31,23 @@
     <div class="form-floating">
       <form>
         <label for="floatingTextarea">Comments</label>
-        <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea>
+        <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea><br>
         <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
+        
     
         <!--Comments user entered will show up here as list-->
-        <p class="saved_comments"><br>Your Comments:</p>
+        <p class="saved_comments"><br><br>Your Comments:</p>
         {% if user_condition.comments %}
           <ul id="user_comments">
             {% for comment in user_condition.comments %}
                 <li> {{ comment.comment }}
                   <!--For each comment, checkbox to delete-->
                 <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li>
+                
             {% endfor %}
           </ul> 
           <!--Delete checkboxes checked of comments-->
+          <br>
           <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
 
         {% endif %}
@@ -59,12 +62,15 @@
 
 <div id="physician_results">
 {% if saved_physicians %}
-  <h3>My Physicians</h3><br>
+  <h3>My Physicians</h3><br><br><br>
   {% for physician in saved_physicians %}
     <p>{{ physician.name }}<br>
     {{ physician.address }}<br>
     {{ physician.phone }}<br>
-    <a href="{{ physician.url }}">View on Map</a></p><br><br>
+    <a href="{{ physician.url }}">View on Map</a></p>
+    <form action="/delete_physician", method="POST">
+      <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}"><i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
+    </form><br><br>
   {% endfor %}
 
 {% else %}

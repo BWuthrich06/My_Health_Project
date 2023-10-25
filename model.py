@@ -29,7 +29,8 @@ class Physician(db.Model):
 
     __tablename__ = "physicians"
 
-    place_id = db.Column(db.String(150), primary_key=True)
+    physician_id = db.Column(db.Integer, primary_key=True, autoincrement=True,)
+    place_id = db.Column(db.String(150))
     name = db.Column(db.String(150), nullable=True)
     address = db.Column(db.String(300), nullable=True)
     phone = db.Column(db.String(15), nullable=True)

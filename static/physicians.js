@@ -14,97 +14,98 @@ let relDetails;
 
 //Listens for search button to find physician.
 const findPhysicianButton = document.querySelector("#search_result");
-findPhysicianButton.addEventListener('click', async (evt) => {
-    evt.preventDefault();
+if (findPhysicianButton) {
+    findPhysicianButton.addEventListener('click', async (evt) => {
+        evt.preventDefault();
+        
+        // //Get zipcode user entered.
+        zipcode = document.querySelector('#zipcode');
+        zipcode = zipcode.value;
     
-    // //Get zipcode user entered.
-    zipcode = document.querySelector('#zipcode');
-    zipcode = zipcode.value;
-
-    //Check if zipcode entered is 5 digits.
-    const regexZipcode = /\d{5}/;
-
-    if (zipcode.length === 5 && regexZipcode.test(zipcode)) {
-        latLong = await getLatLong(zipcode)
-        console.log(latLong)
+        //Check if zipcode entered is 5 digits.
+        const regexZipcode = /\d{5}/;
     
-        if (latLong) {
-            nearbyDoctors = await getNearbyDoctors(latLong);
-                if (nearbyDoctors) {
-                    // list to store all data from request
-                    allResults = nearbyDoctors; 
-                    
-                    let physicianDetails = document.querySelector("#physicianResultsContainer");
-
-                    searchResults = document.createElement('h2');
-                    physicianDetails.appendChild(searchResults);
-
-                } else {
-                    console.error(error);
-                }
-        };
-
-                    if (allResults) {
-                        //Show results for entered zipcode on webpage
+        if (zipcode.length === 5 && regexZipcode.test(zipcode)) {
+            latLong = await getLatLong(zipcode)
+            console.log(latLong)
+        
+            if (latLong) {
+                nearbyDoctors = await getNearbyDoctors(latLong);
+                    if (nearbyDoctors) {
+                        // list to store all data from request
+                        allResults = nearbyDoctors; 
+                        
                         let physicianDetails = document.querySelector("#physicianResultsContainer");
+    
                         searchResults = document.createElement('h2');
                         physicianDetails.appendChild(searchResults);
-                        searchResults.innerHTML = `Search Results for ${zipcode}:`
-                    
-                        //Array to hold all relDetails
-                        allDetails = []
-
-                        //Loop through each result
-                        for (const result of allResults) {
-
-                            //Get each results place_id
-                            let placeId = result.place_id;
-
-                            //Get details on each result from nearby doctors
-                            let placeDetails = await getPlaceDetails(placeId);
-                            
-                            if (placeDetails) {
-
-                                //Dictionary of relevant data from placeDetails
-                                relDetails = {
-                                    'name': placeDetails.name,
-                                    'address': placeDetails.formatted_address,
-                                    'phone': placeDetails.formatted_phone_number,
-                                    'url': placeDetails.url,
-                                    'place_id': placeDetails.place_id
-                                    };
-
-                                    //Add each relDetials to allDetails array
-                                    allDetails = allDetails.concat(relDetails);
-
-                                    //Call function that renders result to webpage
-                                    let result = physicianResults(relDetails);
-                                };
-                        };
-
-                        console.log(allDetails);
-
+    
                     } else {
-                        //Show no results on webpage.
-                        let physicianDetails = document.querySelector("#physicianResultsContainer");
-                        searchResults = document.createElement('h2');
-                        physicianDetails.appendChild(searchResults);
-                        searchResults.innerHTML = `No results near ${zipcode}`
-                    };
-                   
-    } else {
-        //Message to appear on browser for invalid zipcode.
-        const invalidZipcode = document.querySelector('#invalid_zipcode');
-        const message = document.createElement('h5');
-        invalidZipcode.appendChild(message);
-        message.innerHTML = "Please enter valid 5 digit zipcode."
+                        console.error(error);
+                    }
+            };
+    
+                        if (allResults) {
+                            //Show results for entered zipcode on webpage
+                            let physicianDetails = document.querySelector("#physicianResultsContainer");
+                            searchResults = document.createElement('h2');
+                            physicianDetails.appendChild(searchResults);
+                            searchResults.innerHTML = `Search Results for ${zipcode}:`
+                        
+                            //Array to hold all relDetails
+                            allDetails = []
+    
+                            //Loop through each result
+                            for (const result of allResults) {
+    
+                                //Get each results place_id
+                                let placeId = result.place_id;
+    
+                                //Get details on each result from nearby doctors
+                                let placeDetails = await getPlaceDetails(placeId);
+                                
+                                if (placeDetails) {
+    
+                                    //Dictionary of relevant data from placeDetails
+                                    relDetails = {
+                                        'name': placeDetails.name,
+                                        'address': placeDetails.formatted_address,
+                                        'phone': placeDetails.formatted_phone_number,
+                                        'url': placeDetails.url,
+                                        'place_id': placeDetails.place_id
+                                        };
+    
+                                        //Add each relDetials to allDetails array
+                                        allDetails = allDetails.concat(relDetails);
+    
+                                        //Call function that renders result to webpage
+                                        let result = physicianResults(relDetails);
+                                    };
+                            };
+    
+                            console.log(allDetails);
+    
+                        } else {
+                            //Show no results on webpage.
+                            let physicianDetails = document.querySelector("#physicianResultsContainer");
+                            searchResults = document.createElement('h2');
+                            physicianDetails.appendChild(searchResults);
+                            searchResults.innerHTML = `No results near ${zipcode}`
+                        };
+                       
+        } else {
+            //Message to appear on browser for invalid zipcode.
+            const invalidZipcode = document.querySelector('#invalid_zipcode');
+            const message = document.createElement('h5');
+            invalidZipcode.appendChild(message);
+            message.innerHTML = "Please enter valid 5 digit zipcode."
+    
+        return allDetails;
+    
+        }});
 
-    return allDetails;
 
-    }});
-
-
-
+}
 
           
 

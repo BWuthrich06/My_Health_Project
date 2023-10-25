@@ -484,6 +484,23 @@ def add_physician():
 
     return jsonify ({"message": "Condition has been successfully added."})
 
+
+@app.route('/delete_physician', methods=["POST"])
+def delete_physician():
+
+    physician_id = request.form.get("physician_id")
+    print(physician_id)
+
+    physician = crud.delete_physician(physician_id)
+    print(physician)
+
+    db.session.delete(physician)
+    db.session.commit()
+    flash("Physician deleted successfully.")
+
+    return redirect('/profile')
+
+
     
 
 
