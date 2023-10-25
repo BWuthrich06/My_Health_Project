@@ -57,6 +57,21 @@
   {% endfor %}
 {% endif %}
 
+<div id="physician_results">
+{% if saved_physicians %}
+  <h3>My Physicians</h3><br>
+  {% for physician in saved_physicians %}
+    <p>{{ physician.name }}<br>
+    {{ physician.address }}<br>
+    {{ physician.phone }}<br>
+    <a href="{{ physician.url }}">View on Map</a></p><br><br>
+  {% endfor %}
+
+{% else %}
+  <h3>No Saved Physicians</h3>
+{% endif %}
+
+</div>
 
 <script src="/static/comments.js"></script>
 

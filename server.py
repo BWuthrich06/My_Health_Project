@@ -127,6 +127,7 @@ def main_profile():
         all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
 
         saved_physicians = crud.get_physicians_by_user_id(user_id)
+        print(saved_physicians)
 
         return render_template("profile.html", name=name, all_user_conditions=all_user_conditions, saved_physicians=saved_physicians)
     
@@ -450,8 +451,7 @@ def add_physician():
     """Add physician to user profile."""
 
     #Data sent over from fetch request.
-    place_id = request.json.get("placeID")
-    print(place_id)
+    place_id = request.json.get("place_id")
     name = request.json.get("name")
     address = request.json.get("address")
     phone = request.json.get("phone")
@@ -482,7 +482,7 @@ def add_physician():
     db.session.commit()
     flash("Physician has been successfully added.")
 
-    return {"message": "Condition has been successfully added."}
+    return jsonify ({"message": "Condition has been successfully added."})
 
     
 

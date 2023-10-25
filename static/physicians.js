@@ -79,17 +79,6 @@ findPhysicianButton.addEventListener('click', async (evt) => {
 
                                     //Call function that renders result to webpage
                                     let result = physicianResults(relDetails);
-
-                                    //Create add physician button for each entry
-                                    const physicianButton = document.createElement('button');
-                                    physicianButton.id = relDetails.place_id;
-                                    physicianButton.classList.add('addPhysician');
-                                    physicianButton.innerText = "+ Add";
-                                    individualDetail.appendChild(physicianButton);
-
-                                    physicianButton.addEventListener('click', () => {
-                                        addPhysician(relDetails);
-                                    });
                                 };
                         };
 
@@ -279,21 +268,23 @@ function physicianResults(relDetails) {
     physicianButton.classList.add('addPhysician');
     physicianButton.innerText = "+ Add";
     individualDetail.appendChild(physicianButton);
-};
 
+    physicianButton.addEventListener('click', () => {
+        addPhysician(relDetails);
+    })
+};
 
 
 function addPhysician(relDetails) {
 //Add physician to user profile page
 
     const data = {
-        placeId : relDetails.place_id,
+        place_id : relDetails.place_id,
         name: relDetails.name,
         address: relDetails.address,
         phone: relDetails.phone,
         url: relDetails.url
     }
-    console.log(data)
 
     fetch('/add_physician', {
         method: "POST",
