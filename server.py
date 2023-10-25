@@ -120,15 +120,18 @@ def main_profile():
         name = user.name
         user_id = user.user_id
 
+        #Get all saved user conditions
         list_user_conditions = crud.get_all_conditions_by_user_id(user_id)
         set_user_conditions = set(list_user_conditions)
         all_user_conditions = list(set_user_conditions)
         
+        #Sort saved user conditions alphabetically
         all_user_conditions = sorted(all_user_conditions, key=lambda x: x.condition.title)
 
+        #Get all saved physicians of user
         saved_physicians = crud.get_physicians_by_user_id(user_id)
-        print(saved_physicians)
 
+        #Get most recent vitals entered by user
         vitals = crud.get_recent_vital(user_id)
 
         return render_template("profile.html", name=name, all_user_conditions=all_user_conditions, saved_physicians=saved_physicians, vitals=vitals)
@@ -180,15 +183,17 @@ def get_results():
     #Check if user is logged in.
     if 'email' in session:
 
+        #Get string user entered for health condition to search
         result = request.args.get("result")
         result = result.title()
 
-        #Get search results
+        #Get search results back similar to what user searched
         results = crud.get_search_results(result)
 
         if results:
             return render_template('results.html', results=results, result=result)
         
+        #No matches/results.
         else:
             flash("No matching results.")
             return redirect('/conditions/search')
@@ -490,12 +495,11 @@ def add_physician():
 @app.route('/delete_physician', methods=["POST"])
 def delete_physician():
 
+    #Get id of delete button user clicked
     physician_id = request.form.get("physician_id")
-    print(physician_id)
 
+    #Get physician to delete by id, delete from database.
     physician = crud.delete_physician(physician_id)
-    print(physician)
-
     db.session.delete(physician)
     db.session.commit()
     flash("Physician deleted successfully.")
@@ -504,10 +508,6 @@ def delete_physician():
 
 
     
-
-
-
-
 
 if __name__ == "__main__":
     connect_to_db(app)
