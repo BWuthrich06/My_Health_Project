@@ -8,6 +8,7 @@
  
   <h3>My Health Conditions</h3><br>
 
+<div id="saved_user_conditions">
 <!--If user has saved conditions-->
 {% if all_user_conditions %}
 
@@ -53,13 +54,42 @@
         {% endif %}
       </form>
     </div>
-  </div> 
- 
-    <br><br><br>
-      
+  </div>
+</div><br><br><br>
+
   {% endfor %}
 {% endif %}
 
+<div id="recent_vital">
+  <h3>Most Recent Vitals</h3><br><br>
+{% if vitals %}
+  <p>{{ vitals.date_time.strftime("%m/%d/%Y %I:%M %p") }}</p><br>
+
+  {% if vitals.systolic and vitals.diastolic %}
+    <p>Blood pressure: {{ vitals.systolic }}/{{ vitals.diastolic }}</p>
+  {% endif %}
+
+  {% if vitals.heart_rate %}
+    <p>Heart Rate: {{ vitals.heart_rate }}</p>
+  {% endif %}
+
+  {% if vitals.oxygen %}
+    <p>Oxygen: {{ vitals.oxygen }}%</p>
+  {% endif %}
+
+  {% if vitals.weight %}
+    <p>Weight: {{ vitals.weight }} lbs</p>
+  {% endif %}
+
+  {% if vitals.glucose %}
+    <p>Glucose: {{ vitals.glucose }}</p>
+  {% endif %}
+
+  {% else %}
+  <p>No vital signs recorded.</p>
+{% endif %}
+</div><br><br><br>
+ 
 <div id="physician_results">
 {% if saved_physicians %}
   <h3>My Physicians</h3><br><br><br>
@@ -76,14 +106,11 @@
 {% else %}
   <h3>No Saved Physicians</h3>
 {% endif %}
-
 </div>
 
-<script src="/static/comments.js"></script>
 
+<script src="/static/comments.js"></script>
 <script src="static/physicians.js"></script>
   
-
- 
 {% endblock %}
 

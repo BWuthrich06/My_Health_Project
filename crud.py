@@ -199,6 +199,14 @@ def delete_physician(physician_id):
     return physician
 
 
+def get_recent_vital(user_id):
+    """Return user's most recent vitals."""
+
+    vital = Vital.query.filter_by(user_id=user_id).order_by(Vital.date_time.desc()).first()
+
+    return vital
+
+
 
 
 

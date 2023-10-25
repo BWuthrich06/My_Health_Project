@@ -129,7 +129,9 @@ def main_profile():
         saved_physicians = crud.get_physicians_by_user_id(user_id)
         print(saved_physicians)
 
-        return render_template("profile.html", name=name, all_user_conditions=all_user_conditions, saved_physicians=saved_physicians)
+        vitals = crud.get_recent_vital(user_id)
+
+        return render_template("profile.html", name=name, all_user_conditions=all_user_conditions, saved_physicians=saved_physicians, vitals=vitals)
     
     #Redirect user to login.
     else:
