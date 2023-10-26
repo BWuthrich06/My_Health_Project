@@ -153,7 +153,7 @@ async function getLatLong(zipcode) {
 
 
 
-function getNearbyDoctors(latLong) {
+function getNearbyDoctors(latLong, pageToken = null) {
 //find all nearby doctors from zipcode entered, add data to allResults list
     return new Promise((resolve, reject) => {
 
@@ -170,16 +170,23 @@ function getNearbyDoctors(latLong) {
         location: destination,
         radius: radius,
         type: [dataType],
-        pageToken: "nextPageToken"
+        pageToken: pageToken
         };
 
 
 
 
     //Request to find all nearby doctors from zipcode entered, add data to allResults list
-    service.nearbySearch(request, (results, status) => {
+    service.nearbySearch(request, (results, status, pagination) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            resolve(results)
+            let nextPageToken;
+            if (pagination.hasNextPage) {
+                nextPageToken = pagination.nextPageToken;
+            } else {
+                nextPageToken = null;
+            }
+
+            resolve({results, nextPageToken});
 
         } else {
             reject("Error, request unsuccessfull.")
