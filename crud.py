@@ -143,6 +143,7 @@ def delete_user_condition(favorite_id):
 
     return user_condition
    
+   
 
 def get_vitals_by_user_id(user_id):
     """Get vitals by user."""
@@ -150,6 +151,7 @@ def get_vitals_by_user_id(user_id):
     vitals = Vital.query.filter_by(user_id=user_id).all()
 
     return vitals
+
 
 
 def create_vital(user_id, systolic=None, diastolic=None, heart_rate=None, oxygen=None, weight=None, glucose=None):
