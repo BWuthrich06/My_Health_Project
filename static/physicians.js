@@ -17,40 +17,53 @@ const findPhysicianButton = document.querySelector("#search_result");
 if (findPhysicianButton) {
     findPhysicianButton.addEventListener('click', async (evt) => {
         evt.preventDefault();
+
+        let physicianDetails = document.querySelector('#physicianResultsContainer');
+        physicianDetails.innerHTML = "";
         
         // //Get zipcode user entered.
         zipcode = document.querySelector('#zipcode');
         zipcode = zipcode.value;
+        console.log(zipcode)
     
         //Check if zipcode entered is 5 digits.
-        const regexZipcode = /\d{5}/;
+        const regexZipcode = /^\d{5}$/;
     
         if (zipcode.length === 5 && regexZipcode.test(zipcode)) {
             latLong = await getLatLong(zipcode)
-            console.log("This is latLong")
-            console.log(latLong)
+        } else{
+            //Message to appear on browser for invalid zipcode.
+            const invalidZipcode = document.querySelector('#invalid_zipcode');
+            // invalidZipcode.innerHTML = "";
+            const message = document.createElement('h5');
+            invalidZipcode.appendChild(message);
+            message.innerHTML = "Please enter valid 5 digit zipcode."
+        }
         
             if (latLong) {
                 nearbyDoctors = await getNearbyDoctors(latLong);
-                console.log(nearbyDoctors);
             
-                    if (nearbyDoctors) {
+                    if (nearbyDoctors.results.length > 0) {
 
                         // list to store all data from request
                         allResults = [];
 
                         for (let result in nearbyDoctors.results) {
                             allResults.push(nearbyDoctors.results[result]);
-                        }
+                        };
 
-                        let physicianDetails = document.querySelector("#physicianResultsContainer");
+                        physicianDetails = document.querySelector("#physicianResultsContainer");
                         searchResults = document.createElement('h2');
                         physicianDetails.appendChild(searchResults);
     
                     } else {
-                        console.error(error);
+                        //Show no results on webpage.
+                        let physicianDetails = document.querySelector("#physicianResultsContainer");
+                        searchResults = document.createElement('h2');
+                        physicianDetails.appendChild(searchResults);
+                        searchResults.innerHTML = `No results near ${zipcode}`
                     }
-            };
+            
     
                         if (allResults) {
                             //Show results for entered zipcode on webpage
@@ -68,7 +81,6 @@ if (findPhysicianButton) {
                                 //Get each results place_id
                                 let placeId = result.place_id;
                             
-    
                                 //Get details on each result from nearby doctors
                                 let placeDetails = await getPlaceDetails(placeId);
                                 
@@ -81,39 +93,32 @@ if (findPhysicianButton) {
                                         'phone': placeDetails.formatted_phone_number,
                                         'url': placeDetails.url,
                                         'place_id': placeDetails.place_id
-                                        };
+                                        }
     
                                         //Add each relDetials to allDetails array
                                         allDetails = allDetails.concat(relDetails);
     
                                         //Call function that renders result to webpage
                                         physicianResults(relDetails);
-                                    };
-                            };
-    
+                                } else {
+                                    console.error(error)
+                                }
+                            }
                             console.log(allDetails);
-    
                         } else {
-                            //Show no results on webpage.
-                            let physicianDetails = document.querySelector("#physicianResultsContainer");
-                            searchResults = document.createElement('h2');
-                            physicianDetails.appendChild(searchResults);
-                            searchResults.innerHTML = `No results near ${zipcode}`
-                        };
+                            console.log(error)
+                        }
+    
                        
-        } else {
-            //Message to appear on browser for invalid zipcode.
-            const invalidZipcode = document.querySelector('#invalid_zipcode');
-            const message = document.createElement('h5');
-            invalidZipcode.appendChild(message);
-            message.innerHTML = "Please enter valid 5 digit zipcode."
+    
     
         return allDetails;
     
-        }});
+        };
 
 
-}
+})
+};
 
           
 
@@ -196,8 +201,8 @@ function getNearbyDoctors(latLong) {
                 
                 if (pagination && pagination.hasNextPage && count < 3) {
                     //Sleep delay for next page request
-                    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-                    await sleep(1000);
+                    // const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+                    // await sleep(1000);
                     
                     //next page request
                     count += 1
@@ -210,7 +215,7 @@ function getNearbyDoctors(latLong) {
                 }
 
             } else {
-                reject("Error, request unsuccessfull.")
+                resolve({results: []});
             }
         });
     });
@@ -312,15 +317,15 @@ function addPhysician(relDetails) {
         address: relDetails.address,
         phone: relDetails.phone,
         url: relDetails.url
-    }
+    };
 
     fetch('/add_physician', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',
-        }
-    })
+                }
+        })
         .then((response) => response.json())
         .then((responseJSON) => {
             window.location.pathname = ('/profile')
@@ -329,11 +334,4 @@ function addPhysician(relDetails) {
         .catch((error) =>
             console.log('Error', error));
 
-    }
-    
-    
-    
-
-
-
-
+    };
