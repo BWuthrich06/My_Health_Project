@@ -161,7 +161,7 @@ async function getLatLong(zipcode) {
 
 
 
-function getNearbyDoctors(latLong, nextPageToken = null) {
+function getNearbyDoctors(latLong) {
 //find all nearby doctors from zipcode entered, add data to allResults list
     return new Promise((resolve, reject) => {
 
