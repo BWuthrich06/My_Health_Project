@@ -27,16 +27,23 @@ if (findPhysicianButton) {
     
         if (zipcode.length === 5 && regexZipcode.test(zipcode)) {
             latLong = await getLatLong(zipcode)
+            console.log("This is latLong")
             console.log(latLong)
         
             if (latLong) {
                 nearbyDoctors = await getNearbyDoctors(latLong);
+                console.log(nearbyDoctors);
+            
                     if (nearbyDoctors) {
+
                         // list to store all data from request
-                        allResults = nearbyDoctors; 
-                        
+                        allResults = [];
+
+                        for (let result in nearbyDoctors.results) {
+                            allResults.push(nearbyDoctors.results[result]);
+                        }
+
                         let physicianDetails = document.querySelector("#physicianResultsContainer");
-    
                         searchResults = document.createElement('h2');
                         physicianDetails.appendChild(searchResults);
     
@@ -56,10 +63,11 @@ if (findPhysicianButton) {
                             allDetails = []
     
                             //Loop through each result
-                            for (const result of allResults) {
+                            for (let result of allResults) {
     
                                 //Get each results place_id
                                 let placeId = result.place_id;
+                            
     
                                 //Get details on each result from nearby doctors
                                 let placeDetails = await getPlaceDetails(placeId);
@@ -79,7 +87,7 @@ if (findPhysicianButton) {
                                         allDetails = allDetails.concat(relDetails);
     
                                         //Call function that renders result to webpage
-                                        let result = physicianResults(relDetails);
+                                        physicianResults(relDetails);
                                     };
                             };
     
@@ -153,46 +161,58 @@ async function getLatLong(zipcode) {
 
 
 
-function getNearbyDoctors(latLong, pageToken = null) {
+function getNearbyDoctors(latLong, nextPageToken = null) {
 //find all nearby doctors from zipcode entered, add data to allResults list
     return new Promise((resolve, reject) => {
 
-    // //Get latitude and longitude
-    const latitude = latLong.latitude;
-    const longitude = latLong.longitude;
+        // //Get latitude and longitude
+        const latitude = latLong.latitude;
+        const longitude = latLong.longitude;
 
-    // //Params to pass through to API request
-    const dataType = "doctor";
-    const radius = 16000;
-    const destination = new google.maps.LatLng(latitude,longitude);
+        // //Params to pass through to API request
+        const dataType = "doctor";
+        const radius = 5000;
+        const destination = new google.maps.LatLng(latitude,longitude);
 
-    const request = {
-        location: destination,
-        radius: radius,
-        type: [dataType],
-        pageToken: pageToken
-        };
+        const request = {
+            location: destination,
+            radius: radius,
+            type: [dataType],
+            };
 
+        //counter for requests
+        let count = 0
 
+        //List to hold all results
+        let allResults = []
 
+        //Request to find all nearby doctors from zipcode entered, add data to allResults list
+        service.nearbySearch(request, async (results, status, pagination) => {
+        
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (let result of results) {
+                    allResults.push(result)
+                }
+                
+                if (pagination && pagination.hasNextPage && count < 3) {
+                    //Sleep delay for next page request
+                    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+                    await sleep(1000);
+                    
+                    //next page request
+                    count += 1
+                    console.log(count)
+                    pagination.nextPage();
+                        
+                } else {
+                    console.log('resolved the promise', allResults);
+                    resolve({results: allResults});
+                }
 
-    //Request to find all nearby doctors from zipcode entered, add data to allResults list
-    service.nearbySearch(request, (results, status, pagination) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            let nextPageToken;
-            if (pagination.hasNextPage) {
-                nextPageToken = pagination.nextPageToken;
             } else {
-                nextPageToken = null;
+                reject("Error, request unsuccessfull.")
             }
-
-            resolve({results, nextPageToken});
-
-        } else {
-            reject("Error, request unsuccessfull.")
-        }
         });
-
     });
 };
 
