@@ -2,17 +2,19 @@
 {% block title %}Search for Condition{% endblock %}
 
 {% block body %}<br>
+<body id="search_condition_page-container">
+<div id="search_health_condition">
+  <h1>Search for Health Condition</h1><br><br>
 
-<h1>Search for Health Condition</h1><br><br>
+    <form action = "/conditions/results">
+      <input type="text", name="result">
+      <button id = search_result type="submit">Search</button>
+    </form><br>
 
-  <form action = "/conditions/results">
-    <input type="text", name="result">
-    <button id = search_result type="submit">Search</button>
-  </form><br>
-
-<p>Enter either full or partial name of health condition<br>
-   you are seeking to obtain information about. You may also<br>
-    enter a related body part or symptom.</p>
-  
+    <p>Enter either full or partial name of health condition<br>
+    you are seeking to obtain information about. You may also<br>
+      search a related body part or symptom.</p>
+</div>
+</body>
 {% endblock %}
 

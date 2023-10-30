@@ -8,22 +8,22 @@
     <p>Take control of your health by keeping track of your vital signs.<br>
       Allows easy record keeping for you and your provider.</p><br><br>
 
-  <h4>Enter vitals:</h4>
+  <h4 id="enter_vitals">Enter vitals:</h4>
   <br>
 
-  <form id="vitalSignForm">
-    
-    <p>Systolic Blood Pressure <input type="text" id="systolic" name="systolic"></p>
-    <p>Diastolic Blood Pressure <input type="text" id="diastolic" name="diastolic"></p>
-    <p>Heart Rate <input type="text" id="heart_rate" name="heart_rate"></p>
-    <p>Oxygen Saturation <input type="text" id="oxygen" name="oxygen"></p>
-    <p>Weight (lbs) <input type="text" id="weight" name="weight"></p>
-    <p>Glucose <input type="text" id="glucose" name="glucose"></p>
-    <br>
-    
-    <button type="submit" class="submit-vitals">Submit</button>
-  </form>
-
+  <div id="vital_sign_form_container">
+    <form id="vitalSignForm">
+      
+      <p>Systolic Blood Pressure <input type="text" id="systolic" name="systolic"></p>
+      <p>Diastolic Blood Pressure <input type="text" id="diastolic" name="diastolic"></p>
+      <p>Heart Rate <input type="text" id="heart_rate" name="heart_rate"></p>
+      <p>Oxygen Saturation <input type="text" id="oxygen" name="oxygen"></p>
+      <p>Weight (lbs) <input type="text" id="weight" name="weight"></p>
+      <p>Glucose <input type="text" id="glucose" name="glucose"></p>
+  </div>
+      <button type="submit" class="submit-vitals">Submit</button>
+    </form>
+  
   <script src='static/vitals.js'></script>
 
 {% endblock %}
