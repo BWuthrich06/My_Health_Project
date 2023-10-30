@@ -3,3 +3,19 @@
     height: 600px;
 }
 
+body.homepage-container {
+    background-image: url("/static/images/2fc30b45-a675-45f5-8a81-bba2f8707e7a_World_Mental_Health.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.introduction {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    margin: 300px 0 auto;
+    margin-left: -400px;
+    left: 50%;
+    max-width: 800px;
+}

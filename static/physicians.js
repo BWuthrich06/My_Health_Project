@@ -111,7 +111,7 @@ if (findPhysicianButton) {
                     }};
 
 
-}}}
+}})}
 ;
 
 
@@ -190,7 +190,7 @@ function getNearbyDoctors(latLong) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (let result of results) {
                     allResults.push(result)
-                }
+                };
                 
                 if (pagination && pagination.hasNextPage && count < 3) {
                     //Sleep delay for next page request
@@ -198,12 +198,11 @@ function getNearbyDoctors(latLong) {
                     // await sleep(1000);
                     
                     //next page request
-                    count += 1
-                    console.log(count)
+                    count += 1;
+                    console.log(count);
                     pagination.nextPage();
                         
                 } else {
-                    console.log('resolved the promise', allResults);
                     resolve({results: allResults});
                 }
 
