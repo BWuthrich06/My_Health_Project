@@ -6,78 +6,77 @@
 
   <div class="row">
     <div class="col-12">
-      <h1>Welcome, {{ name }}</h1>
+      <div id="profile_welcome">
+        <h1>Welcome, {{ name }}</h1>
+      </div>
     </div>
   </div>
   
   <div class="row">
     <div class="col-12">
-      <h3>My Health Conditions</h3>
+      <div id="health_condition_group">
+        <h3>My Health Conditions</h3>
+      </div>
     </div>
   </div>
   
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-4">
+  <div id="saved_user_conditions">
+    <!--If user has saved conditions-->
+    {% if all_user_conditions %}
+      <div class="row">
 
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-4">
-
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-4">
-
-    </div>
-  </div>
-
-<div id="saved_user_conditions">
-<!--If user has saved conditions-->
-{% if all_user_conditions %}
-
-  <!--Loop through each condition-->
-  {% for user_condition in all_user_conditions %}
-  <br>
-  <div class="saved_condition">
-    <!--Condition title and url link-->
-    <p class="saved_condition_name"><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a>
-
-    <!--Delete condition button-->
-    <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition"><i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button></p>
-  
-    <!--Lists synonyms conditions-->
-    <p class="saved_synonyms"><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
-
-    <!--Shows date condition added to profile-->
-    <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
-
-    <!--Comments box-->
-    <div class="form-floating">
-      <form>
-        <label for="floatingTextarea">Comments</label>
-        <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea><br>
-        <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
+      <!--Loop through each condition-->
+      {% for user_condition in all_user_conditions %}<br>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          
+          <div class="saved_condition">
+            <!--Condition title and url link-->
+            <p class="saved_condition_name"><a href ="{{ user_condition.condition.url }}">{{ user_condition.condition.title }}</a>
         
-    
-        <!--Comments user entered will show up here as list-->
-        <p class="saved_comments"><br><br>Your Comments:</p>
-        {% if user_condition.comments %}
-          <ul id="user_comments">
-            {% for comment in user_condition.comments %}
-                <li> {{ comment.comment }}
-                  <!--For each comment, checkbox to delete-->
-                <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li>
+            <!--Delete condition button-->
+            <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition">
+              <i class="bi bi-trash" id="{{ user_condition.favorite_id}}">Delete</i></button></p>
+          
+            <!--Lists synonyms conditions-->
+            <p class="saved_synonyms"><b>Synonyms:</b> {{ user_condition.condition.all_synonyms }}</p>
+        
+            <!--Shows date condition added to profile-->
+            <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+        
+            <!--Comments box-->
+            <div class="form-floating">
+              <form>
+                <label for="floatingTextarea">Comments</label>
+                <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea><br>
+                <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
                 
-            {% endfor %}
-          </ul> 
-          <!--Delete checkboxes checked of comments-->
-          <br>
-          <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
+                <!--Comments user entered will show up here as list-->
+                <p class="saved_comments"><br><br>Your Comments:</p>
+                {% if user_condition.comments %}
+                  <ul id="user_comments">
+                    {% for comment in user_condition.comments %}
+                        <li> {{ comment.comment }}
+                          <!--For each comment, checkbox to delete-->
+                        <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li>
+                        
+                    {% endfor %}
+                  </ul> 
+                  <!--Delete checkboxes checked of comments-->
+                  <br>
+                  <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button>
+        
+                {% endif %}
+              </form>
+            </div>
+          </div>
+        </div><br><br><br>
+        {% endfor %}
+      </div>
 
-        {% endif %}
-      </form>
     </div>
   </div>
-</div><br><br><br>
 
-  {% endfor %}
+  
 {% endif %}
 
 <div id="recent_vital">
