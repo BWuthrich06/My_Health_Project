@@ -126,6 +126,10 @@ h1.welcome {
 
 /*Profile page*/
 
+body#profile-container {
+    background-color: #9FCBD1;
+}
+
 #profile_welcome {
     text-align: left;
     padding-top: 40px;
@@ -144,13 +148,29 @@ h1.welcome {
     padding-bottom: 60px;   
 }
 
-#saved_condition_name {
+.saved_condition_name {
     font-size: 24px;
 }
 
+.saved_synonyms {
+    padding-left: 20px;
+}
 
+.saved_date {
+    padding-left: 20px;
+}
 
+.form-floating {
+    padding-left: 20px;
+}
 
+.form-control {
+    border: 2px solid black;
+}
+
+.delete_comment_button {
+    padding-left: 200px;
+}
 
 
 /*Vital Sign Record Form Page*/
@@ -350,6 +370,36 @@ body#search_physician_page {
 #a_to_z_intro {
     text-align: center;
     margin: 0 auto;
+}
+
+#a {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 48px;
+}
+
+#b {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#c {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#d {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#e {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
 }
 
 
