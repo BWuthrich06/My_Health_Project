@@ -21,15 +21,13 @@ body.homepage-container {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    padding-bottom: 50px;
 }
 
 footer {
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: 20px;
     width: 100%;
-    background-color: #50919F;
     text-align:left;
 }
 
@@ -41,16 +39,33 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Proto', serif; 
 }
 
-h1#welcome {
+h1.welcome {
     font-size: 50px;
+    margin-left: 20px;
 }
 
-#email {
+.email {
     font-style: italic;
 }
 
-#password {
+.email input {
+    margin-left: 30px;
+}
+
+.password {
     font-style: italic;
+}
+
+.password input {
+    margin-left: 4px;
+}
+
+.name{
+    font-style: italic;
+}
+
+.name input {
+    margin-left: 27px;
 }
 
 #search_health_condition {
@@ -122,5 +137,45 @@ body#search_physician_page {
 
 #physicianResultsContainer {
     background-color: #F2C5B2;
-    width: 600px
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+}
+
+#search_physician_header {
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 38%;
+}
+
+#physician_search {
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 38%;
+}
+
+body#new_user_page {
+    background-image: url("/static/images/2fc30b45-a675-45f5-8a81-bba2f8707e7a_World_Mental_Health.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+#new_user_submit:hover {
+    background-color: #FFA381;
+}
+
+#new_account {
+    margin-left: 20px;
+}
+
+#all_health_conditions_header {
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 38%;
 }

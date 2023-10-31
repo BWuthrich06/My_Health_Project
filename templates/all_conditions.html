@@ -11,6 +11,7 @@
 </head>
 {% block body %}<br>
 
+<div id="all_health_conditions_header">
 <h1>Health Conditions A to Z</h1><br>
 
 <p>Welcome to our comprehensive Health Conditions A-Z page,<br>
@@ -48,21 +49,21 @@
     <a href="#z">Z</a>
   </span>
 </h3><br>
+</div>
 
 <h2 id ="a">A</h2>
  
   <ul>
     {% for condition in conditions %}
       {% if condition.title.startswith('A') and condition.url %}
-      
         <a href= "{{ condition.url }}">{{ condition.title }}</a>
       
         <!--Button to add to personal conditions-->
         <button id="{{ condition.condition_id }}" class="all_condition_add">+ Add</button><p></p>
-
       {% endif %}
     {% endfor %}
   </ul>
+
 
 <h2 id ="b">B</h2>
  

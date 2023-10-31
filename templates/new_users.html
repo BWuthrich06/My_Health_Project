@@ -2,21 +2,25 @@
 {% block title %}Create account{% endblock %}
 
 {% block body %}
-  <h1>Welcome to Taking Care</h1>
+<body id="new_user_page"><br>
+  <h1 class="welcome">Welcome to Continuing Care</h1>
   <br>
 
+  <div id="new_account">
   <h3>Create a new account</h3>
   <br>
 
   <form action="/users" method="POST">
     
-    <p>Name <input type="text" name="name"></p>
-    <p>Email <input type="text" name="email"></p>
-    <p>Password <input type="password" name="password"></p>
+    <p class="name">Name <input type="text" name="name"></p>
+    <p class="email">Email <input type="text" name="email"></p>
+    <p class="password">Password <input type="password" name="password"></p>
     <br>
     
-    <p><input type="submit"></p>
+    <p><input id="new_user_submit" type="submit"></p>
   </form>
+  </div>
 
+</body>
 {% endblock %}
 

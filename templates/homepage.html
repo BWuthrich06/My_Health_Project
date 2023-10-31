@@ -4,15 +4,15 @@
 {% block body %}<br>
 <body class="homepage-container">
   
-  <h1 id="welcome">Welcome to Continuing Care</h1><br>
+  <h1 class="welcome">Welcome to Continuing Care</h1><br>
   
   {% if 'email' not in session %}
   <div id="login-new-user">
     <h3 id="login">Login</h3><br>
   
     <form action="/login" method="POST">
-      <p id="email">Email <input type="text" name="email"></p>
-      <p id="password">Password <input type="password" name="password"></p>
+      <p class="email">Email <input type="text" name="email"></p>
+      <p class="password">Password <input type="password" name="password"></p>
       <br>
       <p><input id="login_button" type="submit"></p>
     </form><br><br>
