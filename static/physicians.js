@@ -256,7 +256,7 @@ function physicianResults(relDetails) {
 
     //Add name to string
     if (relDetails.name) {
-        let string1 = relDetails.name;
+        let string1 = '<span class="physician_name">' + relDetails.name; + '</span>'
         detailString += '<br>' + string1;
     }
 

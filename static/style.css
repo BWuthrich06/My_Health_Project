@@ -298,5 +298,8 @@ body#vital_sign_form_page-container {
 .addPhysician {
     font-size: 14px;
     position: relative;
-    
+}
+
+.physician_name {
+    font-weight: bold;
 }
