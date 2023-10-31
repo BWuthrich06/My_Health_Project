@@ -3,22 +3,29 @@
 
 {% block body %}
 <body id="new_user_page"><br>
-  <h1 class="welcome">Welcome to Continuing Care</h1>
-  <br>
 
-  <div id="new_account">
-  <h3>Create a new account</h3>
-  <br>
+  <div class="container-fluid">
 
-  <form action="/users" method="POST">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="welcome">Welcome to Continuing Care</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div id="new_account">
+          <h3>Create a new account</h3><br>
+            <form action="/users" method="POST">
+              <p class="name">Name<br><input type="text" name="name"></p>
+              <p class="email">Email<br><input type="text" name="email"></p>
+              <p class="password">Password<br><input type="password" name="password"></p><br>
+              <p><input id="new_user_submit" type="submit"></p>
+            </form>
+        </div>
+      </div>
+    </div>
     
-    <p class="name">Name <input type="text" name="name"></p>
-    <p class="email">Email <input type="text" name="email"></p>
-    <p class="password">Password <input type="password" name="password"></p>
-    <br>
-    
-    <p><input id="new_user_submit" type="submit"></p>
-  </form>
   </div>
 
 </body>

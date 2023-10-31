@@ -2,11 +2,31 @@
 {% block title %}Welcome {{ name }} {% endblock %}
 
 {% block body %}
-<br>
-  <h1>Welcome, {{ name }}</h1>
-  <br><br><br>
- 
-  <h3>My Health Conditions</h3><br>
+<div class="container">
+
+  <div class="row">
+    <div class="col-12">
+      <h1>Welcome, {{ name }}</h1>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <h3>My Health Conditions</h3>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4">
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+
+    </div>
+  </div>
 
 <div id="saved_user_conditions">
 <!--If user has saved conditions-->
@@ -112,6 +132,7 @@
 
 <script src="/static/comments.js"></script>
 <script src="static/physicians.js"></script>
-  
+ 
+</div>
 {% endblock %}
 

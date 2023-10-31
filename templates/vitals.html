@@ -3,30 +3,57 @@
 
 {% block body %}<br>
 <body id="vital_sign_form_page-container">
-  
-  <div id="intro_vital_sign_form">
-    <p>Take control of your health by keeping track of your vital signs.<br>
-       Allows easy record keeping for you and your provider.</p>
-  </div>
 
-  <div id="enter_vitals">
-    <h4>Vitals Signs to Record:</h4>
-  </div>
+  <div class="container">
 
-  <div id="vital_sign_form_container">
-    <form id="vitalSignForm">
+    <div class="row">
+      <div class="col-12">
+        <div id="intro_vital_sign_form">
+          <p>Take control of your health by keeping track of your vital signs.<br>
+             Allows easy record keeping for you and your provider.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div id="enter_vitals">
+          <h4 id="enter_vitals">Vitals Signs to Record:</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div id="vital_sign_form_container">
+          <form id="vitalSignForm">
+            
+            <p id="systolic_form">Systolic<br> Blood Pressure: <input type="text" id="systolic" name="systolic"></p>
+            <p id="diastolic_form">Diastolic<br> Blood Pressure: <input type="text" id="diastolic" name="diastolic"></p><br>
+            <p id="heart_rate_form">Heart Rate: <input type="text" id="heart_rate" name="heart_rate"></p>
+            <p id="oxygen_form">Oxygen<br> Saturation: <input type="text" id="oxygen" name="oxygen"></p><br>
+            <p id="weight_form">Weight (lbs): <input type="text" id="weight" name="weight"></p><br>
+            <p id="glucose_form">Glucose: <input type="text" id="glucose" name="glucose"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div id="vital_submit_button">
+          <button type="submit" class="submit-vitals">Save</button>
+        </div>
+        </form>
+      </div>
+    </div>
       
-      <p id="systolic_form">Systolic<br> Blood Pressure: <input type="text" id="systolic" name="systolic"></p>
-      <p id="diastolic_form">Diastolic<br> Blood Pressure: <input type="text" id="diastolic" name="diastolic"></p><br>
-      <p id="heart_rate_form">Heart Rate: <input type="text" id="heart_rate" name="heart_rate"></p>
-      <p id="oxygen_form">Oxygen<br> Saturation: <input type="text" id="oxygen" name="oxygen"></p><br>
-      <p id="weight_form">Weight (lbs): <input type="text" id="weight" name="weight"></p><br>
-      <p id="glucose_form">Glucose: <input type="text" id="glucose" name="glucose"></p>
-  </div>
-      <button type="submit" class="submit-vitals">Save</button>
-    </form>
+    </div>
+    </div>
+
   
   <script src='static/vitals.js'></script>
+</div>
+
 </body>
 {% endblock %}
 

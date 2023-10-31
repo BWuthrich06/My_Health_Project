@@ -3,18 +3,29 @@
 
 {% block body %}<br>
 <body id="search_condition_page-container">
-<div id="search_health_condition">
-  <h1>Search for Health Condition</h1><br>
 
-    <form action = "/conditions/results">
-      <input type="text", name="result">
-      <button id = search_result type="submit">Search</button>
-    </form><br>
+  <div class="container">
 
-    <p>Enter full or partial name of health condition
-       you are seeking to obtain more information.<br> 
-       You may also search a related body part or symptom.</p>
-</div>
+    <div class="row">
+      <div class="col-12">
+        <div id="search_health_condition">
+          <h1>Search for Health Condition</h1><br>
+
+            <form action = "/conditions/results">
+              <input type="text", name="result">
+              <button id = search_result type="submit">Search</button>
+            </form><br>
+        
+            <p>Enter full or partial name of health condition
+               you are seeking to obtain more information.<br> 
+               You may also search a related body part or symptom.</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
 </body>
 {% endblock %}
 
