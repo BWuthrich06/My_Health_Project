@@ -2,15 +2,18 @@
 {% block title %}Search Results{% endblock %}
 
 {% block body %}<br>
-
-<p class="intro_results">Here is a list of health conditions matching your search criteria.<br>
+<body id="condition_results-container">
+<div id="intro_results">
+<p>All health conditions matching your search criteria.<br>
    If you wish to see more information on a health condition, click<br>
    on the name of health condition.</p>
 
-<p class="intro_results">Click "Add" next to condition you would like to save to your profile.</p><br><br>
+<p>Click "Add" next to condition you would like to save to your profile.</p><br><br>
+</div>
 
+<div id="all_search_condition_results">
 <!--Link to go back to search page.-->
-<p id="back_to_search"><a href ="/conditions/search">Go Back to Search</a></p>
+<p id="back_to_search"><a href ="/conditions/search">Back to Search</a></p>
 
 <h1>Search results for "{{ result }}"</h1><br>
 
@@ -22,23 +25,25 @@
         <p class="condition_result"><a href="{{ condition.url }}">{{ condition.title }}</a>
     
         <!--Button to add to personal conditions-->
-        <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
+       <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
 
         <!--Loop through all conditions synonyms-->
         {% if condition.all_synonyms %}
-            <p class="result_synonyms"><b>Synonyms: </b><span>{{ condition.all_synonyms }}</span></p>
+            <p class="result_synonyms"><b>Similar Names: </b><span>{{ condition.all_synonyms }}</span></p>
         {% else %}
-            <p class="result_synonyms"><b>Synonyms: </b> None</p>
+            <p class="result_synonyms"><b>Similar Names: </b> None</p>
 
         {% endif %}  
                 
     {% endif %}<br><br>
   
 {% endfor %}
+</div>
 
 
 
 <script src="/static/conditions.js"></script>
+</body>
 {% endblock %}
 
 

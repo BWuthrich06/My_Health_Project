@@ -65,7 +65,7 @@ if (findPhysicianButton) {
                             let physicianDetails = document.querySelector("#physicianResultsContainer");
                             searchResults = document.createElement('h2');
                             physicianDetails.appendChild(searchResults);
-                            searchResults.innerHTML = `Search Results for ${zipcode}:`
+                            searchResults.innerHTML =`Results near ${zipcode}:`
                         
                             //Array to hold all relDetails
                             allDetails = []
@@ -279,6 +279,7 @@ function physicianResults(relDetails) {
         const url = document.createElement('a');
         url.href = relDetails.url;
         url.innerText = "View Map";
+        url.classList.add('hyperlink');
         const string4 = url.outerHTML;
         detailString += '<br>' + string4 + '<br>';
     };

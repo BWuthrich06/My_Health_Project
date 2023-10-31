@@ -76,9 +76,11 @@
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
 
+          
           <form action="/logout" method="post">
             <button type="submit">Logout</button>
           </form>
+          
         </div>
       </div>
     </nav>{% endblock %}
@@ -92,6 +94,13 @@
       </h5><br>
     {% endfor %}
 
+
+    <footer>
+      <h5>Contact</h5>
+      <p>Email: ContinuingCare@123.com</p>
+      <p>Phone: 987-654-3210</p>
+    </footer>
+
     
   </body>
     {% endblock %}
@@ -99,11 +108,6 @@
     {% block after_body %}{% endblock %}
   
 
-{% block footer %}
-  <footer>
-    <h5>Contact</h5>
-    <p>Email: ContinuingCare@123.com</p>
-    <p>Phone: 987-654-3210</p>
-  </footer>
+
+
 </html>
-{% endblock %}

@@ -1,9 +1,10 @@
+/*Vital Sign Graphs */
 .chart-container {
     width: 1000px;
     height: 600px;
 }
 
-
+/*Login paragraph about Continuing Care*/
 .login-introduction {
     text-align: center;
     position: absolute;
@@ -16,21 +17,50 @@
     font-weight: 400;
 }
 
+/*Profile page about Continuing Care*/
+.profile-introduction {
+    
+        text-align: left;
+        position: absolute;
+        top: 100px;
+        margin: 200px 0 auto;
+        margin-left: -600px;
+        left: 33%;
+        max-width: 800px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+#link_to_profile {
+    position: absolute;
+    left: 2%;
+    top: 25%;
+    font-size: 24px;
+}
+
+.hyperlink:hover {
+    color: orange;
+}
+
+/*Background image on homepage*/
 body.homepage-container {
     background-image: url("/static/images/2fc30b45-a675-45f5-8a81-bba2f8707e7a_World_Mental_Health.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 footer {
-    position: fixed;
     bottom: 0;
     left: 20px;
     width: 100%;
     text-align:left;
 }
 
+/*login input*/
 #login-new-user {
     margin-left: 20px;
 }
@@ -72,35 +102,55 @@ h1.welcome {
     text-align: center;
     position: absolute;
     top: 10%;
-    left: 38%;
+    left: 33%;
 }
 
 #vital_sign_form_container {
     text-align: center;
     position: absolute;
-    top: 35%;
+    top: 28%;
     left:38%;
     border: 2px solid black;
     padding: 30px;
+    padding-left: 60px;
     width: 450px;
+    background-color: #FDF2EE;
 }
+
 
 #vitalSignForm {
     text-align: left;
 }
 
 .submit-vitals {
-    display: block;
-    margin-top: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 780px;
+    left: 47.5%;
+}
+
+
+#heart_rate_form input {
+    margin-left: 30px;
+}
+
+#oxygen_form input {
+    margin-left: 30px;
+}
+
+#weight_form input {
+    margin-left: 18px;
+}
+
+#glucose_form input {
+    margin-left: 45px;
 }
 
 #enter_vitals {
-    text-align: center;
     position: absolute;
-    left: 38%;
-    top: 30%;
+    left: 44%;
+    top: 20%;
 }
 
 #new_user_button {
@@ -120,6 +170,7 @@ h1.welcome {
     background-color: #FFA381;
 }
 
+/*Background for search for health condition page.*/
 body#search_condition_page-container {
     background-image: url("/static/images/20191219170611-GettyImages-1152794789.jpeg");
     background-size: cover;
@@ -127,6 +178,7 @@ body#search_condition_page-container {
     background-attachment: fixed;
 }
 
+/*Background image for search for physician page*/
 body#search_physician_page {
     background-image: url("/static/images/thomas-rey-Oadvsf3xH9E-unsplash.jpg");
     background-size: cover;
@@ -134,29 +186,25 @@ body#search_physician_page {
     background-attachment: fixed;
 }
 
-
+/*Physician Results*/
 #physicianResultsContainer {
-    background-color: #F2C5B2;
+    background-color: #FDF2EE;
     width: 600px;
     position: absolute;
-    top: 50%;
-    left: 30%;
+    top: 35%;
+    left: 33%;
+    text-align: center;
 }
 
+/*Intro for search for physician page.*/
 #search_physician_header {
     text-align: center;
     position: absolute;
     top: 10%;
-    left: 38%;
+    left: 40%;
 }
 
-#physician_search {
-    text-align: center;
-    position: absolute;
-    top: 20%;
-    left: 38%;
-}
-
+/*Background image for create new user page.*/
 body#new_user_page {
     background-image: url("/static/images/2fc30b45-a675-45f5-8a81-bba2f8707e7a_World_Mental_Health.jpg");
     background-size: cover;
@@ -164,18 +212,91 @@ body#new_user_page {
     background-attachment: fixed;
 }
 
-
+/*create new user submit button*/
 #new_user_submit:hover {
     background-color: #FFA381;
 }
 
+/*Inputs for new account*/
 #new_account {
     margin-left: 20px;
 }
 
+/*Intro on Health Condition A to Z page*/
 #all_health_conditions_header {
     text-align: center;
     position: absolute;
     top: 20%;
     left: 38%;
+}
+
+/*Navbar search button*/
+.btn-outline-success {
+    border-color: black;
+    color: black;
+}
+
+/*Navbar search hover*/
+.btn-outline-success:hover {
+    background-color: #FFA381;
+}
+
+/*Navbar search input*/
+.d-flex {
+    margin-right: 50px;
+}
+
+/*Find physician submit button hover*/
+#search_result:hover {
+    background-color: #FFA381;
+}
+
+/*Search results page listing results*/
+#all_search_condition_results {
+    margin-left: 20px;
+    position: absolute;
+    top: 30%;
+}
+
+/*Intro on condition search results page*/
+#intro_results {
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 38%;
+}
+
+/*Background color for page on search results for conditions*/
+body#condition_results-container {
+    background-color: #DAD8F0;
+}
+
+/*Search result title of each condition result.*/
+.condition_result {
+    font-size: 24px;
+}
+
+/*Add condition button on search results page*/
+.condition_add {
+    font-size: 14px;
+}
+
+/*Vital sign form page background*/
+body#vital_sign_form_page-container {
+    background-image: url("/static/images/ocean sunset.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#intro_vital_sign_form {
+    position: absolute;
+    left: 38%;
+    text-align: center;
+}
+
+.addPhysician {
+    font-size: 14px;
+    position: relative;
+    
 }
