@@ -84,16 +84,18 @@
         </div>
       </div>
     </nav>
-  </head>
-  {% endblock %}
-  
-  {% block body %}
-  <body>
+
     {% for msg in get_flashed_messages() %}
       <h5 class="flash-msg">
         {{ msg }}
       </h5><br>
     {% endfor %}
+  </head>
+  {% endblock %}
+  
+  {% block body %}
+  <body>
+   
 
   </body>
     {% endblock %}

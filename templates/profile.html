@@ -25,7 +25,7 @@
 
   <div class="row">
     <div class="col-12">
-      <a href="/vitals" id="new_vital_link">Record New Vital</a>
+      <a href="/vitals" class="hyperlink" id="new_vital_link">Record New Vital</a>
     </div>
   </div>
 
@@ -80,12 +80,12 @@
           <div class="col-sm-12 col-md-6 col-lg-6">
           
             <div class="saved_condition">
-              <p><a href ="{{ user_condition.condition.url }}" class="saved_condition_name">{{ user_condition.condition.title }}</a>
+              <p><a href ="{{ user_condition.condition.url }}" class="saved_condition_name hyperlink">{{ user_condition.condition.title }}</a>
               <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition">
               <i class="bi bi-trash" id="{{ user_condition.favorite_id}}"></i></button></p>
               <p class="saved_synonyms"><b>Similar Names:</b> {{ user_condition.condition.all_synonyms }}</p>
               <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
-            </div>
+            
 
             <!--Comments box-->
             <div class="form-floating">
@@ -107,6 +107,7 @@
                 <br><br><br>
                 {% endif %}
               </form>
+            </div>
             </div>
           </div><br><br><br>
         {% endfor %}
@@ -131,7 +132,7 @@
             <p><b>{{ physician.name }}</b><br>
               {{ physician.address }}<br>
               {{ physician.phone }}<br>
-              <a href="{{ physician.url }}">View Map</a></p>
+              <a href="{{ physician.url }}" class="hyperlink">View Map</a></p>
               <form action="/delete_physician", method="POST">
                 <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
                 <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
