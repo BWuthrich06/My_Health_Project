@@ -66,58 +66,89 @@
   </nav>
 
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {% endblock %}
 
-{% block body %}<br>
+{% block body %}
+<body id="vital_sign_graph_page-container">
 
-<h1>Vital Signs</h1><br><br><br>
+<div class="container">
 
-    <p></p>
+    <div class="row">
+        <div class="col-12">
+            <div id="vital_graph_page_header">
+                <h1>Vital Signs</h1>
+            </div>
+        </div>
+    </div>
 
-<h5 id="link_to_graph">View Associated Graph</h5>
-    <p><a href="#bp_chart_graph" class="hyperlink">Blood Pressure</a></p>
-    <p><a href="#hr_chart_graph" class="hyperlink">Heart Rate</a></p>
-    <p><a href="#oxygen_chart_graph" class="hyperlink">Oxygen Saturation</a></p>
-    <p><a href="#weight_chart_graph" class="hyperlink">Weight</a></p>
-    <p><a href="#glucose_chart_graph" class="hyperlink">Glucose</a></p><br><br><br>
+    <div class="row">
+        <div class="col-12">
+            <div id="link_to_graphs_header">
+                <h5 id="link_to_graph">View Associated Graph</h5>
+            </div>
+        </div>
+    </div>
 
-<div class="chart-container" id="bp_chart_graph">
-    <h3>Blood Pressure</h3>
-    <p>Normal Systolic Range: 90-120</p>
-    <p>Normal Diastolic Range: less than 80</p>
-    <canvas id="blood_pressure_chart" width="600" height="300"></canvas>
-</div><br><br><br><br>
+    <div class="row">
+        <div class="col-12">
+            <div id="links_to_graphs">
+                <p><a href="#bp_chart_graph" class="hyperlink">Blood Pressure</a></p>
+                <p><a href="#hr_chart_graph" class="hyperlink">Heart Rate</a></p>
+                <p><a href="#oxygen_chart_graph" class="hyperlink">Oxygen Saturation</a></p>
+                <p><a href="#weight_chart_graph" class="hyperlink">Weight</a></p>
+                <p><a href="#glucose_chart_graph" class="hyperlink">Glucose</a></p>
+            </div>
+        </div>
+    </div>
 
-<div class="chart-container" id="hr_chart_graph">
-    <h3>Heart Rate</h3>
-    <p>Normal Range: 60-100</p>
-    <canvas id="heart_rate_chart"></canvas>
-</div><br><br><br>
+    <div class="outer_graph">
+        <div class="chart-container" id="bp_chart_graph">
+            <h3>Blood Pressure</h3>
+            <p>Normal Systolic Range: 90-120</p>
+            <p>Normal Diastolic Range: less than 80</p>
+            <canvas id="blood_pressure_chart"></canvas>
+        </div>
+    </div>
 
-<div class="chart-container" id="oxygen_chart_graph">
-    <h3>Oxygen Saturation</h3>
-    Normal Range: 92-100
-    <canvas id="oxygen_chart"></canvas>
-</div><br><br><br>
+    <div class="outer_graph">
+        <div class="chart-container" id="hr_chart_graph">
+            <h3>Heart Rate</h3>
+            <p>Normal Range: 60-100</p>
+            <canvas id="heart_rate_chart"></canvas>
+        </div>
+    </div>
 
-<div class="chart-container" id="weight_chart_graph">
-    <h3>Weight</h3>
-    <canvas id="weight_chart"></canvas>
-</div><br><br>
+    <div class="outer_graph">
+        <div class="chart-container" id="oxygen_chart_graph">
+            <h3>Oxygen Saturation</h3>
+            <p>Normal Range: 92-100</p>
+            <canvas id="oxygen_chart"></canvas>
+        </div>
+    </div>
 
-<div class="chart-container" id="glucose_chart_graph">    
-    <h3>Glucose</h3>
-    <canvas id="glucose_chart"></canvas>
-</div><br><br>
 
+    <div class="outer_graph">
+        <div class="chart-container" id="weight_chart_graph">
+            <h3>Weight</h3>
+            <canvas id="weight_chart"></canvas>
+        </div>
+    </div>
+
+    <div class="outer_graph">
+        <div class="chart-container" id="glucose_chart_graph">    
+            <h3>Glucose</h3>
+            <canvas id="glucose_chart"></canvas>
+        </div>
+    </div>
 
 <script src="static/chart.js"></script>
+
+</div>
+
+</body>
 
 {% endblock %}
 

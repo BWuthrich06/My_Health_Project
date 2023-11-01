@@ -2,6 +2,7 @@
 {% block title %}Vital Signs{% endblock %}
 
 {% block body %}
+<body id="vital_sign_all_result_page-container">
 
 <div class="container">
 
@@ -9,14 +10,6 @@
         <div class="col-12">
             <div id="header_vital_result_name">
                 <h1>{{ name }},</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div id="vital_sign_result_header">
-                <h3>Your Vital Signs Record:</h3>
             </div>
         </div>
     </div>
@@ -38,83 +31,81 @@
             </div>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div id="blood_pressure_result">
-                <h3>Blood Pressure</h3>
-                <ul>
-                {% for vital in vitals %}
-                    {% if vital.systolic and vital.diastolic %}
-                        <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.systolic }}/{{ vital.diastolic }}</li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div id="heart_rate_result">
-                <h3>Heart Rate</h3>
-                <ul>
-                {% for vital in vitals %}
-                    {% if vital.heart_rate %}
-                        <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.heart_rate }}</li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div id="oxygen_result">
-                <h3>Oxygen Saturation</h3>
-                <ul>
-                {% for vital in vitals %}
-                    {% if vital.oxygen %}
-                        <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.oxygen }}</li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div id="weight_result">
-                <h3>Weight</h3>
-                <ul>
-                {% for vital in vitals %}
-                    {% if vital.weight %}
-                        <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.weight }}</li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-4">
-            <div id="glucose_result">
-                <h3>Glucose</h3>
-                <ul>
-                {% for vital in vitals %}
-                    {% if vital.glucose %}
-                        <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.glucose }}</li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
-        
-    </div>
 
+    <div class="row">
+        <div class="col-12">
+            <div id="vital_sign_result_header">
+                <h3>Your Vital Signs Record:</h3>
+            </div>
+        </div>
+    </div>
+    
+    <div id="vital_sign_boxes">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div id="blood_pressure_result">
+                    <h3>Blood Pressure</h3>
+                    <ul>
+                    {% for vital in vitals %}
+                        {% if vital.systolic and vital.diastolic %}
+                            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.systolic }}/{{ vital.diastolic }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div id="heart_rate_result">
+                    <h3>Heart Rate</h3>
+                    <ul>
+                    {% for vital in vitals %}
+                        {% if vital.heart_rate %}
+                            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.heart_rate }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div id="oxygen_result">
+                    <h3>Oxygen Saturation</h3>
+                    <ul>
+                    {% for vital in vitals %}
+                        {% if vital.oxygen %}
+                            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.oxygen }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div id="weight_result">
+                    <h3>Weight</h3>
+                    <ul>
+                    {% for vital in vitals %}
+                        {% if vital.weight %}
+                            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.weight }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-4">
+                <div id="glucose_result">
+                    <h3>Glucose</h3>
+                    <ul>
+                    {% for vital in vitals %}
+                        {% if vital.glucose %}
+                            <li>{{ vital.date_time.strftime("%m/%d/%Y %I:%M %p") }}:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ vital.glucose }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>   
+        </div>
+    </div>
 </div>
 
-
-
-
-
-
-
-
- 
-
-
-
+</body>
 {% endblock %}
 

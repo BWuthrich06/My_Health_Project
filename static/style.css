@@ -1,8 +1,4 @@
-/*Vital Sign Graphs */
-.chart-container {
-    width: 1000px;
-    height: 600px;
-}
+
 
 
 /*Login Page*/
@@ -130,8 +126,19 @@ h1.welcome {
 
 /*Profile page*/
 
-body#profile-container {
-    background-color: #9FCBD1;
+body#profile-container::after {
+    content: "";
+    background-image: url("/static/images/eugene-deshko-ic_ED5M5evg-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
 }
 
 #profile_welcome {
@@ -241,7 +248,8 @@ body#vital_sign_form_page-container {
 #intro_vital_sign_form {
     text-align: center;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 100px;
+    font-size: 20px;
 }
 
 #vitalSignForm {
@@ -294,6 +302,130 @@ body#vital_sign_form_page-container {
 }
 
 
+/*All Vital Sign Results Page*/
+
+body#vital_sign_all_result_page-container {
+    background-image: url("/static/images/ocean sunset.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#header_vital_result_name {
+    padding-top: 100px;
+}
+
+#intro_all_vital_results {
+    padding-top: 30px;
+    padding-left: 20px;
+}
+
+#link_to_vital_graph_page {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+#vital_sign_result_header {
+    padding-top: 100px;
+    padding-left: 20px;
+}
+
+#blood_pressure_result {
+    padding: 20px;
+    padding-left: 30px;
+    border: 2px solid black;
+    background-color: #FDF2EE;
+    width: 350px;
+    margin-top: 50px;
+}
+
+#heart_rate_result {
+    padding: 20px;
+    padding-left: 30px;
+    border: 2px solid black;
+    background-color: #DAD8F0;
+    width: 350px;
+    margin-top: 50px;
+}
+
+#oxygen_result {
+    padding: 20px;
+    padding-left: 30px;
+    border: 2px solid black;
+    background-color: #9FCBD1;
+    width: 350px;
+    margin-top: 50px;
+}
+
+#weight_result {
+    padding: 20px;
+    padding-left: 30px;
+    border: 2px solid black;
+    background-color: aliceblue;
+    width: 350px;
+    margin-top: 50px;
+}
+
+#glucose_result {
+    padding: 20px;
+    padding-left: 30px;
+    border: 2px solid black;
+    background-color: #FFA381;
+    width: 350px;
+    margin-top: 50px;
+}
+
+#vital_sign_boxes {
+    padding: 20px;
+}
+
+
+
+/*Vital Sign Graph Page*/
+
+body#vital_sign_graph_page-container {
+    background-image: url("/static/images/ocean sunset.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#vital_graph_page_header {
+    padding-top: 100px;
+    padding-bottom: 40px;
+}
+
+#link_to_graphs_header {
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+#links_to_graphs {
+    padding-bottom: 60px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+
+.chart-container {
+    max-width: 1000px;
+    max-height: 600px;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+
+
+.outer_graph {
+    background-color:#FDF2EE;
+    padding: 30px;
+    max-width: 1100px;
+    margin: auto;
+    margin-bottom: 100px;
+}
+
+
+
 
 
 
@@ -305,6 +437,7 @@ body#vital_sign_form_page-container {
     text-align: center;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 90px;
 }
 
 /*Background for search for health condition page.*/
@@ -328,14 +461,18 @@ body#search_condition_page-container {
 /*Intro on condition search results page*/
 #intro_results {
     text-align: center;
-    margin: 0 auto;
-    padding: 20px;
+    margin: auto;
+    padding-top: 100px;
+    padding: 100px;
     font-size: 20px;
 }
 
 /*Background color for page on search results for conditions*/
 body#condition_results-container {
-    background-color: #DAD8F0;
+    background-image: url("/static/images/davies-designs-studio-_UCVrH-ZIIg-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 /*Search result title of each condition result.*/
@@ -410,11 +547,19 @@ body#search_physician_page {
 
 /*All health conditions A to Z page*/
 
+body#all_condition_a_to_z-container{
+    background-image: url("/static/images/davies-designs-studio-_UCVrH-ZIIg-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 /*Intro on Health Condition A to Z page*/
 #all_health_conditions_header {
     text-align: center;
     margin: 0 auto;
-    padding: 20px;
+    padding-top: 100px;
+    padding-bottom: 20px;
 }
 
 #a_to_z {
@@ -611,6 +756,36 @@ body#search_physician_page {
     top: 0;
     z-index: 1000;
 }
+
+.navbar.bg-body-tertiary {
+    background-color: #7E7884!important ;
+}
+
+.nav-item {
+    font-size: 18px;
+    color: white;
+}
+
+.navbar-brand {
+    font-size: 22px;
+    padding-left: 10px;
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+
+
 
 
 
