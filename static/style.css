@@ -172,6 +172,33 @@ body#profile-container {
     padding-left: 200px;
 }
 
+#recent_vital_header {
+    padding-left: 1050px;
+}
+
+#new_vital_link {
+    padding-left: 1080px;
+}
+
+#saved_physician_profile {
+    padding-bottom: 60px;
+}
+
+.saved_physician_results_profile {
+    padding-left: 20px;
+    font-size: 18px;
+    padding-bottom: 200px;
+}
+
+h3.profile_section_title {
+    font-size: 30px;
+}
+
+
+
+
+
+
 
 /*Vital Sign Record Form Page*/
 
@@ -401,6 +428,134 @@ body#search_physician_page {
     padding-bottom: 40px;
     text-align: left;
 }
+
+#f{
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left; 
+}
+
+#g {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#h {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#i {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#j {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#k {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#l {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#m {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#n {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#o {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#p {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#q {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#r {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#s {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#t {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#u {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#v {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#w {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#x {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#y {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+#z {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    text-align: left;
+}
+
+
 
 
 

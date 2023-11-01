@@ -9,130 +9,141 @@
   <div class="row">
     <div class="col-12">
       <div id="profile_welcome">
-        <h1>Welcome, {{ name }}</h1>
+        <h1 class="welcome">Welcome, {{ name }}</h1>
       </div>
     </div>
   </div>
-  
+
+
+  <!--Recent Vital Sign-->
+  <div class="row">
+    <div class="col-12">
+      <div id="recent_vital_header">
+        <h3 class="profile_section_title">Most Recent Vitals</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <a href="/vitals" id="new_vital_link">Record New Vital</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-10">
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-2">
+      <div id="vitals_profile">
+        {% if vitals %}
+          <p>{{ vitals.date_time.strftime("%m/%d/%Y %I:%M %p") }}</p>
+      
+        {% if vitals.systolic and vitals.diastolic %}
+          <p>Blood pressure: {{ vitals.systolic }}/{{ vitals.diastolic }}<br>
+        {% endif %}
+      
+        {% if vitals.heart_rate %}
+          Heart Rate: {{ vitals.heart_rate }}<br>
+        {% endif %}
+      
+        {% if vitals.oxygen %}
+          Oxygen: {{ vitals.oxygen }}%<br>
+        {% endif %}
+      
+        {% if vitals.weight %}
+          Weight: {{ vitals.weight }} lbs<br>
+        {% endif %}
+      
+        {% if vitals.glucose %}
+          Glucose: {{ vitals.glucose }}<br>
+        {% endif %}
+      
+        {% else %}
+        No vital signs recorded.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-12">
       <div id="health_condition_group">
-        <h3>My Health Conditions</h3>
+        <h3 class="profile_section_title">My Health Conditions</h3>
       </div>
     </div>
   </div>
   
   <div id="saved_user_conditions">
-    <!--If user has saved conditions-->
     {% if all_user_conditions %}
       <div class="row">
-
-      <!--Loop through each condition-->
-      {% for user_condition in all_user_conditions %}<br>
-        <div class="col-sm-12 col-md-6 col-lg-6">
+        {% for user_condition in all_user_conditions %}<br>
+          <div class="col-sm-12 col-md-6 col-lg-6">
           
-          <div class="saved_condition">
-            <!--Condition title and url link-->
-            <p><a href ="{{ user_condition.condition.url }}" class="saved_condition_name">{{ user_condition.condition.title }}</a>
-        
-            <!--Delete condition button-->
-            <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition">
+            <div class="saved_condition">
+              <p><a href ="{{ user_condition.condition.url }}" class="saved_condition_name">{{ user_condition.condition.title }}</a>
+              <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition">
               <i class="bi bi-trash" id="{{ user_condition.favorite_id}}"></i></button></p>
-          
-            <!--Lists synonyms conditions-->
-            <p class="saved_synonyms"><b>Similar Names:</b> {{ user_condition.condition.all_synonyms }}</p>
-        
-            <!--Shows date condition added to profile-->
-            <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
-        
+              <p class="saved_synonyms"><b>Similar Names:</b> {{ user_condition.condition.all_synonyms }}</p>
+              <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
+            </div>
+
             <!--Comments box-->
             <div class="form-floating">
               <form>
                 <label for="floatingTextarea">Add Comment:</label>
-                <textarea class="form-control" name="comments-box" placeholder="Write comment here" id="comments-box"></textarea><br>
+                <textarea class="form-control" name="comments-box" placeholder="Type comment here" id="comments-box"></textarea><br>
                 <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
-                
-                <!--Comments user entered will show up here as list-->
                 <p class="saved_comments"><br>Your Comments:</p>
                 {% if user_condition.comments %}
                   <ul id="user_comments">
                     {% for comment in user_condition.comments %}
                         <li> {{ comment.comment }}
-                          <!--For each comment, checkbox to delete-->
                         <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li> 
                     {% endfor %}
                   </ul>
-                
                   <!--Delete checkboxes checked of comments-->
-                
-                  
-                    <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button><br><br><br><br>
-                  
+                  <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button><br><br><br><br>
                 {% else %}
                 <br><br><br>
                 {% endif %}
               </form>
             </div>
-          </div>
-        </div><br><br><br>
+          </div><br><br><br>
         {% endfor %}
       </div>
+    {% endif %}
+  </div>
 
+  <!--Saved Physicians-->
+  <div class="row">
+    <div class="col-12">
+      <div id="saved_physician_profile">
+        <h3 class="profile_section_title">My Physicians</h3>
+      </div>
     </div>
   </div>
 
+  <div class="saved_physician_results_profile">
+    <div class="row">
+      {% if saved_physicians %}
+        {% for physician in saved_physicians %}
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <p><b>{{ physician.name }}</b><br>
+              {{ physician.address }}<br>
+              {{ physician.phone }}<br>
+              <a href="{{ physician.url }}">View Map</a></p>
+              <form action="/delete_physician", method="POST">
+                <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
+                <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
+              </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No Saved Physicians</p>
+      {% endif %}
+    </div>
+  </div>
   
-{% endif %}
-
-<div id="recent_vital">
-  <h3>Most Recent Vitals</h3><br><br>
-  <a href="/vitals">Record New Vital</a>
-{% if vitals %}
-  <p>{{ vitals.date_time.strftime("%m/%d/%Y %I:%M %p") }}</p><br>
-
-  {% if vitals.systolic and vitals.diastolic %}
-    <p>Blood pressure: {{ vitals.systolic }}/{{ vitals.diastolic }}</p>
-  {% endif %}
-
-  {% if vitals.heart_rate %}
-    <p>Heart Rate: {{ vitals.heart_rate }}</p>
-  {% endif %}
-
-  {% if vitals.oxygen %}
-    <p>Oxygen: {{ vitals.oxygen }}%</p>
-  {% endif %}
-
-  {% if vitals.weight %}
-    <p>Weight: {{ vitals.weight }} lbs</p>
-  {% endif %}
-
-  {% if vitals.glucose %}
-    <p>Glucose: {{ vitals.glucose }}</p>
-  {% endif %}
-
-  {% else %}
-  <p>No vital signs recorded.</p>
-{% endif %}
-</div><br><br><br>
- 
-<div id="physician_results">
-{% if saved_physicians %}
-  <h3>My Physicians</h3><br><br><br>
-  {% for physician in saved_physicians %}
-    <p>{{ physician.name }}<br>
-    {{ physician.address }}<br>
-    {{ physician.phone }}<br>
-    <a href="{{ physician.url }}">View on Map</a></p>
-    <form action="/delete_physician", method="POST">
-      <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}"><i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
-    </form><br><br>
-  {% endfor %}
-
-{% else %}
-  <h3>No Saved Physicians</h3>
-{% endif %}
-</div>
-
 
 <script src="/static/comments.js"></script>
 <script src="static/physicians.js"></script>
