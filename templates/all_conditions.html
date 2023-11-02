@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-12">
       <div id="all_health_conditions_header">
-        <h1>Health Conditions A to Z</h1>
+        <h1 id="a_to_z_header">Health Conditions A to Z</h1>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
   <div class="row">
     <div class="col-12">
       <div id="a_to_z">
-        <h3>
+        <h3 id="all_a_to_z">
           <span>
             <a href="#a" class="hyperlink">A</a>
             <a href="#b" class="hyperlink">B</a>
@@ -70,6 +70,9 @@
     </div>
   </div>
 
+  <div id="back_to_top">
+    <a href="/conditions" class="hyperlink">Back to Top</a>
+  </div>
 
   <div class="row">
     <div class="col-12">
@@ -491,14 +494,10 @@
     {% endfor %}
   </div>
 
-
-
 <script src="/static/all_conditions.js"></script>
 
-
-
-
 </div>
+
 </body>
 {% endblock %}
 

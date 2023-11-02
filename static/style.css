@@ -76,13 +76,13 @@ body#new_user_page {
     }
 
 #link_to_profile {
-    font-size: 24px;
-    padding-left: 40px;
+    font-size: 20px;
+    padding-left: 60px;
     
 }
 
 .hyperlink:hover {
-    color: #FFA381;
+    color: #10afb7;
 }
 
 
@@ -147,6 +147,11 @@ body#profile-container::after {
     padding-bottom: 40px;
 }
 
+#profile_name {
+    padding-top: 100px;
+    font-size: 48px;
+}
+
 #health_condition_group {
     text-align: left;
     padding-bottom: 20px;
@@ -202,12 +207,15 @@ body#profile-container::after {
     background-color: #FFA381;
 }
 
-#recent_vital_header {
-    padding-left: 1050px;
-}
 
-#new_vital_link {
-    padding-left: 1080px;
+
+
+#vitals_profile {
+    border: 2px solid black;
+    background-color: #FDF2EE;
+    padding: 20px;
+    width: 350px;
+    margin-left: auto;
 }
 
 #saved_physician_profile {
@@ -221,12 +229,21 @@ body#profile-container::after {
 }
 
 h3.profile_section_title {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 
 .delete_physician:hover {
     background-color: #FFA381;
+}
+
+.ind_saved_physician {
+    border: 2px solid black;
+    background-color: #FDF2EE;
+    padding: 10px;
+    margin-bottom: 20px;
+    
+
 }
 
 
@@ -277,6 +294,7 @@ body#vital_sign_form_page-container {
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 10px;
+    font-size: 30px;
 }
 
 #vital_submit_button {
@@ -288,7 +306,11 @@ body#vital_sign_form_page-container {
 .submit-vitals {
     width: 100px;
     height: 50px;
-} 
+}
+
+.submit-vitals:hover {
+    background-color: #FFA381;
+}
 
 #vital_sign_form_container {
     text-align: center; 
@@ -299,6 +321,7 @@ body#vital_sign_form_page-container {
     max-width: 450px;
     background-color: #FDF2EE;
     margin: 0 auto;
+    margin-top: 20px;
 }
 
 
@@ -313,11 +336,13 @@ body#vital_sign_all_result_page-container {
 
 #header_vital_result_name {
     padding-top: 100px;
+    font-size: 30px;
 }
 
 #intro_all_vital_results {
     padding-top: 30px;
     padding-left: 20px;
+    font-size: 20px;
 }
 
 #link_to_vital_graph_page {
@@ -343,7 +368,7 @@ body#vital_sign_all_result_page-container {
     padding: 20px;
     padding-left: 30px;
     border: 2px solid black;
-    background-color: #DAD8F0;
+    background-color: #FDF2EE;
     width: 350px;
     margin-top: 50px;
 }
@@ -352,7 +377,7 @@ body#vital_sign_all_result_page-container {
     padding: 20px;
     padding-left: 30px;
     border: 2px solid black;
-    background-color: #9FCBD1;
+    background-color: #FDF2EE;
     width: 350px;
     margin-top: 50px;
 }
@@ -361,7 +386,7 @@ body#vital_sign_all_result_page-container {
     padding: 20px;
     padding-left: 30px;
     border: 2px solid black;
-    background-color: aliceblue;
+    background-color: #FDF2EE;
     width: 350px;
     margin-top: 50px;
 }
@@ -370,7 +395,7 @@ body#vital_sign_all_result_page-container {
     padding: 20px;
     padding-left: 30px;
     border: 2px solid black;
-    background-color: #FFA381;
+    background-color: #FDF2EE;
     width: 350px;
     margin-top: 50px;
 }
@@ -562,14 +587,29 @@ body#all_condition_a_to_z-container{
     padding-bottom: 20px;
 }
 
+#a_to_z_header {
+    font-size: 50px;
+}
+
 #a_to_z {
     text-align: center;
     margin: 0 auto;
 }
 
+#all_a_to_z {
+    font-size: 35px;
+}
+
 #a_to_z_intro {
     text-align: center;
     margin: 0 auto;
+    font-size: 20px;
+}
+
+#back_to_top {
+    position: fixed;
+    right: 100px;
+    top: 100px;
 }
 
 #a {
@@ -582,150 +622,175 @@ body#all_condition_a_to_z-container{
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #c {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #d {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #e {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #f{
     padding-top: 60px;
     padding-bottom: 40px;
-    text-align: left; 
+    text-align: left;
+    font-size: 48px; 
 }
 
 #g {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #h {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #i {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #j {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #k {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #l {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #m {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #n {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #o {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #p {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #q {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #r {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #s {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #t {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #u {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #v {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #w {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #x {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #y {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 #z {
     padding-top: 60px;
     padding-bottom: 40px;
     text-align: left;
+    font-size: 48px;
 }
 
 
@@ -736,8 +801,8 @@ body#all_condition_a_to_z-container{
 
 /*Navbar search button*/
 .btn-outline-success {
-    border-color: black;
-    color: black;
+    border-color: white;
+    color: white;
 }
 
 /*Navbar search hover*/
@@ -783,6 +848,10 @@ body#all_condition_a_to_z-container{
 
 .navbar-toggler-icon {
     background-color: white;
+}
+
+#logout:hover {
+    background-color: #FFA381;
 }
 
 

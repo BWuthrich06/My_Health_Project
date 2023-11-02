@@ -9,33 +9,19 @@
   <div class="row">
     <div class="col-12">
       <div id="profile_welcome">
-        <h1 class="welcome">Welcome, {{ name }}</h1>
+        <h1 id="profile_name">Welcome, {{ name }}</h1>
       </div>
     </div>
   </div>
 
-
   <!--Recent Vital Sign-->
-  <div class="row">
+ 
     <div class="col-12">
-      <div id="recent_vital_header">
-        <h3 class="profile_section_title">Most Recent Vitals</h3>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <a href="/vitals" class="hyperlink" id="new_vital_link">Record New Vital</a>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-10">
-
-    </div>
-    <div class="col-sm-12 col-md-6 col-lg-2">
       <div id="vitals_profile">
+        <h3 class="profile_section_title">Most Recent Vitals</h3>
+        <a href="/vitals" class="hyperlink" id="new_vital_link">Record New Vital</a>
         {% if vitals %}
+
           <p>{{ vitals.date_time.strftime("%m/%d/%Y %I:%M %p") }}</p>
       
         {% if vitals.systolic and vitals.diastolic %}
@@ -63,7 +49,7 @@
         {% endif %}
       </div>
     </div>
-  </div>
+  
 
   <div class="row">
     <div class="col-12">
@@ -128,16 +114,19 @@
     <div class="row">
       {% if saved_physicians %}
         {% for physician in saved_physicians %}
-          <div class="col-sm-12 col-md-6 col-lg-4">
-            <p><b>{{ physician.name }}</b><br>
-              {{ physician.address }}<br>
-              {{ physician.phone }}<br>
-              <a href="{{ physician.url }}" class="hyperlink">View Map</a></p>
-              <form action="/delete_physician", method="POST">
-                <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
-                <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
-              </form>
-          </div>
+        
+            <div class="col-sm-12 col-md-6 col-lg-4">
+              <div class="ind_saved_physician">
+              <p><b>{{ physician.name }}</b><br>
+                {{ physician.address }}<br>
+                {{ physician.phone }}<br>
+                <a href="{{ physician.url }}" class="hyperlink">View Map</a></p>
+                <form action="/delete_physician", method="POST">
+                  <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
+                  <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
+                </form>
+              </div>
+            </div>
         {% endfor %}
       {% else %}
         <p>No Saved Physicians</p>
