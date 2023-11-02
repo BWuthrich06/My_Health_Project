@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <!--List condition if it has url-->
                         {% if condition.url %}
-                        <p class="condition_result"><a href="{{ condition.url }}">{{ condition.title }}</a>
+                        <p class="condition_result"><a href="{{ condition.url }}" target="_blank">{{ condition.title }}</a>
 
                         <!--Button to add to personal conditions-->
                         <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
