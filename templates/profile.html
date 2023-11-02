@@ -35,7 +35,7 @@
   <!--Recent Vital Sign-->
     <div class="col-sm-12 col-md-6 col-lg-5">
       <div id="vitals_profile">
-        <h3 class="profile_section_title">Most Recent Vitals</h3>
+        <h3 id="vital_profile_title">Most Recent Vitals</h3>
         <a href="/vitals" class="hyperlink" id="new_vital_link">Record New Vital</a>
         {% if vitals %}
 
@@ -80,7 +80,7 @@
     {% if all_user_conditions %}
       <div class="row">
         {% for user_condition in all_user_conditions %}<br>
-          <div class="col-sm-12 col-md-6 col-lg-6">
+          <div class="col-sm-12 col-md-6 col-lg-4">
           
             <div class="saved_condition">
               <p><a href ="{{ user_condition.condition.url }}" class="saved_condition_name hyperlink">{{ user_condition.condition.title }}</a>
@@ -98,7 +98,7 @@
                 <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
                 <p class="saved_comments"><br>Your Comments:</p>
                 {% if user_condition.comments %}
-                  <ul id="user_comments">
+                  <ul class="user_comments">
                     {% for comment in user_condition.comments %}
                         <li> {{ comment.comment }}
                         <input type="checkbox" class="delete-comment" name="comment_ids[]" value="{{ comment.comment_id }}" id="{{ comment.comment_id }}"></li> 

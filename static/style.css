@@ -21,6 +21,10 @@
     padding-bottom: 10px;
 }
 
+#login_button {
+    border-radius: 5px;
+}
+
 #login_button:hover {
     background-color: #FFA381;
 }
@@ -28,6 +32,7 @@
 #new_user_button {
     width: 150px;
     height: 65px;
+    border-radius: 10px;
 }
 
 #new_user_button:hover {
@@ -169,6 +174,7 @@ body#profile-container::after {
     border: 2px solid black;
     background-color:#FDF2EE;
     padding: 20px;
+    width: 400px;
 }
 
 .saved_condition_name {
@@ -196,6 +202,10 @@ body#profile-container::after {
     padding-left: 200px;
 }
 
+.delete-selected {
+    border-radius: 10px;
+}
+
 .delete-selected:hover {
     background-color: #FFA381;
 }
@@ -204,19 +214,41 @@ body#profile-container::after {
     background-color: #FFA381;
 }
 
+.delete-condition {
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.comments-submit {
+    border-radius: 10px;
+    margin-left: 175px;
+}
+
 .comments-submit:hover {
     background-color: #FFA381;
 }
 
+#vital_profile_title {
+    font-size: 32px !important;
+    padding-bottom: 20px;
+    font-weight: bold;
+}
 
-
+.user_comments {
+    padding: 0;
+    word-wrap: break-word;
+}
 
 #vitals_profile {
     border: 2px solid black;
     background-color: #FDF2EE;
-    padding: 20px;
+    height: 400px;
     width: 350px;
-    margin: auto;
+    padding-top: 45px;
+    padding-left: 50px;
+    font-size: 20px;
+    
 }
 
 #saved_physician_profile {
@@ -242,7 +274,7 @@ body#profile-container::after {
 .physician-delete-button {
     position: relative;
     top: 20;
-    left: 300px;
+    left: 310px;
 }
 
 .profile_section_title {
@@ -251,6 +283,10 @@ body#profile-container::after {
     font-weight: bold;
 }
 
+.delete_physician {
+    border-radius: 10px;
+    font-size: 16px;
+}
 
 .delete_physician:hover {
     background-color: #FFA381;
@@ -289,11 +325,11 @@ body#vital_sign_form_page-container {
 }
 
 #systolic {
-    width: 75px;
+    width: 96px;
 }
 
 #diastolic {
-    width: 75px;
+    width: 96px;
 }
 
 #vitalSignForm {
@@ -303,37 +339,47 @@ body#vital_sign_form_page-container {
 
 #heart_rate_form input {
     margin-left: 33px;
+    margin-top: 15px;
 }
 
 #oxygen_form input {
     margin-left: 55px;
+    margin-top: 15px;
 }
 
 #weight_form input {
     margin-left: 21px;
+    margin-top: 15px;
 }
 
 #glucose_form input {
     margin-left: 53px;
+    margin-top: 15px;
 }
 
 #enter_vitals {
     text-align: center;
     margin: 0 auto;
-    padding-top: 20px;
+    padding-top: 40px;
     padding-bottom: 10px;
     font-size: 30px;
+}
+
+#vital_title {
+    font-size: 30px;
+    font-weight: bold;
 }
 
 #vital_submit_button {
     text-align: center;
     margin: 0 auto;
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
 .submit-vitals {
     width: 100px;
     height: 50px;
+    border-radius: 10px;
 }
 
 .submit-vitals:hover {
@@ -342,14 +388,15 @@ body#vital_sign_form_page-container {
 
 #vital_sign_form_container {
     text-align: center; 
-    padding: 20px;
-    padding-left: 60px;
-    width: 100%;
+    padding-top: 40px;
+    padding-left: 50px;
     border: 2px solid black;
-    max-width: 450px;
+    width: 430px;
+    height: 380px;
     background-color: #FDF2EE;
     margin: 0 auto;
     margin-top: 20px;
+    border-radius: 10px;
 }
 
 
@@ -580,6 +627,7 @@ body#search_physician_page {
     top: 35%;
     left: 50%;
     transform: translateX(-50%);
+    margin-top: 20px;
 }
 
 /*Intro for search for physician page.*/
@@ -593,6 +641,7 @@ body#search_physician_page {
 
 h1#physician_header {
     font-size: 50px;
+    padding-bottom: 20px;
 }
 
 /*Find physician submit button hover*/
@@ -600,10 +649,16 @@ h1#physician_header {
     background-color: #FFA381;
 }
 
+#search_result {
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
 
 .addPhysician {
     font-size: 14px;
     position: relative;
+    border-radius: 5px;
 }
 
 .addPhysician:hover {
@@ -612,6 +667,10 @@ h1#physician_header {
 
 .physician_name {
     font-weight: bold;
+}
+
+#enter_zipcode {
+    font-size: 20px;
 }
 
 
@@ -646,6 +705,10 @@ body#all_condition_a_to_z-container{
 
 #all_a_to_z {
     font-size: 35px;
+}
+
+.all_condition_titles {
+    font-size: 18px;
 }
 
 #a_to_z_intro {
