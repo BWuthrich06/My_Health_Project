@@ -58,7 +58,7 @@
 
         
         <form action="/logout" method="post">
-          <button type="submit">Logout</button>
+          <button class="logout" type="submit">Logout</button>
         </form>
         
       </div>
@@ -95,17 +95,18 @@
     <div class="row">
         <div class="col-12">
             <div id="links_to_graphs">
-                <p><a href="#bp_chart_graph" class="hyperlink">Blood Pressure</a></p>
-                <p><a href="#hr_chart_graph" class="hyperlink">Heart Rate</a></p>
-                <p><a href="#oxygen_chart_graph" class="hyperlink">Oxygen Saturation</a></p>
-                <p><a href="#weight_chart_graph" class="hyperlink">Weight</a></p>
-                <p><a href="#glucose_chart_graph" class="hyperlink">Glucose</a></p>
+                <p><a href="#bp_chart_graph" class="hyperlink graph">Blood Pressure
+                <a href="#hr_chart_graph" class="hyperlink graph">Heart Rate</a>
+                <a href="#oxygen_chart_graph" class="hyperlink graph">Oxygen Saturation</a>
+                <a href="#weight_chart_graph" class="hyperlink graph">Weight</a>
+                <a href="#glucose_chart_graph" class="hyperlink graph">Glucose</a></p>
             </div>
         </div>
     </div>
 
-    <div class="outer_graph">
-        <div class="chart-container" id="bp_chart_graph">
+    <div class="chart-container" id="bp_chart_graph">
+        <div class="outer_graph">
+        
             <h3>Blood Pressure</h3>
             <p>Normal Systolic Range: 90-120</p>
             <p>Normal Diastolic Range: less than 80</p>
@@ -113,33 +114,46 @@
         </div>
     </div>
 
-    <div class="outer_graph">
-        <div class="chart-container" id="hr_chart_graph">
+    <div class="back_to_top">
+        <a href="/vitals_graph" class="hyperlink">Back to Top</a>
+    </div>
+
+    <div class="chart-container" id="hr_chart_graph">
+        <div class="outer_graph">
+        
             <h3>Heart Rate</h3>
             <p>Normal Range: 60-100</p>
+            <br>
             <canvas id="heart_rate_chart"></canvas>
         </div>
     </div>
 
+    <div class="chart-container" id="oxygen_chart_graph">
     <div class="outer_graph">
-        <div class="chart-container" id="oxygen_chart_graph">
+        
             <h3>Oxygen Saturation</h3>
             <p>Normal Range: 92-100</p>
+            <br>
             <canvas id="oxygen_chart"></canvas>
         </div>
     </div>
 
-
-    <div class="outer_graph">
-        <div class="chart-container" id="weight_chart_graph">
+    <div class="chart-container" id="weight_chart_graph">
+        <div class="outer_graph">
+        
             <h3>Weight</h3>
+            <p></p>
+            <br>
             <canvas id="weight_chart"></canvas>
         </div>
     </div>
 
-    <div class="outer_graph">
-        <div class="chart-container" id="glucose_chart_graph">    
+    <div class="chart-container" id="glucose_chart_graph">  
+        <div class="outer_graph">
+          
             <h3>Glucose</h3>
+            <p></p>
+            <br>
             <canvas id="glucose_chart"></canvas>
         </div>
     </div>

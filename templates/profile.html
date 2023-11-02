@@ -14,9 +14,26 @@
     </div>
   </div>
 
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-7">
+      <div class="profile-introduction">
+        <p>Empower yourself with knowledge about your health conditions.<br>
+           Taking control of your health starts with understanding you're diagnosis.<br>
+           Continuing Care provides information on a variety of conditions that<br>
+           allows you to explore and understand your health issues better including<br>
+           causes, symptoms and treatments of each condition.</p><br>
+    
+        <p>Continuing Care also allows you to keep a record of your vitals such as<br>
+           blood pressure, heart rate, oxygen, weight, and glucose readings.<br>
+           You will have access to your vitals as a form to provide to your physician<br>
+           or a graph to show a better picture of your health overtime. Users will also<br>
+           be able to search for nearby physicians and save to their personal profile.</p>
+     </div>
+    </div>
+  
   <!--Recent Vital Sign-->
- 
-    <div class="col-12">
+    <div class="col-sm-12 col-md-6 col-lg-5">
       <div id="vitals_profile">
         <h3 class="profile_section_title">Most Recent Vitals</h3>
         <a href="/vitals" class="hyperlink" id="new_vital_link">Record New Vital</a>
@@ -49,7 +66,7 @@
         {% endif %}
       </div>
     </div>
-  
+  </div>
 
   <div class="row">
     <div class="col-12">
@@ -88,7 +105,7 @@
                     {% endfor %}
                   </ul>
                   <!--Delete checkboxes checked of comments-->
-                  <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button><br><br><br><br>
+                  <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button><br><br>
                 {% else %}
                 <br><br><br>
                 {% endif %}
@@ -117,14 +134,16 @@
         
             <div class="col-sm-12 col-md-6 col-lg-4">
               <div class="ind_saved_physician">
-              <p><b>{{ physician.name }}</b><br>
-                {{ physician.address }}<br>
-                {{ physician.phone }}<br>
+              <p><span class="physician-name"><b>{{ physician.name }}</b></span><br>
+                <span class="physician-address">{{ physician.address }}</span><br>
+                <span class="physician-phone">{{ physician.phone }}</span><br>
                 <a href="{{ physician.url }}" class="hyperlink">View Map</a></p>
+                <div class="physician-delete-button">
                 <form action="/delete_physician", method="POST">
                   <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
                   <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
                 </form>
+                </div>
               </div>
             </div>
         {% endfor %}
