@@ -57,12 +57,20 @@ body#new_user_page {
 
 #new_account {
     padding-left: 70px;
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 /*create new user submit button*/
 #new_user_submit:hover {
     background-color: #FFA381;
+}
+
+#new_user_submit {
+    border-radius: 5px;
+}
+
+#new_user_form {
+    padding-left: 30px;
 }
 
 
@@ -558,6 +566,11 @@ h1#search_condition_header {
     font-size: 20px;
 }
 
+#search_form input {
+    font-size: 20px;
+    width: 300px;
+}
+
 
 
 /*Search Results for a health Condition Page*/
@@ -601,7 +614,13 @@ body#condition_results-container {
     padding-bottom: 40px;
 }
 
-
+#search_result {
+    border-radius: 10px;
+    font-size: 18px;
+    width: 125px;
+    height: 35px;
+    margin-left: 10px;
+}
 
 
 
@@ -649,12 +668,6 @@ h1#physician_header {
     background-color: #FFA381;
 }
 
-#search_result {
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-
 .addPhysician {
     font-size: 14px;
     position: relative;
@@ -671,6 +684,21 @@ h1#physician_header {
 
 #enter_zipcode {
     font-size: 20px;
+}
+
+#physician_search_button {
+    font-size: 18px;
+    border-radius: 5px;
+    height: 35px;
+    width: 150px;
+    margin-top: 10px;
+}
+
+#invalid_zipcode {
+    padding-top: 80px;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 22px;
 }
 
 
@@ -972,6 +1000,10 @@ body#all_condition_a_to_z-container{
 /*Flash messages*/
 h5.flash-msg {
     padding: 20px;
+    padding-top: 80px;
+    font-size: 22px;
+    font-weight: bold;
+
 }
 
 

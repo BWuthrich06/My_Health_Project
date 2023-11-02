@@ -13,7 +13,7 @@ let relDetails;
 
 
 //Listens for search button to find physician.
-const findPhysicianButton = document.querySelector("#search_result");
+const findPhysicianButton = document.querySelector("#physician_search_button");
 if (findPhysicianButton) {
     findPhysicianButton.addEventListener('click', async (evt) => {
         evt.preventDefault();
