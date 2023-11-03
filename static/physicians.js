@@ -280,6 +280,7 @@ function physicianResults(relDetails) {
         url.href = relDetails.url;
         url.innerText = "View Map";
         url.classList.add('hyperlink');
+        url.target="_blank";
         const string4 = url.outerHTML;
         detailString += '<br>' + string4 + '<br>';
     };

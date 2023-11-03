@@ -96,8 +96,8 @@
                 <label for="floatingTextarea">Add Comment:</label>
                 <textarea class="form-control" name="comments-box" placeholder="Type comment here" id="comments-box"></textarea><br>
                 <button class="comments-submit" id= "{{ user_condition.favorite_id }}">Save Comment</button>
-                <p class="saved_comments"><br>Your Comments:</p>
                 {% if user_condition.comments %}
+                <p class="saved_comments"><br>Your Comments:</p>
                   <ul class="user_comments">
                     {% for comment in user_condition.comments %}
                         <li> {{ comment.comment }}
@@ -107,7 +107,7 @@
                   <!--Delete checkboxes checked of comments-->
                   <button type="submit" id="{{ user_condition.comments }}" class="delete-selected">Delete Selected</button><br><br>
                 {% else %}
-                <br><br><br>
+                <br>
                 {% endif %}
               </form>
             </div>
