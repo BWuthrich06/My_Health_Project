@@ -747,7 +747,7 @@ body#all_condition_a_to_z-container::after{
 
 .all_condition_titles {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 #a_to_z_intro {

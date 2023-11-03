@@ -107,7 +107,7 @@
           <div class="col-sm-12, col-md-6, col-lg-4">
           <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
             <!--Button to add to personal conditions-->
-            <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
           </div>
         {% endif %}
       {% endfor %}
@@ -127,7 +127,7 @@
           <div class="col-sm-12, col-md-6, col-lg-4">
           <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
             <!--Button to add to personal conditions-->
-            <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
           </div>
         {% endif %}
       {% endfor %}
@@ -147,7 +147,7 @@
           <div class="col-sm-12, col-md-6, col-lg-4">
             <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
             <!--Button to add to personal conditions-->
-            <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
           </div>
         {% endif %}
       {% endfor %}
@@ -167,7 +167,7 @@
           <div class="col-sm-12, col-md-6, col-lg-4">
             <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
             <!--Button to add to personal conditions-->
-            <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
           </div>
         {% endif %}
       {% endfor %}
@@ -187,7 +187,7 @@
           <div class="col-sm-12, col-md-6, col-lg-4">
             <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
             <!--Button to add to personal conditions-->
-            <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
           </div>
         {% endif %}
       {% endfor %}
@@ -207,305 +207,391 @@
           <div class="col-sm-12, col-md-6, col-lg-4">
             <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
             <!--Button to add to personal conditions-->
-            <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
           </div>
         {% endif %}
       {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="h">H</h2>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="h">H</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('H') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('H') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="i">I</h2>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="i">I</h2>
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('I') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('I') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="j">J</h2>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="j">J</h2>
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('J') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('J') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="k">K</h2>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="k">K</h2>
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('K') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('K') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="l">L</h2>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="l">L</h2>
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('L') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('L') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="m">M</h2>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="m">M</h2>
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('M') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('M') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="n">N</h2>
+      </div>
+    </div>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 id="n">N</h2>
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('N') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('N') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="o">O</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('O') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="o">O</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('O') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="p">P</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('P') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="p">P</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('P') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="q">Q</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('Q') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="q">Q</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('Q') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="r">R</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('R') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="r">R</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('R') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="s">S</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('S') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="s">S</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('S') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="t">T</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('T') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="t">T</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('T') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="u">U</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('U') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="u">U</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('U') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="v">V</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('V') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="v">V</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('V') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="w">W</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('W') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="w">W</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('W') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="x">X</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('X') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="x">X</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('X') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="y">Y</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('Y') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
-<h2 id ="y">Y</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('Y') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
-<h2 id ="z">Z</h2>
- 
-  <div class="row">
-    {% for condition in conditions %}
-      {% if condition.title.startswith('Z') and condition.url %}
-        <div class="col-sm-12, col-md-6, col-lg-4">
-          <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
-          <!--Button to add to personal conditions-->
-          <button id="{{ condition.condition_id }}" class="all_condition_add"> + </button></p>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <div class="each_letter_container">
+    <div class="row">
+      <div class="col-12">
+        <h2 id="z">Z</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      {% for condition in conditions %}
+        {% if condition.title.startswith('Z') and condition.url %}
+          <div class="col-sm-12, col-md-6, col-lg-4">
+            <p><a href= "{{ condition.url }}" target="_blank" class="all_condition_titles hyperlink">{{ condition.title }}</a>
+            <!--Button to add to personal conditions-->
+            <button id="{{ condition.condition_id }}" class="all_condition_add"><i class="bi bi-plus"></i></button></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
 <script src="/static/all_conditions.js"></script>

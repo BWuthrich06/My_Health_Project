@@ -137,7 +137,7 @@
               <p><span class="physician-name"><b>{{ physician.name }}</b></span><br>
                 <span class="physician-address">{{ physician.address }}</span><br>
                 <span class="physician-phone">{{ physician.phone }}</span><br>
-                <a href="{{ physician.url }}" class="hyperlink">View Map</a></p>
+                <a href="{{ physician.url }}" class="hyperlink" target="_blank">View Map</a></p>
                 <div class="physician-delete-button">
                 <form action="/delete_physician", method="POST">
                   <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
