@@ -707,11 +707,20 @@ h1#physician_header {
 
 /*All health conditions A to Z page*/
 
-body#all_condition_a_to_z-container{
+body#all_condition_a_to_z-container::after{
+    content: "";
+    background-size: cover;
     background-image: url("/static/images/davies-designs-studio-_UCVrH-ZIIg-unsplash.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    opacity: 0.7;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 /*Intro on Health Condition A to Z page*/
@@ -733,10 +742,12 @@ body#all_condition_a_to_z-container{
 
 #all_a_to_z {
     font-size: 35px;
+    margin-bottom: 80px;
 }
 
 .all_condition_titles {
     font-size: 18px;
+    font-weight: bold;
 }
 
 #a_to_z_intro {
@@ -749,6 +760,30 @@ body#all_condition_a_to_z-container{
     position: fixed;
     right: 100px;
     top: 100px;
+}
+
+.all_condition_add {
+    background: none;
+    font-size: 0;
+    border: none;
+}
+
+.all_condition_add i {
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.all_condition_add i:hover {
+    color:#e67146;
+}
+
+.each_letter_container {
+    padding-left: 80px;
+    padding-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(253, 242, 238, 0.6);
+    margin-bottom: 80px;
 }
 
 #a {
