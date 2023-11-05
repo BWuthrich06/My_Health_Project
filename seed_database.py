@@ -71,44 +71,44 @@ model.db.session.commit()
 
 
 #Test user for test cases
-user1 = model.User(email='hello@123.com', name="Briana", password="hello")
-model.db.session.add(user1)
-model.db.session.commit()
+# user1 = model.User(email='hello@123.com', name="Briana", password="hello")
+# model.db.session.add(user1)
+# model.db.session.commit()
 
-user2 = model.User(email="goodbye@123.com", name="Paul", password="goodbye")
-model.db.session.add(user2)
-model.db.session.commit()
+# user2 = model.User(email="goodbye@123.com", name="Paul", password="goodbye")
+# model.db.session.add(user2)
+# model.db.session.commit()
 
-user3 = model.User(email="wonderful@123.com", name="Wonder", password="wonderful")
-model.db.session.add(user3)
-model.db.session.commit()
+# user3 = model.User(email="wonderful@123.com", name="Wonder", password="wonderful")
+# model.db.session.add(user3)
+# model.db.session.commit()
 
 #Test conditions
-condition = model.Condition.query.get(1)
+# condition = model.Condition.query.get(1)
 
 #Test user_conditions
-user_condition1 = model.User_condition(user_id=1, condition_id=1, date_added=date.today())
-model.db.session.add(user_condition1)
-model.db.session.commit()
+# user_condition1 = model.User_condition(user_id=1, condition_id=1, date_added=date.today())
+# model.db.session.add(user_condition1)
+# model.db.session.commit()
 
-user_condition2 = model.User_condition(user_id=1, condition_id=2, date_added=date.today())
-model.db.session.add(user_condition2)
-model.db.session.commit()
+# user_condition2 = model.User_condition(user_id=1, condition_id=2, date_added=date.today())
+# model.db.session.add(user_condition2)
+# model.db.session.commit()
 
-user_condition3 = model.User_condition(user_id=2, condition_id=3, date_added=date.today())
-model.db.session.add(user_condition3)
-model.db.session.commit()
+# user_condition3 = model.User_condition(user_id=2, condition_id=3, date_added=date.today())
+# model.db.session.add(user_condition3)
+# model.db.session.commit()
 
 #Test comments
-comment1 = model.Comment(comment="This is a comment", favorite_id=1)
-model.db.session.add(comment1)
-model.db.session.commit()
+# comment1 = model.Comment(comment="This is a comment", favorite_id=1)
+# model.db.session.add(comment1)
+# model.db.session.commit()
 
-comment2 = model.Comment(comment="This is a second comment", favorite_id=1)
-model.db.session.add(comment2)
-model.db.session.commit()
+# comment2 = model.Comment(comment="This is a second comment", favorite_id=1)
+# model.db.session.add(comment2)
+# model.db.session.commit()
 
-comment3 = model.Comment(comment="This is a third comment", favorite_id=2)
-model.db.session.add(comment3)
-model.db.session.commit()
+# comment3 = model.Comment(comment="This is a third comment", favorite_id=2)
+# model.db.session.add(comment3)
+# model.db.session.commit()
 

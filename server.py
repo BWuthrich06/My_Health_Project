@@ -5,6 +5,7 @@ from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 from pprint import pprint
+from passlib.hash import argon2
 
 
 API_KEY = os.environ['my_api_key']
@@ -50,10 +51,14 @@ def new_user():
 
     #Create new user account and add to database.
     elif email and name and password:
-        user = crud.create_user(email, name, password)
+
+        hash_password = argon2.hash(password)
+
+        #Create new account
+        user = crud.create_user(email, name, hash_password)
         db.session.add(user)
         db.session.commit()
-        flash("Account succesfully created.")
+        flash("Account successfully created.")
 
         #Store in session.
         session['email'] = email
@@ -83,18 +88,19 @@ def process_login():
     #Get user email
     user = crud.get_user_by_email(email)
 
+    #Login success, store session 'email'
+    if user and argon2.verify(password, user.password):
+        flash("Login successful.")
+        session['email'] = email
+    
+        return redirect('/profile')
+
     #Invalid login.
-    if not user or user.password != password:
+    else:
         flash("Invalid credentials.")
 
         return redirect('/')
 
-    #Login success, store session 'email'
-    else:
-        flash("Login successful.")
-        session['email'] = email
-    
-    return redirect('/profile')
 
 
 

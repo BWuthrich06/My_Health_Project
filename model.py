@@ -13,7 +13,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(100))
-    password = db.Column(db.String(50))
+    password = db.Column(db.String(200))
 
     user_conditions = db.relationship("User_condition", back_populates="user")
     vitals = db.relationship("Vital", back_populates="user")
