@@ -10,4 +10,4 @@ Continuing Care enables individuals to gain more knowledge about their health an
 * [How to locally run Continuing Care](#run)
 * [How to use Continuing Care](#use)
 
-## <a name="technologiesused>Technologies Used</a>
+## <a name="technologiesused">Technologies Used</a>
