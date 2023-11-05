@@ -11,3 +11,23 @@ Continuing Care enables individuals to gain more knowledge about their health an
 * [How to use Continuing Care](#use)
 
 ## <a name="technologiesused">Technologies Used</a>
+
+* Python
+* Flask
+* JavaScript
+* AJAX
+* PostgreSQL
+* SQLAlchemy
+* HTML
+* Jinja
+* CSS
+* Bootstrap
+* Passlib
+* RegEx
+* JSON
+* ChartJS
+* National Library of Medicine API
+* Google Maps Geocode API
+* Google Maps Places API
+
+
