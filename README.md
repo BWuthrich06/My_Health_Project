@@ -7,7 +7,6 @@ Continuing Care enables individuals to gain more knowledge about their health an
 
 ## Table of Contents
 * [Technologies Used](#technologiesused)
-* [How to setup Continuing Care](#run)
 * [Features of Continuing Care](#use)
 
 ## <a name="technologiesused">Technologies Used</a>
@@ -32,7 +31,6 @@ Continuing Care enables individuals to gain more knowledge about their health an
 
 (dependencies are listed in requirements.txt)
 
-## <a name="run">How to setup Continuing Care</a>
 
 ## <a name="use">Features of Continuing Care</a>
 
