@@ -7,7 +7,7 @@ Continuing Care enables individuals to gain more knowledge about their health an
 
 ## Table of Contents
 * [Technologies Used](#technologiesused)
-* [How to locally run Continuing Care](#run)
+* [How to setup Continuing Care](#run)
 * [How to use Continuing Care](#use)
 
 ## <a name="technologiesused">Technologies Used</a>
@@ -29,5 +29,9 @@ Continuing Care enables individuals to gain more knowledge about their health an
 * National Library of Medicine API
 * Google Maps Geocode API
 * Google Maps Places API
+
+(dependencies are listed in requirements.txt)
+
+## <a name="run">How to setup Continuing Care</a>
 
 
