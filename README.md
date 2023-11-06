@@ -61,6 +61,9 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
     * Additionally, users can click on any health condition that will open a new browser tab with educational resources about the condition. 
     * If a user wishes to keep track of a health condition, they can add it to their personal profile for convenient reference. When the user clicks Add, an AJAX request will be sent to the server to query the database for the user and update Postgres with the user's saved condition. 
     * Users profile page will then render with the added health condition. 
+
+    ![Continuing Care Profile Page Saved Health Conditions](/static/images/Profile_Health_Conditions.PNG)
+
     * Users will then be able to add and delete comments to conditions if they wish. 
 
 
