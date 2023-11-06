@@ -1,5 +1,6 @@
 # Continuing Care
 Continuing Care enables individuals to gain more knowledge about their health and a convenient place to keep saved health information. Users can set up a personal account and search health conditions or view a page of all health conditions listed A to Z . Users will be able to view educational resources on each condition, add condition to personal profile and add/delete personalized comments to each condition. Users can also search for physicians nearby, add physician to profile for easy contact information and view location on map. Users can input their daily vitals to keep a record to bring to their physician. Additionally, all vitals will be viewable on a graph to observe a visual trend.
+
 ![Continuing Care Homepage](/static/images/Login.PNG)
 
 
@@ -41,7 +42,10 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
 * Create Account/Login 
     * To begin, users will be prompted to create a new account if they haven’t already, and login. 
     * A dedicated flask route handles the POST request and securely stores the login credentials in the session and in a Postgres database. 
-    * Once logged in, users are directed to their profile page. 
+    * Once logged in, users are directed to their profile page.
+
+    ![Continuing Care Homepage](/static/images/Login.PNG)
+    ![Continuing Care Create New Account](/static/images/Create New Account.PNG)
 
 * Search for Health Condition 
     * Users have the ability to search for specific health conditions. They can input the full or partial name or body part of the health condition, which will be sent to the server in a form submission. 
