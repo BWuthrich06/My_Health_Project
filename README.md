@@ -94,11 +94,20 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
 
     ![Continuing Care Vital Sign Graphs](/static/images/Vital_Graph.PNG)
  
-* Find Physician 
-    * The “Find Physician” feature allows users to input a zip code to retrieve nearby doctors.  
+* Find Physician
+
+    * The “Find Physician” feature allows users to input a zip code to retrieve nearby doctors.
+
+    ![Continuing Care Find Physicians Nearby](/static/images/Search_Physician.PNG)
+
     * This feature proved to be my biggest challenge while building my web application since I needed to make 3 consecutive API calls: one to Google Maps Geocode API for latitude and longitude retrieval, the second and third to Google Maps Places API for detailed information on each nearby doctor. To manage this, I structured three functions to handle the API calls.  These were all asynchronous functions, so I needed to manage promises and make sure they were resolved in the right order. 
+
+    ![Continuing Care Physicians Nearby Results](/static/images/Physician_Results.PNG)
+
     * Users can then save a physician to their profile, which also happens with a fetch request to my server. 
     * Users can now readily have available the contact information of each physician and can view their location on Google Maps for directions.
+
+    ![Continuing Care Profile Saved Physicians](/static/images/Profile_Physicians.PNG)
 
 * Logout
     * Users can logout once they are finished which will clear their login session.
