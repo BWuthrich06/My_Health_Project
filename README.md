@@ -49,6 +49,8 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
     ![Continuing Care Homepage](/static/images/Create_New_Account.PNG)
     
 
+
+
 * Search for Health Condition 
     * Users have the ability to search for specific health conditions. They can input the full or partial name or body part of the health condition, which will be sent to the server in a form submission. 
 
@@ -72,6 +74,8 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
 * All Health Conditions A to Z
     * Users can view all health conditions listed out alphabetically.  
     * User can jump to section with "startswith" letter link.
+
+    ![Continuing Care All Health Conditions A to Z](/static/images/Conditions_A_to_Z.PNG)
 
 * Document Vitals 
     * Users will be able to record and store vital signs in Postgres.
