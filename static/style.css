@@ -1,15 +1,20 @@
 
-
-
 /*Login Page*/
 
 /*Login paragraph about Continuing Care*/
-.login-introduction {
+.login-introduction{
     text-align: center;
-    padding-top: 40px;
-    max-width: 800px;
+    max-width: 700px;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
+    font-style: italic;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin-top: 40px;
+    border-radius: 5px;
+    background-color:rgba(208, 204, 216, 0.85)
 }
 
 #login-new-user {
@@ -23,6 +28,7 @@
 
 #login_button {
     border-radius: 5px;
+    padding-top: 5px;
 }
 
 #login_button:hover {
@@ -33,6 +39,7 @@
     width: 150px;
     height: 65px;
     border-radius: 10px;
+    padding-top: 5px;
 }
 
 #new_user_button:hover {
@@ -42,7 +49,6 @@
 #new_user_link {
     font-size: 20px;
 }
-
 
 
 /*Create New User Page*/
@@ -67,15 +73,12 @@ body#new_user_page {
 
 #new_user_submit {
     border-radius: 5px;
+    padding-top: 5px;
 }
 
 #new_user_form {
     padding-left: 30px;
 }
-
-
-
-
 
 
 /*Homepage after login about Continuing Care */
@@ -84,14 +87,14 @@ body#new_user_page {
         max-width: 800px;
         font-size: 20px;
         font-weight: 500;
+        font-style: italic;
         padding: 20px;
         padding-top: 10px;
-    }
+}
 
 #link_to_profile {
     font-size: 20px;
     padding-left: 60px;
-    
 }
 
 .hyperlink:hover {
@@ -99,17 +102,13 @@ body#new_user_page {
 }
 
 
-
-
-
-
 /*Background image on homepage*/
 body.homepage-container {
     background-image: url("/static/images/2fc30b45-a675-45f5-8a81-bba2f8707e7a_World_Mental_Health.jpg");
     background-size: cover;
-    background-position: center center;
-    height: 100vh;
+    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 
@@ -123,17 +122,35 @@ h1.welcome {
     padding-top: 80px;
 }
 
+p, label, button, li, ul, a {
+    font-family: 'Karma', serif;
+    font-weight: 500;
+}
+
+
 
 .email {
     font-style: italic;
+}
+
+.email input {
+    padding-top: 5px;
 }
 
 .password {
     font-style: italic;
 }
 
+.password input {
+    padding-top: 5px;
+}
+
 .name{
     font-style: italic;
+}
+
+.name input {
+    padding-top: 5px;
 }
 
 
@@ -156,14 +173,13 @@ body#profile-container::after {
 
 #profile_welcome {
     text-align: left;
-    padding-top: 40px;
     padding-bottom: 40px;
 }
 
 #profile_name {
-    padding-top: 100px;
     font-size: 48px;
     font-weight: bold;
+    margin-top: 140px;
 }
 
 #health_condition_group {
@@ -183,19 +199,23 @@ body#profile-container::after {
     background-color:#FDF2EE;
     border-radius: 10px;
     padding: 20px;
-    width: 400px;
+    max-width: 600px;
+    margin-bottom: 60px;
+    margin-right: 80px;
 }
 
 .saved_condition_name {
-    font-size: 24px;
+    font-size: 30px;
 }
 
 .saved_synonyms {
     padding-left: 20px;
+    font-size: 20px;
 }
 
 .saved_date {
     padding-left: 20px;
+    font-size: 18px;
 }
 
 .form-floating {
@@ -204,15 +224,17 @@ body#profile-container::after {
 
 .form-control {
     border: 2px solid black;
-    width: 300px;
+    max-width: 325px;
 }
 
 .delete_comment_button {
     padding-left: 200px;
+    padding-top: 5px;
 }
 
 .delete-selected {
     border-radius: 10px;
+    padding-top: 5px;
 }
 
 .delete-selected:hover {
@@ -227,11 +249,13 @@ body#profile-container::after {
     border-radius: 5px;
     margin-left: 10px;
     font-size: 14px;
+    padding-top: 5px;
 }
 
 .comments-submit {
     border-radius: 10px;
-    margin-left: 175px;
+    margin-left: 200px;
+    padding-top: 5px;
 }
 
 .comments-submit:hover {
@@ -258,7 +282,8 @@ body#profile-container::after {
     padding-top: 45px;
     padding-left: 50px;
     font-size: 20px;
-    
+    margin-left: 40px;
+    margin-right: 20px;
 }
 
 #saved_physician_profile {
@@ -281,11 +306,6 @@ body#profile-container::after {
     font-size: 16px;
 }
 
-.physician-delete-button {
-    position: relative;
-    top: 20;
-    left: 310px;
-}
 
 .profile_section_title {
     font-size: 40px;
@@ -296,6 +316,7 @@ body#profile-container::after {
 .delete_physician {
     border-radius: 10px;
     font-size: 16px;
+    padding-top: 5px;
 }
 
 .delete_physician:hover {
@@ -306,33 +327,34 @@ body#profile-container::after {
     border: 2px solid black;
     background-color: #FDF2EE;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 20px;
-    
-
 }
-
-
-
-
-
 
 
 /*Vital Sign Record Form Page*/
 
 /*Vital sign form page background*/
-body#vital_sign_form_page-container {
+body#vital_sign_form_page-container::after {
     background-image: url("/static/images/ocean sunset.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    content: "";
+    opacity: 0.9;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #intro_vital_sign_form {
     text-align: center;
     margin: 0 auto;
     padding-top: 100px;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 #systolic {
@@ -349,23 +371,27 @@ body#vital_sign_form_page-container {
 }
 
 #heart_rate_form input {
-    margin-left: 33px;
+    margin-left: 31px;
     margin-top: 15px;
+    width: 209px;
 }
 
 #oxygen_form input {
-    margin-left: 55px;
+    margin-left: 58px;
     margin-top: 15px;
+    width: 209px;
 }
 
 #weight_form input {
     margin-left: 21px;
     margin-top: 15px;
+    width: 209px;
 }
 
 #glucose_form input {
-    margin-left: 53px;
+    margin-left: 56px;
     margin-top: 15px;
+    width: 209px;
 }
 
 #enter_vitals {
@@ -377,7 +403,7 @@ body#vital_sign_form_page-container {
 }
 
 #vital_title {
-    font-size: 30px;
+    font-size: 38px;
     font-weight: bold;
 }
 
@@ -391,6 +417,8 @@ body#vital_sign_form_page-container {
     width: 100px;
     height: 50px;
     border-radius: 10px;
+    padding-top: 5px;
+    font-size: 18px;
 }
 
 .submit-vitals:hover {
@@ -413,16 +441,40 @@ body#vital_sign_form_page-container {
 
 /*All Vital Sign Results Page*/
 
-body#vital_sign_all_result_page-container {
+body#vital_sign_all_result_page-container::after {
     background-image: url("/static/images/ocean sunset.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    content: "";
+    opacity: 0.9;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #header_vital_result_name {
     padding-top: 100px;
-    font-size: 30px;
+}
+
+h1#vital_header {
+    font-size: 50px !important;
+}
+
+#link_to_v_graph {
+    font-size: 28px;
+}
+
+#head_vs_graph {
+    font-size: 50px;
+}
+
+#link_to_graph {
+    font-size: 28px;
+    text-align: center;
 }
 
 #intro_all_vital_results {
@@ -437,8 +489,12 @@ body#vital_sign_all_result_page-container {
 }
 
 #vital_sign_result_header {
-    padding-top: 100px;
+    padding-top: 120px;
     padding-left: 20px;
+}
+
+#vs_header {
+    font-size: 36px;
 }
 
 #blood_pressure_result {
@@ -494,11 +550,19 @@ body#vital_sign_all_result_page-container {
 
 /*Vital Sign Graph Page*/
 
-body#vital_sign_graph_page-container {
+body#vital_sign_graph_page-container::after {
     background-image: url("/static/images/ocean sunset.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    content: "";
+    opacity: 0.9;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #vital_graph_page_header {
@@ -594,11 +658,20 @@ h1#search_condition_header {
 }
 
 /*Background color for page on search results for conditions*/
-body#condition_results-container {
+body#condition_results-container::after {
     background-image: url("/static/images/davies-designs-studio-_UCVrH-ZIIg-unsplash.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    content: "";
+    background-size: cover;
+    opacity: 0.7;
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 /*Search result title of each condition result.*/
@@ -609,6 +682,11 @@ body#condition_results-container {
 /*Add condition button on search results page*/
 .condition_add {
     font-size: 14px;
+    padding-top: 5px;
+}
+
+.condition_add:hover {
+    background-color: #FFA381;
 }
 
 #condition_result_input {
@@ -617,12 +695,27 @@ body#condition_results-container {
     padding-bottom: 40px;
 }
 
+#search_result_container {
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(253, 242, 238, 0.4);
+    margin-bottom: 80px;
+}
+
+#back_to_search_condition {
+    font-size: 18px;
+}
+
 #search_result {
     border-radius: 10px;
     font-size: 18px;
     width: 125px;
     height: 35px;
     margin-left: 10px;
+    padding-top: 5px;
 }
 
 
@@ -675,6 +768,7 @@ h1#physician_header {
     font-size: 14px;
     position: relative;
     border-radius: 5px;
+    padding-top: 5px;
 }
 
 .addPhysician:hover {
@@ -695,6 +789,11 @@ h1#physician_header {
     height: 35px;
     width: 150px;
     margin-top: 10px;
+    padding-top: 5px;
+}
+
+#physician_search_button:hover {
+    background-color:#FFA381;
 }
 
 #invalid_zipcode {
@@ -702,6 +801,18 @@ h1#physician_header {
     padding-left: 20px;
     font-weight: bold;
     font-size: 22px;
+}
+
+span.physician_name {
+    font-size: 18px;
+}
+
+.resultHeader {
+    font-size: 50px !important;
+}
+
+#zipcode {
+    padding-top: 5px;
 }
 
 
@@ -774,6 +885,7 @@ body#all_condition_a_to_z-container::after{
 .all_condition_add i {
     font-size: 1.75rem;
     font-weight: bold;
+    padding-top: 5px;
 }
 
 .all_condition_add i:hover {
@@ -1032,16 +1144,12 @@ body#all_condition_a_to_z-container::after{
 }
 
 
-
-
-
 /*Flash messages*/
 h5.flash-msg {
-    padding: 20px;
+    padding-left: 20px;
     padding-top: 80px;
     font-size: 22px;
     font-weight: bold;
-
 }
 
 

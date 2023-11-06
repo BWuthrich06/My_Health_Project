@@ -65,7 +65,8 @@ if (findPhysicianButton) {
                             let physicianDetails = document.querySelector("#physicianResultsContainer");
                             searchResults = document.createElement('h2');
                             physicianDetails.appendChild(searchResults);
-                            searchResults.innerHTML =`Results near ${zipcode}:`
+                            searchResults.innerHTML = "<br>" + `Results near ${zipcode}:`;
+                            searchResults.classList.add('resultHeader');
                         
                             //Array to hold all relDetails
                             allDetails = []

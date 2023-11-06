@@ -16,7 +16,7 @@
 
 
   <div class="row">
-    <div class="col-sm-12 col-md-6 col-lg-7">
+    <div class="col-sm-12 col-md-5 col-lg-7">
       <div class="profile-introduction">
         <p>Empower yourself with knowledge about your health conditions.<br>
            Taking control of your health starts with understanding you're diagnosis.<br>
@@ -33,7 +33,7 @@
     </div>
   
   <!--Recent Vital Sign-->
-    <div class="col-sm-12 col-md-6 col-lg-5">
+    <div class="col-sm-12 col-md-7 col-lg-5">
       <div id="vitals_profile">
         <h3 id="vital_profile_title">Most Recent Vitals</h3>
         <a href="/vitals" class="hyperlink" id="new_vital_link">Record New Vital</a>
@@ -80,8 +80,7 @@
     {% if all_user_conditions %}
       <div class="row">
         {% for user_condition in all_user_conditions %}<br>
-          <div class="col-sm-12 col-md-6 col-lg-4">
-          
+          <div class="col-sm-12 col-md-12 col-lg-6">
             <div class="saved_condition">
               <p><a href ="{{ user_condition.condition.url }}" class="saved_condition_name hyperlink">{{ user_condition.condition.title }}</a>
               <button class="delete-condition" id="{{ user_condition.favorite_id }}" title="Delete Condition">
@@ -89,7 +88,6 @@
               <p class="saved_synonyms"><b>Similar Names:</b> {{ user_condition.condition.all_synonyms }}</p>
               <p class="saved_date">Date Added: {{ user_condition.date_added.strftime("%m/%d/%Y") }}</p>
             
-
             <!--Comments box-->
             <div class="form-floating">
               <form>
@@ -134,16 +132,27 @@
         
             <div class="col-sm-12 col-md-6 col-lg-4">
               <div class="ind_saved_physician">
-              <p><span class="physician-name"><b>{{ physician.name }}</b></span><br>
-                <span class="physician-address">{{ physician.address }}</span><br>
-                <span class="physician-phone">{{ physician.phone }}</span><br>
-                <a href="{{ physician.url }}" class="hyperlink" target="_blank">View Map</a></p>
-                <div class="physician-delete-button">
-                <form action="/delete_physician", method="POST">
-                  <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
-                  <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
-                </form>
-                </div>
+                <p><span class="physician-name"><b>{{ physician.name }}</b></span><br>
+                  <span class="physician-address">{{ physician.address }}</span><br>
+                  <span class="physician-phone">{{ physician.phone }}</span><br>
+                  <a href="{{ physician.url }}" class="hyperlink" target="_blank">View Map</a></p>
+                  
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="physician-delete-button">
+                        <form action="/delete_physician", method="POST">
+                          <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
+                          <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="physician-delete-button">
+                    <form action="/delete_physician", method="POST">
+                      <button type="submit" class="delete_physician" id="{{ physician.physician_id }}" name="physician_id" value="{{ physician.physician_id }}">
+                      <i class="bi bi-trash" id="{{ physician.physician_id }}">Delete</i></button>
+                    </form>
+                  </div> -->
               </div>
             </div>
         {% endfor %}

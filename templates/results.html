@@ -17,42 +17,44 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div id="condition_result_input">
-                    <!--Link to go back to search page.-->
-                    <p id="back_to_search"><a href ="/conditions/search">Back to Search</a></p>
-                    
-                    <h1>Search results for "{{ result }}"</h1>
-                </div>
-            </div>
-        </div>
-
-        <div id="all_search_condition_results">
-            <!--Loop through each condition from results-->
-            {% for condition in results %}
-
-                <div class="row">
-                    <div class="col-12">
-                        <!--List condition if it has url-->
-                        {% if condition.url %}
-                        <p class="condition_result"><a href="{{ condition.url }}" target="_blank">{{ condition.title }}</a>
-
-                        <!--Button to add to personal conditions-->
-                        <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
-
-                        <!--Loop through all conditions synonyms-->
-                        {% if condition.all_synonyms %}
-                            <p class="result_synonyms"><b>Similar Names: </b><span>{{ condition.all_synonyms }}</span></p>
-                        {% else %}
-                            <p class="result_synonyms"><b>Similar Names: </b> None</p>
-                        {% endif %}          
-                        {% endif %}
+        <div id="search_result_container">
+            <div class="row">
+                <div class="col-12">
+                    <div id="condition_result_input">
+                        <!--Link to go back to search page.-->
+                        <p><a href ="/conditions/search" id="back_to_search_condition">Back to Search</a></p>
+                        
+                        <h1>Search results for "{{ result }}"</h1>
                     </div>
                 </div>
+            </div>
 
-  
-            {% endfor %}
+            <div id="all_search_condition_results">
+                <!--Loop through each condition from results-->
+                {% for condition in results %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <!--List condition if it has url-->
+                            {% if condition.url %}
+                            <p class="condition_result"><a href="{{ condition.url }}" target="_blank">{{ condition.title }}</a>
+
+                            <!--Button to add to personal conditions-->
+                            <button id="{{ condition.condition_id }}" class="condition_add">+ Add</button></p>
+
+                            <!--Loop through all conditions synonyms-->
+                            {% if condition.all_synonyms %}
+                                <p class="result_synonyms"><b>Similar Names: </b><span>{{ condition.all_synonyms }}</span></p>
+                            {% else %}
+                                <p class="result_synonyms"><b>Similar Names: </b> None</p>
+                            {% endif %}          
+                            {% endif %}
+                        </div>
+                    </div>
+
+    
+                {% endfor %}
+            </div>
         </div>
 
     <script src="/static/conditions.js"></script>

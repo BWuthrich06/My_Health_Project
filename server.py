@@ -90,7 +90,6 @@ def process_login():
 
     #Login success, store session 'email'
     if user and argon2.verify(password, user.password):
-        flash("Login successful.")
         session['email'] = email
     
         return redirect('/profile')
@@ -196,7 +195,7 @@ def get_results():
     
     #Redirect user to login.
     else:
-        flash("You must login first")
+        flash("You must login first.")
         return redirect('/')
         
 
@@ -223,7 +222,7 @@ def add_condition_to_user():
 
     #Create new saved user condition, add to database.
     saved_condition = crud.create_user_condition(condition, user_id)
-    flash("Condition has been successfully added.")
+    flash("Condition has been added successfully.")
     db.session.add(saved_condition)
     db.session.commit()
 

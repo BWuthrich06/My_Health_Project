@@ -2,69 +2,6 @@
 {% block title %}Graph Vitals{% endblock %}
 
 {% block head %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Continuing Care</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/profile">My Profile</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Conditions
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/conditions/search">Search for Health Condition</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/conditions">Health Conditions A to Z</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Vitals
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/vitals">Document Vitals</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/vitals/allrecords">View My Vitals</a></li>
-              <li><a class="dropdown-item" href='/vitals_graph'>Vital Graphs</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/findphysician">Find Physician</a>
-          </li>
-
-        </ul>
-        
-        <form action="/conditions/results" class="d-flex" role="search">
-          <input class="form-control me-2" type="search" name="result" placeholder="Health Condition" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-
-        
-        <form action="/logout" method="post">
-          <button class="logout" type="submit">Logout</button>
-        </form>
-        
-      </div>
-    </div>
-  </nav>
-
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/chart.js"></script>
@@ -79,7 +16,7 @@
     <div class="row">
         <div class="col-12">
             <div id="vital_graph_page_header">
-                <h1>Vital Signs</h1>
+                <h1 id="head_vs_graph">Vital Signs</h1>
             </div>
         </div>
     </div>

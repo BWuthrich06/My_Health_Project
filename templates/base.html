@@ -16,6 +16,9 @@
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Prata&family=Space+Mono&display=swap" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Karma:wght@400;500&family=Playfair+Display&family=Prata&family=Space+Mono&display=swap" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -24,7 +27,11 @@
       {% block title %}{% endblock %}
     </title>
 
-    {% block head %}
+    
+    {% block head %}{% endblock %}
+    </head>
+
+  <body>
     <nav class="navbar navbar-expand-xxl bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand">Continuing Care</a>
@@ -92,20 +99,16 @@
     {% for msg in get_flashed_messages() %}
       <h5 class="flash-msg">
         {{ msg }}
-      </h5><br>
+      </h5>
     {% endfor %}
-    
 
-  </head>
-  {% endblock %}
-  
   {% block body %}
-  <body>
+  
    
 
-  </body>
+  
     {% endblock %}
-
+  </body>
     {% block after_body %}{% endblock %}
   
 
