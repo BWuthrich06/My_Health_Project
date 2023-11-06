@@ -72,15 +72,27 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
 
 
 * All Health Conditions A to Z
+
     * Users can view all health conditions listed out alphabetically.  
     * User can jump to section with "startswith" letter link.
 
     ![Continuing Care All Health Conditions A to Z](/static/images/Conditions_A_to_Z.PNG)
 
+
+
 * Document Vitals 
+
     * Users will be able to record and store vital signs in Postgres.
+
+    ![Continuing Care Document Vitals](/static/images/Record_Vitals.PNG)
+
     * View a detailed log with timestamps.
+
+    ![Continuing Care All Vital Sign Results](/static/images/All_vitals.PNG)
+
     * Analyze trends with ChartJS easy-to-read graphs. 
+
+    ![Continuing Care Vital Sign Graphs](/static/images/Vital_Graph.PNG)
  
 * Find Physician 
     * The “Find Physician” feature allows users to input a zip code to retrieve nearby doctors.  
