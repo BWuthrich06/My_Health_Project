@@ -93,6 +93,10 @@ All pages were styled using a combination of CSS and Bootstrap components, ensur
     * Analyze trends with ChartJS easy-to-read graphs. 
 
     ![Continuing Care Vital Sign Graphs](/static/images/Vital_Graph.PNG)
+
+    *Most Recent documented vital signs will be visible on user profile page.
+
+    ![Continuing Care Profile Page Most Recent Vitals](/static/images/Profile_Vitals.PNG)
  
 * Find Physician
 
